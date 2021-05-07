@@ -24,9 +24,11 @@ class LandingActivity : AppCompatActivity() {
             if(user != null){
                 val homeIntent = Intent(this, HomeActivity::class.java)
                 startActivity(homeIntent)
+                finish()
             }else{
                 val mainActivity = Intent(this, MainActivity::class.java)
                 startActivity(mainActivity)
+                finish()
             }
         }, 2000)
     }

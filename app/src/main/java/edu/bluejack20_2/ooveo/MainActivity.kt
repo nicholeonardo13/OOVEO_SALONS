@@ -21,11 +21,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var registerNowBtn: TextView? = null
+    private lateinit var mAuth: FirebaseAuth
     private lateinit var google_sign_in_btn: ImageView
     private lateinit var googleSignInClient: GoogleSignInClient
 
 
-    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,18 +36,19 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //configure Google Sign In
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        // Configure Google Sign In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
 
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
         //Firebase Auth instance
         mAuth = FirebaseAuth.getInstance()
 
-        google_sign_in_btn.setOnClickListener{
+        google_sign_in_btn!!.setOnClickListener{
             signIn()
+            println("Button Clicked!")
         }
     }
 
