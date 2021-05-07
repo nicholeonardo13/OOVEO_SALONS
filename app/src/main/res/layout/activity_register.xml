@@ -14,7 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/wave_img" />
 
     <!--    //- Nama-->
     <!--    - Nomor Hp-->
@@ -79,7 +80,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtRegisterPhoneNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/edtRegisterPhoneNumber"
+        android:autofillHints="@string/email" />
 
     <RadioGroup
         android:id="@+id/radioGroupRegisterGender"
@@ -117,7 +119,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:onClick="openDatePicker"
         android:text="@string/jan_01_2021"
@@ -134,7 +135,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:hint="@string/password"

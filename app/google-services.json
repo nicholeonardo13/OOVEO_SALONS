@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "279505682776",
+    "project_id": "ooveo-966be",
+    "storage_bucket": "ooveo-966be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279505682776:android:8a5bcabbc301d941fca52d",
+        "android_client_info": {
+          "package_name": "edu.bluejack20_2.ooveo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279505682776-mr5dcsbckbfmum8vga4avhf6f9jv3a1h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1ktdfnRmu-w_Y8gGCdrv0t2Ej5WrwJpA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279505682776-mr5dcsbckbfmum8vga4avhf6f9jv3a1h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,21 +2,34 @@ package edu.bluejack20_2.ooveo
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
     private var datePickerDialog: DatePickerDialog? = null
     private lateinit var dateButton: Button
+    private lateinit var textViewLogin: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         initdaePicker()
+        init()
+        textViewLogin.setOnClickListener{
+            val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
         dateButton = findViewById(R.id.btnRegisterDatePicker)
         dateButton.setText(todaysDate)
+    }
+
+    private fun init(){
+        textViewLogin = findViewById(R.id.tvRegisterLogin)
     }
 
     private val todaysDate: String
