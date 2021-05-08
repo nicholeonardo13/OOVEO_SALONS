@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
@@ -51,6 +50,7 @@ class RegisterActivity : AppCompatActivity() {
                 var txtPassword: String = edtPassword.text.toString()
                 var txtRepassword: String = edtRepassword.text.toString()
                 var dateText: String = dateButton.text.toString()
+                var gender: String = ""
 
                 if(txtName.isEmpty()){
                     Toast.makeText(this, "Name must be filled!", Toast.LENGTH_SHORT).show()
@@ -60,6 +60,11 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this, "Email must be filled!", Toast.LENGTH_SHORT).show()
                 }else if(!rbFemale.isChecked && !rbMale.isChecked){
                     Toast.makeText(this, "Gender must be selected!", Toast.LENGTH_SHORT).show()
+                    if(rbFemale.isChecked){
+                        gender = "Female"
+                    }else{
+                        gender = "Male"
+                    }
                 }else if(dateText == todaysDate){
                     Toast.makeText(this, "Date birth must be choose!", Toast.LENGTH_SHORT).show()
                 }else if(txtPassword.isEmpty()){
@@ -72,14 +77,35 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this, "Re-password doesn't match!", Toast.LENGTH_SHORT).show()
                 }else{
                     createAccount(txtEmail, txtPassword);
+                    saveUserFireStore(txtName, txtPhone, txtEmail, gender, dateText, txtPassword)
+                    var intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+
                 }
 
             }
         )
     }
 
-    private fun saveUserFireStore(){
+    private fun saveUserFireStore(txtName: String, txtPhone: String, txtEmail:String, gender:String, txtDate: String, txtPassword: String ){
         val db = FirebaseFirestore.getInstance()
+        val user: MutableMap<String, Any> = HashMap()
+        user["name"] = txtName
+        user["phone"] = txtPhone
+        user["email"] = txtEmail
+        user["gender"] = gender
+        user["dob"] = txtDate
+        user["password"] = txtPassword
+
+        db.collection("users")
+            .add(user)
+            .addOnSuccessListener {
+                Toast.makeText(this@RegisterActivity, "user added successfully ", Toast.LENGTH_SHORT ).show()
+            }
+            .addOnFailureListener{
+                Toast.makeText(this@RegisterActivity, "user Failed to add ", Toast.LENGTH_SHORT ).show()
+            }
+
     }
 
     private fun init(){
