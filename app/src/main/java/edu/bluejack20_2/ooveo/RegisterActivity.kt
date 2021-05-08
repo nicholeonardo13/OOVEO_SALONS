@@ -6,14 +6,29 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
+import android.widget.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
     private var datePickerDialog: DatePickerDialog? = null
     private lateinit var dateButton: Button
     private lateinit var textViewLogin: TextView
+
+    private lateinit var registerBtn: Button
+    private lateinit var edtName: EditText
+    private lateinit var edtPhone: EditText
+    private lateinit var edtEmail: EditText
+    private lateinit var edtPassword: EditText
+    private lateinit var edtRepassword: EditText
+    private lateinit var rbFemale: RadioButton
+    private lateinit var rbMale: RadioButton
+
+
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,13 +38,60 @@ class RegisterActivity : AppCompatActivity() {
         textViewLogin.setOnClickListener{
             val intent = Intent(this@RegisterActivity, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
         dateButton = findViewById(R.id.btnRegisterDatePicker)
-        dateButton.setText(todaysDate)
+        dateButton.text = todaysDate
+        mAuth = FirebaseAuth.getInstance();
+
+        registerBtn!!.setOnClickListener( View.OnClickListener {
+                var txtName: String = edtName.text.toString()
+                var txtPhone: String = edtPhone.text.toString()
+                var txtEmail: String = edtEmail.text.toString()
+                var txtPassword: String = edtPassword.text.toString()
+                var txtRepassword: String = edtRepassword.text.toString()
+                var dateText: String = dateButton.text.toString()
+
+                if(txtName.isEmpty()){
+                    Toast.makeText(this, "Name must be filled!", Toast.LENGTH_SHORT).show()
+                }else if(txtPhone.isEmpty()){
+                    Toast.makeText(this, "Phone must be filled!", Toast.LENGTH_SHORT).show()
+                }else if(txtEmail.isEmpty()){
+                    Toast.makeText(this, "Email must be filled!", Toast.LENGTH_SHORT).show()
+                }else if(!rbFemale.isChecked && !rbMale.isChecked){
+                    Toast.makeText(this, "Gender must be selected!", Toast.LENGTH_SHORT).show()
+                }else if(dateText == todaysDate){
+                    Toast.makeText(this, "Date birth must be choose!", Toast.LENGTH_SHORT).show()
+                }else if(txtPassword.isEmpty()){
+                    Toast.makeText(this, "Password must be filled!", Toast.LENGTH_SHORT).show()
+                }else if(txtPassword.length < 8){
+                    Toast.makeText(this, "Password must be more than 8 character!", Toast.LENGTH_SHORT).show()
+                }else if(txtRepassword.isEmpty()){
+                    Toast.makeText(this, "Re-password must be filled!", Toast.LENGTH_SHORT).show()
+                }else if(txtRepassword != txtPassword){
+                    Toast.makeText(this, "Re-password doesn't match!", Toast.LENGTH_SHORT).show()
+                }else{
+                    createAccount(txtEmail, txtPassword);
+                }
+
+            }
+        )
+    }
+
+    private fun saveUserFireStore(){
+        val db = FirebaseFirestore.getInstance()
     }
 
     private fun init(){
         textViewLogin = findViewById(R.id.tvRegisterLogin)
+        registerBtn = findViewById(R.id.btnRegisterRegister)
+        edtName = findViewById(R.id.edtRegisterName)
+        edtEmail = findViewById(R.id.edtRegisterEmail)
+        edtPhone = findViewById(R.id.edtRegisterPhoneNumber)
+        edtPassword = findViewById(R.id.edtRegisterPassword)
+        edtRepassword = findViewById(R.id.edtRegisterRePassword)
+        rbFemale = findViewById(R.id.rbRegisterFemale)
+        rbMale = findViewById(R.id.rbRegisterMale)
     }
 
     private val todaysDate: String
@@ -37,7 +99,7 @@ class RegisterActivity : AppCompatActivity() {
             val cal = Calendar.getInstance()
             val year = cal[Calendar.YEAR]
             var month = cal[Calendar.MONTH]
-            month = month + 1
+            month += 1
             val day = cal[Calendar.DAY_OF_MONTH]
             return makeDateString(day, month, year)
         }
@@ -45,7 +107,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun initdaePicker() {
         val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, day ->
             var month = month
-            month = month + 1
+            month += 1
             val date = makeDateString(day, month, year)
             dateButton!!.text = date
         }
@@ -81,5 +143,19 @@ class RegisterActivity : AppCompatActivity() {
 
     fun openDatePicker(view: View?) {
         datePickerDialog!!.show()
+
+    }
+
+    private fun createAccount(email: String, password: String) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if(task.isSuccessful) {
+                  val registerIntent = Intent(this, MainActivity::class.java)
+                  startActivity(registerIntent)
+                }
+                else {
+                    Toast.makeText(this, "Register failed!", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 }

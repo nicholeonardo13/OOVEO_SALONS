@@ -4,9 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -24,7 +23,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var google_sign_in_btn: ImageView
     private lateinit var googleSignInClient: GoogleSignInClient
-
+    private lateinit var signinBtn: Button
+    private lateinit var txtEmail: EditText
+    private lateinit var txtPassword: EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         registerNowBtn!!.setOnClickListener {
             val intent = Intent(this@MainActivity, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         // Configure Google Sign In
@@ -46,20 +48,51 @@ class MainActivity : AppCompatActivity() {
         //Firebase Auth instance
         mAuth = FirebaseAuth.getInstance()
 
+        signinBtn!!.setOnClickListener(View.OnClickListener {
+            var email: String =  txtEmail.text.toString()
+            var password: String = txtPassword.text.toString()
+
+            if(email.isEmpty()){
+                Toast.makeText(this, "Email must be fiiled!", Toast.LENGTH_SHORT).show()
+            }else if(password.isEmpty()){
+                Toast.makeText(this, "Password must be filled!", Toast.LENGTH_SHORT).show()
+            }else{
+                signIn(email, password)
+            }
+         }
+        )
+
         google_sign_in_btn!!.setOnClickListener{
-            signIn()
+            signInWithGoogle()
             println("Button Clicked!")
         }
+
     }
 
     private fun init() {
         registerNowBtn = findViewById(R.id.tvRegisterLogin)
         google_sign_in_btn = findViewById(R.id.ivMainGoogle)
+        signinBtn = findViewById(R.id.btnMainLogin)
+        txtEmail = findViewById(R.id.edtMainEmail)
+        txtPassword = findViewById(R.id.edtMainPassword)
     }
 
-    private fun signIn() {
+    private fun signInWithGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    private fun signIn(email: String, password: String) {
+        mAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if(task.isSuccessful) {
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

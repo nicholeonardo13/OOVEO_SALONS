@@ -22,6 +22,8 @@ class LandingActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             if(user != null){
+                println("Login successful");
+
                 val homeIntent = Intent(this, HomeActivity::class.java)
                 startActivity(homeIntent)
                 finish()
