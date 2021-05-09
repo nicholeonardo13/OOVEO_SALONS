@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if(task.isSuccessful) {
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, ProfileActivity::class.java)
                     startActivity(intent);
                 }
                 else {
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("MainActivity", "signInWithCredential:success")
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, ProfileActivity::class.java)
                     startActivity(intent)
                     finish()
 //                    val user = mAuth.currentUser
