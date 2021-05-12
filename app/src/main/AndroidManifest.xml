@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_ooveo_logo2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OOVEO_SALON">
-        <activity android:name=".LanguageActivity"></activity>
+        <activity android:name=".PhoneNumberVerificationActivity"></activity>
+        <activity android:name=".PhoneNumberActivity" />
+        <activity android:name=".LanguageActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MainActivity" />

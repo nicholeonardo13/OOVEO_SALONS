@@ -29,4 +29,12 @@
     <string name="logout">Logout</string>
     <string name="versi_1_0_0">Versi 1.0.0</string>
     <string name="pilih_bahasa">PILIH BAHASA</string>
+    <string name="phone_Number">Phone Number</string>
+    <string name="_62">+62</string>
+    <string name="verification_code_sms">Verification Code SMS</string>
+    <string name="verification_code_p1">Please enter the SMS code within in the next five Minutes. The code might be sent in 10 to 60 seconds.</string>
+    <string name="verification_code_p2">Please allow the counter to finish before you can request another SMS code, But relax it usually won\'t take that long.</string>
+    <string name="next">Next</string>
+    <string name="phone_number_p2">Rest assured we will never share your personal data with anyone. All data is encrypted to protected your privacy</string>
+    <string name="phone_number_p1">Please enter your mobile number to verify your account. We will send a notification code to your number via SMS.</string>
 </resources>

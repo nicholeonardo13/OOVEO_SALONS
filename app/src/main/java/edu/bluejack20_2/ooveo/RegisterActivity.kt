@@ -77,8 +77,8 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this, "Re-password doesn't match!", Toast.LENGTH_SHORT).show()
                 }else{
                     createAccount(txtEmail, txtPassword);
-                    saveUserFireStore(txtName, txtPhone, txtEmail, gender, dateText, txtPassword)
-                    var intent = Intent(this, HomeActivity::class.java)
+//                    saveUserFireStore(txtName, txtPhone, txtEmail, gender, dateText, txtPassword)
+                    var intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
 
                 }

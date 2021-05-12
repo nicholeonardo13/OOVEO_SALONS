@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 class ProfileActivity : AppCompatActivity() {
     private lateinit var logoutBtn: Button
     private lateinit var languageBtn: Button
+    private lateinit var edtProfileBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +29,18 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
+        edtProfileBtn!!.setOnClickListener(View.OnClickListener {
+            var intent = Intent(this, EditProfileActivity::class.java)
+            startActivity(intent)
+        })
+
+
     }
 
     private fun init(){
         logoutBtn = findViewById(R.id.btnProfileLogout)
         languageBtn = findViewById(R.id.btnProfileLanguage)
+        edtProfileBtn = findViewById(R.id.btnProfilEditProfile)
+
     }
 }
