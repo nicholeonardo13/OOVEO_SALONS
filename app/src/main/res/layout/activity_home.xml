@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,74 +7,99 @@
     tools:context=".HomeActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView"
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/ic_wave_home"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.0"-->
+<!--        android:contentDescription="@string/wave_img" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btnBarber"-->
+<!--        android:layout_width="182dp"-->
+<!--        android:layout_height="53dp"-->
+<!--        android:layout_marginStart="12dp"-->
+<!--        android:layout_marginTop="216dp"-->
+<!--        android:background="@drawable/round_button"-->
+<!--        android:text="Barber"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.157"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/btnReflexy"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btnBeauty"-->
+<!--        android:layout_width="182dp"-->
+<!--        android:layout_height="53dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="216dp"-->
+<!--        android:background="@drawable/round_button"-->
+<!--        android:text="Beauty Bar"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btnReflexy"-->
+<!--        android:layout_width="182dp"-->
+<!--        android:layout_height="53dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:background="@drawable/round_button"-->
+<!--        android:text="Reflexiolgy"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btnBeauty" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btnSalon"-->
+<!--        android:layout_width="182dp"-->
+<!--        android:layout_height="53dp"-->
+<!--        android:layout_marginStart="12dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:background="@drawable/round_button"-->
+<!--        android:text="Salon"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.157"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/btnReflexy"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btnBarber" />-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recycleMerchants"-->
+<!--        android:layout_width="410dp"-->
+<!--        android:layout_height="289dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        tools:listitem="@layout/merchant_item"/>-->
+    
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_wave_home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:contentDescription="@string/wave_img" />
+        android:layout_height="wrap_content"
+        android:id="@+id/appBarLayout">
 
-    <Button
-        android:id="@+id/btnBarber"
-        android:layout_width="182dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="216dp"
-        android:background="@drawable/round_button"
-        android:text="Barber"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toEndOf="@+id/btnReflexy"
-        app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <Button
-        android:id="@+id/btnBeauty"
-        android:layout_width="182dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="216dp"
-        android:background="@drawable/round_button"
-        android:text="Beauty Bar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewPager"
+        android:layout_below="@id/appBarLayout">
 
-    <Button
-        android:id="@+id/btnReflexy"
-        android:layout_width="182dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/round_button"
-        android:text="Reflexiolgy"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnBeauty" />
-
-    <Button
-        android:id="@+id/btnSalon"
-        android:layout_width="182dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/round_button"
-        android:text="Salon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toEndOf="@+id/btnReflexy"
-        app:layout_constraintTop_toBottomOf="@+id/btnBarber" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleMerchants"
-        android:layout_width="410dp"
-        android:layout_height="289dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/merchant_item"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabBackground="@color/teal_700"
+            app:tabGravity="fill"
+            app:tabInlineLabel="true"
+            app:tabMode="fixed"
+            app:tabTextAppearance="@style/customTabStyle"
+            app:tabTextColor="@android:color/white" />
+    </androidx.viewpager.widget.ViewPager>
+</RelativeLayout>
