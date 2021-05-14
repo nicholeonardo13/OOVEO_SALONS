@@ -20,8 +20,7 @@ class EditProfileActivity : AppCompatActivity() {
         init()
 
         changePhoneNumberBtn!!.setOnClickListener(View.OnClickListener {
-            var intent = Intent(this, PhoneNumberActivity::class.java)
-            startActivity(intent)
+
         })
 
         changePasswordBtn!!.setOnClickListener(View.OnClickListener {

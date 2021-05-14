@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        registerNowBtn = findViewById(R.id.tvRegisterLogin)
+        registerNowBtn = findViewById(R.id.tvMerchantRegisterLogin)
         google_sign_in_btn = findViewById(R.id.ivMainGoogle)
         signinBtn = findViewById(R.id.btnMainLogin)
         txtEmail = findViewById(R.id.edtMainEmail)

@@ -39,4 +39,10 @@
     <string name="phone_number_p1">Please enter your mobile number to verify your account. We will send a notification code to your number via SMS.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register_merchant">Register Merchant</string>
+    <string name="address">Address</string>
+    <string name="upload_banner">Upload Banner</string>
+    <string name="no_file_seletced">No file seletced</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="enter_verification_code">Enter Verification Code</string>
 </resources>

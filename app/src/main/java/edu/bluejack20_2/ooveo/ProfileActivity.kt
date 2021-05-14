@@ -6,18 +6,25 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var logoutBtn: Button
     private lateinit var languageBtn: Button
     private lateinit var edtProfileBtn: Button
+    private lateinit var mAuth: FirebaseAuth;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         init()
+        mAuth = FirebaseAuth.getInstance()
+
+
+
         logoutBtn!!.setOnClickListener(View.OnClickListener {
-            FirebaseAuth.getInstance().signOut();
+            //FirebaseAuth.getInstance().signOut();
+            mAuth.signOut()
             var intent =  Intent(this, MainActivity::class.java);
             startActivity(intent);
             finish()
@@ -35,6 +42,17 @@ class ProfileActivity : AppCompatActivity() {
         })
 
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        //Check dulu, kalo blm login gabisa kesini, bakal di arahin ke login
+        var currentUser: FirebaseUser = mAuth.getCurrentUser();
+        if(currentUser == null){
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun init(){

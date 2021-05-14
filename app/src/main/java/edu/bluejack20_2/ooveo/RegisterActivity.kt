@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -76,10 +75,14 @@ class RegisterActivity : AppCompatActivity() {
                 }else if(txtRepassword != txtPassword){
                     Toast.makeText(this, "Re-password doesn't match!", Toast.LENGTH_SHORT).show()
                 }else{
-                    createAccount(txtEmail, txtPassword);
-//                    saveUserFireStore(txtName, txtPhone, txtEmail, gender, dateText, txtPassword)
-                    var intent = Intent(this, MainActivity::class.java)
+                    //SAVE KE FIREBASE DULU DATA-DATA NYA
+                    //KALO UDAH HARUS VERIFIKASI PHONE NUMBER DULU,
+                    //JADI NTR LOGIN NYA PAKE NOMOR HP, bukan email, password
+                    var intent = Intent(this, PhoneNumberActivity::class.java)
                     startActivity(intent)
+
+                    createAccount(txtEmail, txtPassword);
+//                  saveUserFireStore(txtName, txtPhone, txtEmail, gender, dateText, txtPassword)
 
                 }
 
@@ -109,13 +112,13 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun init(){
-        textViewLogin = findViewById(R.id.tvRegisterLogin)
-        registerBtn = findViewById(R.id.btnRegisterRegister)
-        edtName = findViewById(R.id.edtRegisterName)
-        edtEmail = findViewById(R.id.edtRegisterEmail)
-        edtPhone = findViewById(R.id.edtRegisterPhoneNumber)
-        edtPassword = findViewById(R.id.edtRegisterPassword)
-        edtRepassword = findViewById(R.id.edtRegisterRePassword)
+        textViewLogin = findViewById(R.id.tvMerchantRegisterLogin)
+        registerBtn = findViewById(R.id.btnMerchantRegisterRegister)
+        edtName = findViewById(R.id.edtMerchantRegisterName)
+        edtEmail = findViewById(R.id.edtMerchantRegisterEmail)
+        edtPhone = findViewById(R.id.edtMerchantRegisterPhoneNumber)
+        edtPassword = findViewById(R.id.edtMerchantRegisterPassword)
+        edtRepassword = findViewById(R.id.edtMerchantRegisterRePassword)
         rbFemale = findViewById(R.id.rbRegisterFemale)
         rbMale = findViewById(R.id.rbRegisterMale)
     }
