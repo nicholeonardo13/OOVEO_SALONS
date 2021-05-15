@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumberTxt" />
 
     <EditText
-        android:id="@+id/edtPhoneNumberPhoneNum2"
+        android:id="@+id/edtPhoneNumberOTPCode"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="64dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <Button
-        android:id="@+id/btnVerificationNext1"
+        android:id="@+id/btnPhoneNumVerificationCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -76,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtPhoneNumberPhoneNum2"
+        app:layout_constraintTop_toBottomOf="@+id/edtPhoneNumberOTPCode"
         app:layout_constraintVertical_bias="0.231" />
 
     <ImageView

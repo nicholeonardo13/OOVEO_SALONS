@@ -119,6 +119,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //SUCCESS LOGIN WITH GOOGLE
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
@@ -126,7 +127,7 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("MainActivity", "signInWithCredential:success")
-                    val intent = Intent(this, ProfileActivity::class.java)
+                    val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                     finish()
 //                    val user = mAuth.currentUser

@@ -20,8 +20,6 @@ class ProfileActivity : AppCompatActivity() {
         init()
         mAuth = FirebaseAuth.getInstance()
 
-
-
         logoutBtn!!.setOnClickListener(View.OnClickListener {
             //FirebaseAuth.getInstance().signOut();
             mAuth.signOut()

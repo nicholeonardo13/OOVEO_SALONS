@@ -75,13 +75,11 @@ class RegisterActivity : AppCompatActivity() {
                 }else if(txtRepassword != txtPassword){
                     Toast.makeText(this, "Re-password doesn't match!", Toast.LENGTH_SHORT).show()
                 }else{
-                    //SAVE KE FIREBASE DULU DATA-DATA NYA
-                    //KALO UDAH HARUS VERIFIKASI PHONE NUMBER DULU,
-                    //JADI NTR LOGIN NYA PAKE NOMOR HP, bukan email, password
-                    var intent = Intent(this, PhoneNumberActivity::class.java)
-                    startActivity(intent)
 
                     createAccount(txtEmail, txtPassword);
+                    //SAVE KE FIREBASE DULU DATA-DATA NYA
+
+
 //                  saveUserFireStore(txtName, txtPhone, txtEmail, gender, dateText, txtPassword)
 
                 }
@@ -179,8 +177,12 @@ class RegisterActivity : AppCompatActivity() {
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if(task.isSuccessful) {
-                  val registerIntent = Intent(this, MainActivity::class.java)
-                  startActivity(registerIntent)
+//                  val registerIntent = Intent(this, MainActivity::class.java)
+//                  startActivity(registerIntent)
+                    //KALO UDAH HARUS VERIFIKASI PHONE NUMBER DULU,
+                    //JADI NTR LOGIN NYA PAKE NOMOR HP, bukan email, password
+                    var intent = Intent(this, PhoneNumberActivity::class.java)
+                    startActivity(intent)
                 }
                 else {
                     Toast.makeText(this, "Register failed!", Toast.LENGTH_SHORT).show()

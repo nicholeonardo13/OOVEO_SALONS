@@ -24,8 +24,8 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:text="@string/phone_Number"
-        android:textSize="40sp"
         android:textColor="@color/white"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,8 +37,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:textColor="@color/white"
         android:text="@string/phone_number_p1"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,14 +49,14 @@
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="110dp"
         android:background="@drawable/custom_input"
+        android:elevation="10dp"
         android:ems="10"
         android:inputType="text"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:text="@string/_62"
-        android:elevation="10dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -69,15 +69,15 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="93dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="110dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/custom_input"
+        android:elevation="10dp"
         android:ems="10"
         android:inputType="phone"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textSize="18sp"
-        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/edtPhoneNumberCodeArea"
         app:layout_constraintTop_toBottomOf="@+id/tvVerificationParagraph" />
@@ -97,15 +97,25 @@
         app:layout_constraintTop_toBottomOf="@+id/edtPhoneNumberPhoneNum" />
 
     <Button
-        android:id="@+id/btnPhoneNumberNext"
+        android:id="@+id/btnPhoneNumberSendVerificationCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:text="@string/next"
+        android:text="@string/send_verification_code"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumberP2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumberP2"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <TextView
+        android:id="@+id/tvPhoneNumberMessage1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPhoneNumberSendVerificationCode" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

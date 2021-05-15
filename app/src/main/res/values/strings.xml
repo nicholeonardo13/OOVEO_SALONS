@@ -45,4 +45,5 @@
     <string name="no_file_seletced">No file seletced</string>
     <string name="verification_code">Verification Code</string>
     <string name="enter_verification_code">Enter Verification Code</string>
+    <string name="send_verification_code">send verification code</string>
 </resources>
