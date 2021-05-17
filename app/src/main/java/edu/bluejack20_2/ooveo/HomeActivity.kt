@@ -46,7 +46,7 @@ class HomeActivity : AppCompatActivity() {
             true
         }
 
-        getAllMerchantData()
+//        getAllMerchantData()
 
     }
 
@@ -95,35 +95,31 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    private fun getAllMerchantData(){
-        db.collection("tests").get()
-            .addOnSuccessListener {
-                var listMerchantModel:ArrayList<MerchantModel> = ArrayList()
-                listMerchantModel.clear()
-
-                for (document in it){
-
-                    listMerchantModel.add(
-                        MerchantModel(
-                        document.id as String,
-                        document.data.get("akhir") as String,
-                            document.data.get("awal") as String,
-                    )
-                    )
-                }
-
-                var merchantAdapter = MerchantAdapter(listMerchantModel)
-//                val recycleMerchants = findViewById<RecyclerView>(R.id.recycleMerchants)
-//                   recycleMerchants.layoutManager = LinearLayoutManager(this)
-//                    recycleMerchants.adapter = merchantAdapter
-
-            }
-            .addOnFailureListener{
-                Log.d("DB Error", "get failed with ")
-            }
+//    private fun getAllMerchantData(){
+//        db.collection("tests").get()
+//            .addOnSuccessListener {
+//                var listMerchantModel:ArrayList<MerchantModel> = ArrayList()
+//                listMerchantModel.clear()
+//
+//                for (document in it){
+//
+//                    listMerchantModel.add(
+//                        MerchantModel(
+//                        document.id as String,
+//                        document.data.get("akhir") as String,
+//                            document.data.get("awal") as String,
+//                    )
+//                    )
+//                }
+//
+//                var merchantAdapter = MerchantAdapter(listMerchantModel)
+////                val recycleMerchants = findViewById<RecyclerView>(R.id.recycleMerchants)
+////                   recycleMerchants.layoutManager = LinearLayoutManager(this)
+////                    recycleMerchants.adapter = merchantAdapter
+//
+//            }
+//            .addOnFailureListener{
+//                Log.d("DB Error", "get failed with ")
+//            }
 
     }
-
-
-
-}
