@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import edu.bluejack20_2.ooveo.EditProfileActivity
@@ -21,7 +22,8 @@ class ProfileFragment : Fragment() {
     private lateinit var logoutBtn: Button
     private lateinit var languageBtn: Button
     private lateinit var edtProfileBtn: Button
-    private lateinit var mAuth: FirebaseAuth;
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var userProfile: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +45,14 @@ class ProfileFragment : Fragment() {
         logoutBtn = view.findViewById<Button>(R.id.btnProfileLogout)
         languageBtn = view.findViewById<Button>(R.id.btnProfileLanguage)
         edtProfileBtn = view.findViewById<Button>(R.id.btnProfilEditProfile)
+        userProfile = view.findViewById<ImageView>(R.id.ivProfileUserImage)
 
+        //Change user image profile
+        userProfile!!.setOnClickListener(View.OnClickListener {
+
+        })
+
+        //LOGOUT
         logoutBtn!!.setOnClickListener(View.OnClickListener {
             //FirebaseAuth.getInstance().signOut();
             mAuth.signOut()
@@ -53,11 +62,13 @@ class ProfileFragment : Fragment() {
 
         })
 
+        //CHANGE LANGUAGE
         languageBtn!!.setOnClickListener(View.OnClickListener {
             var intent = Intent(this.context, LanguageActivity::class.java)
             startActivity(intent)
         })
 
+        //MOVE TO EDIT PROFILE PAGE
         edtProfileBtn!!.setOnClickListener(View.OnClickListener {
             var intent = Intent(this.context, EditProfileActivity::class.java)
             startActivity(intent)

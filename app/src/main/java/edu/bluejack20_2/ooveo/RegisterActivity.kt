@@ -7,12 +7,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.model.User
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
+    private lateinit var db: FirebaseFirestore
+    private lateinit var myRef: DocumentReference
+    private lateinit var mAuthListener :FirebaseAuth.AuthStateListener
+
     private var datePickerDialog: DatePickerDialog? = null
     private lateinit var dateButton: Button
     private lateinit var textViewLogin: TextView
@@ -42,6 +49,7 @@ class RegisterActivity : AppCompatActivity() {
         dateButton = findViewById(R.id.btnRegisterDatePicker)
         dateButton.text = todaysDate
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance()
 
         registerBtn!!.setOnClickListener( View.OnClickListener {
                 var txtName: String = edtName.text.toString()
@@ -51,6 +59,11 @@ class RegisterActivity : AppCompatActivity() {
                 var txtRepassword: String = edtRepassword.text.toString()
                 var dateText: String = dateButton.text.toString()
                 var gender: String = ""
+                if(rbFemale.isChecked){
+                    gender = "Female"
+                }else if (rbMale.isChecked){
+                    gender = "Male"
+                }
 
                 if(txtName.isEmpty()){
                     Toast.makeText(this, "Name must be filled!", Toast.LENGTH_SHORT).show()
@@ -59,12 +72,8 @@ class RegisterActivity : AppCompatActivity() {
                 }else if(txtEmail.isEmpty()){
                     Toast.makeText(this, "Email must be filled!", Toast.LENGTH_SHORT).show()
                 }else if(!rbFemale.isChecked && !rbMale.isChecked){
+
                     Toast.makeText(this, "Gender must be selected!", Toast.LENGTH_SHORT).show()
-                    if(rbFemale.isChecked){
-                        gender = "Female"
-                    }else{
-                        gender = "Male"
-                    }
                 }else if(dateText == todaysDate){
                     Toast.makeText(this, "Date birth must be choose!", Toast.LENGTH_SHORT).show()
                 }else if(txtPassword.isEmpty()){
@@ -76,12 +85,9 @@ class RegisterActivity : AppCompatActivity() {
                 }else if(txtRepassword != txtPassword){
                     Toast.makeText(this, "Re-password doesn't match!", Toast.LENGTH_SHORT).show()
                 }else{
-
+                    val passHash = BCrypt.withDefaults().hashToString(12,txtPassword.toCharArray())
+                    saveUserFireStore(txtName, txtPhone, txtEmail, gender, dateText, passHash)
                     createAccount(txtEmail, txtPassword);
-                    //SAVE KE FIREBASE DULU DATA-DATA NYA
-
-
-//                  saveUserFireStore(txtName, txtPhone, txtEmail, gender, dateText, txtPassword)
 
                 }
 
@@ -90,8 +96,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun saveUserFireStore(txtName: String, txtPhone: String, txtEmail:String, gender:String, txtDate: String, txtPassword: String ){
-        val db = FirebaseFirestore.getInstance()
         val user: MutableMap<String, Any> = HashMap()
+        user["role"] = "User"
         user["name"] = txtName
         user["phone"] = txtPhone
         user["email"] = txtEmail
@@ -102,18 +108,11 @@ class RegisterActivity : AppCompatActivity() {
         db.collection("users")
             .add(user)
             .addOnSuccessListener {
-                Toast.makeText(this@RegisterActivity, "user added successfully ", Toast.LENGTH_SHORT ).show()
+                Toast.makeText(this@RegisterActivity, "Register success ", Toast.LENGTH_SHORT ).show()
             }
             .addOnFailureListener{
-                Toast.makeText(this@RegisterActivity, "user Failed to add ", Toast.LENGTH_SHORT ).show()
+                Toast.makeText(this@RegisterActivity, "Failed to Register ", Toast.LENGTH_SHORT ).show()
             }
-
-    }
-
-    private fun saveData(txtName: String, txtPhone: String, txtEmail:String, gender:String, txtDate: String, txtPassword: String){
-        //Save data User to firestore
-
-        val user = User("User", txtName, txtPhone, txtEmail, gender, txtDate, txtPassword)
 
     }
 
@@ -189,6 +188,7 @@ class RegisterActivity : AppCompatActivity() {
 //                  startActivity(registerIntent)
                     //KALO UDAH HARUS VERIFIKASI PHONE NUMBER DULU,
                     //JADI NTR LOGIN NYA PAKE NOMOR HP, bukan email, password
+
                     var intent = Intent(this, PhoneNumberActivity::class.java)
                     startActivity(intent)
                 }
