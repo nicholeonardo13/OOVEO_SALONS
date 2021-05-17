@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import edu.bluejack20_2.ooveo.model.User
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -106,6 +107,13 @@ class RegisterActivity : AppCompatActivity() {
             .addOnFailureListener{
                 Toast.makeText(this@RegisterActivity, "user Failed to add ", Toast.LENGTH_SHORT ).show()
             }
+
+    }
+
+    private fun saveData(txtName: String, txtPhone: String, txtEmail:String, gender:String, txtDate: String, txtPassword: String){
+        //Save data User to firestore
+
+        val user = User("User", txtName, txtPhone, txtEmail, gender, txtDate, txtPassword)
 
     }
 
