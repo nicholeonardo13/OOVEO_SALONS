@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import java.util.ArrayList
 
 class MerchantAdapter(private val merchantModelList: ArrayList<MerchantModel>) : RecyclerView.Adapter<MerchantAdapter.MerchantViewHolder>() {
 

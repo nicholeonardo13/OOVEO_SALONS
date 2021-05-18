@@ -22,11 +22,15 @@ class LandingActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             if(user != null){
+                println("Login successful");
+
                 val homeIntent = Intent(this, HomeActivity::class.java)
                 startActivity(homeIntent)
+                finish()
             }else{
                 val mainActivity = Intent(this, MainActivity::class.java)
                 startActivity(mainActivity)
+                finish()
             }
         }, 2000)
     }

@@ -3,6 +3,8 @@
     package="edu.bluejack20_2.ooveo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,10 +13,20 @@
         android:roundIcon="@mipmap/ic_ooveo_logo2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OOVEO_SALON">
-        <activity android:name=".DetailMerchantActivity"></activity>
-        <activity android:name=".BarberActivity" />
+        <activity android:name=".DarkModeActivity"></activity>
+        <activity android:name=".fragments.MerchantRegisterActivity" />
+        <activity android:name=".PhoneNumberVerificationActivity" />
+        <activity android:name=".PhoneNumberActivity" />
+        <activity android:name=".LanguageActivity" />
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity2" />
-        <activity android:name=".HomeActivity">
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".DetailMerchantActivity" />
+        <activity android:name=".BarberActivity" />
+        <activity android:name=".LandingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
