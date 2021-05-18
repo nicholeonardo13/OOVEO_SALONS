@@ -50,7 +50,7 @@ class PhoneNumberActivity : AppCompatActivity() {
         this.gender = intent.getStringExtra("gender").toString()
         this.dob = intent.getStringExtra("dob").toString()
 
-        var phoneV = phone.substring(2, 13)
+        var phoneV = phone.substring(1, 11)
         textPhoneNumber.setText(phoneV)
 //        var currentUser = auth.currentUser
 //        if(currentUser != null) {
