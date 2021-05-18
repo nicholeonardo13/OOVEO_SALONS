@@ -11,4 +11,7 @@
     <color name="darkturquise2">#00adc1</color>
     <color name="mediumturquise">#61ccd8</color>
     <color name="light_gray1">#E6E6E3</color>
+
+    //SET DARK MODE
+    <color name="colorPrimary">#6C63FF</color>
 </resources>

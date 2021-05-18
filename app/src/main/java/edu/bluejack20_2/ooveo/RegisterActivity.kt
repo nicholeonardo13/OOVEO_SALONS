@@ -18,7 +18,6 @@ import java.util.*
 class RegisterActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var myRef: DocumentReference
-    private lateinit var mAuthListener :FirebaseAuth.AuthStateListener
 
     private var datePickerDialog: DatePickerDialog? = null
     private lateinit var dateButton: Button
@@ -86,8 +85,7 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this, "Re-password doesn't match!", Toast.LENGTH_SHORT).show()
                 }else{
                     val passHash = BCrypt.withDefaults().hashToString(12,txtPassword.toCharArray())
-                    saveUserFireStore(txtName, txtPhone, txtEmail, gender, dateText, passHash)
-                    createAccount(txtEmail, txtPassword);
+                    createAccount(txtEmail, txtPassword, txtName, txtPhone, gender, dateText, passHash);
 
                 }
 
@@ -95,26 +93,6 @@ class RegisterActivity : AppCompatActivity() {
         )
     }
 
-    private fun saveUserFireStore(txtName: String, txtPhone: String, txtEmail:String, gender:String, txtDate: String, txtPassword: String ){
-        val user: MutableMap<String, Any> = HashMap()
-        user["role"] = "User"
-        user["name"] = txtName
-        user["phone"] = txtPhone
-        user["email"] = txtEmail
-        user["gender"] = gender
-        user["dob"] = txtDate
-        user["password"] = txtPassword
-
-        db.collection("users")
-            .add(user)
-            .addOnSuccessListener {
-                Toast.makeText(this@RegisterActivity, "Register success ", Toast.LENGTH_SHORT ).show()
-            }
-            .addOnFailureListener{
-                Toast.makeText(this@RegisterActivity, "Failed to Register ", Toast.LENGTH_SHORT ).show()
-            }
-
-    }
 
     private fun init(){
         textViewLogin = findViewById(R.id.tvMerchantRegisterLogin)
@@ -180,21 +158,35 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun createAccount(email: String, password: String) {
-        mAuth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if(task.isSuccessful) {
-//                  val registerIntent = Intent(this, MainActivity::class.java)
-//                  startActivity(registerIntent)
-                    //KALO UDAH HARUS VERIFIKASI PHONE NUMBER DULU,
-                    //JADI NTR LOGIN NYA PAKE NOMOR HP, bukan email, password
+    private fun createAccount(email: String, password: String, txtName: String, txtPhone: String, gender:String, txtDate: String, txtPassword: String) {
+        var intent = Intent(this, PhoneNumberActivity::class.java)
+        intent.putExtra("email", email)
+        intent.putExtra("password", password)
+        intent.putExtra("hashPassword", txtPassword)
+        intent.putExtra("name", txtName)
+        intent.putExtra("phone", txtPhone)
+        intent.putExtra("gender", gender)
+        intent.putExtra("dob", txtDate)
+        startActivity(intent)
+        finish()
 
-                    var intent = Intent(this, PhoneNumberActivity::class.java)
-                    startActivity(intent)
-                }
-                else {
-                    Toast.makeText(this, "Register failed!", Toast.LENGTH_SHORT).show()
-                }
-            }
+//        mAuth.createUserWithEmailAndPassword(email, password)
+//            .addOnCompleteListener(this) { task ->
+//                if(task.isSuccessful) {
+////                  val registerIntent = Intent(this, MainActivity::class.java)
+////                  startActivity(registerIntent)
+//                    //KALO UDAH HARUS VERIFIKASI PHONE NUMBER DULU,
+//                    //JADI NTR LOGIN NYA PAKE NOMOR HP, bukan email, password
+//
+//                    saveUserFireStore(txtName, txtPhone, txtEmail, gender, txtDate, txtPassword)
+//                    var intent = Intent(this, PhoneNumberActivity::class.java)
+//                    intent.putExtra("email", email)
+//                    intent.putExtra("password", password)
+//                    startActivity(intent)
+//                }
+//                else {
+//                    Toast.makeText(this, "Register failed!", Toast.LENGTH_SHORT).show()
+//                }
+//            }
     }
 }

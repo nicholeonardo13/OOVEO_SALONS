@@ -1,6 +1,7 @@
 package edu.bluejack20_2.ooveo
 
 import android.content.Intent
+import android.net.wifi.hotspot2.pps.Credential
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,10 +11,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthOptions
-import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.*
+import com.google.firebase.database.core.CompoundWrite
 import java.util.concurrent.TimeUnit
 
 class PhoneNumberActivity : AppCompatActivity() {
@@ -28,13 +27,31 @@ class PhoneNumberActivity : AppCompatActivity() {
     lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
+    private lateinit var email: String;
+    private lateinit var password: String;
+    private lateinit var name: String
+    private lateinit var phone: String
+    private lateinit var hashPassword: String
+    private lateinit var dob: String
+    private lateinit var gender: String
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone_number)
         init()
         auth = FirebaseAuth.getInstance()
 
+        this.email = intent.getStringExtra("email").toString()
+        this.password = intent.getStringExtra("password").toString()
+        this.name = intent.getStringExtra("name").toString()
+        this.phone = intent.getStringExtra("phone").toString()
+        this.hashPassword = intent.getStringExtra("hashPassword").toString()
+        this.gender = intent.getStringExtra("gender").toString()
+        this.dob = intent.getStringExtra("dob").toString()
 
+        var phoneV = phone.substring(2, 13)
+        textPhoneNumber.setText(phoneV)
 //        var currentUser = auth.currentUser
 //        if(currentUser != null) {
 //            startActivity(Intent(this, HomeActivity::class.java))
@@ -67,66 +84,26 @@ class PhoneNumberActivity : AppCompatActivity() {
                 resendToken = token
                 var intent = Intent(applicationContext, PhoneNumberVerificationActivity::class.java)
                 intent.putExtra("storedVerificationId",storedVerificationId)
+                intent.putExtra("email", email)
+                intent.putExtra("password", password)
+                //PASS VALUE KE AUTH DISINI
+                intent.putExtra("hashPassword", hashPassword)
+                intent.putExtra("name", name)
+                intent.putExtra("phone", phone)
+                intent.putExtra("gender", gender)
+                intent.putExtra("dob", dob)
+
                 startActivity(intent)
+                finish()
             }
         }
 
-//        sendVerificationCodeBtn!!.setOnClickListener(View.OnClickListener {
-//            var country_code: String = textCodeArea.toString()
-//            var phone: String = textPhoneNumber.toString()
-//            var phoneNumber: String = country_code + "" + phone
-//            if(country_code.isEmpty() && phone.isEmpty()){
-//                Toast.makeText(this, "Please enter country code and Phone Number", Toast.LENGTH_SHORT).show()
-//            }else{
-//                var options = PhoneAuthOptions.newBuilder(auth).setPhoneNumber(phoneNumber).setTimeout(60L, TimeUnit.SECONDS)
-//                        .setActivity(this).setCallbacks(mCallbacks).build()
-//
-//                PhoneAuthProvider.verifyPhoneNumber(options)
-//
-//            }
-//
-//            //ADD PHONE NUMBER KE DALAM DATABASE DULU BARU BUKA VERIFICATION
-//            var intent = Intent(this, PhoneNumberVerificationActivity::class.java)
-//            startActivity(intent)
-//        })
-//        mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
-//            override fun onVerificationCompleted(p0: PhoneAuthCredential) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun onVerificationFailed(p0: FirebaseException) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun onCodeSent(verificationID: String, token: PhoneAuthProvider.ForceResendingToken) {
-//                super.onCodeSent(verificationID, token)
-//                //Somethime the code is not detected automatically
-//                //so user must manually enter the code
-//                messageText.setText("Verification Code has been Sent")
-//                messageText.setText(View.VISIBLE)
-//
-//            //HARUSNYA PINDAH KE NEXT VERIFICATION --->> INI BLM BISA!!!
-////                var verifIntent:
-////                verifIntent = Intent(this, PhoneNumberVerificationActivity::class.java)
-//
-//            }
-//        }
     }
 
     private fun sendVC() {
         var country_code: String = textCodeArea.text.toString()
         var phone: String = textPhoneNumber.text.toString()
         var phoneNumber: String = country_code + phone
-
-        println("   ")
-        println("   ")
-        println("   ")
-        println("   ")
-        println("   ")
-        println("   ")
-        println(phoneNumber)
-        println("   ")
-        println("   ")
 
         if(country_code.isEmpty() && phone.isEmpty()){
                 Toast.makeText(this, "Please enter country code and Phone Number", Toast.LENGTH_SHORT).show()

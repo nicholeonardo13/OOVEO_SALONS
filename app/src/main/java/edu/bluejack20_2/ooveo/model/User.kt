@@ -1,11 +1,13 @@
 package edu.bluejack20_2.ooveo.model
 
 data class User(
+    val id: String,
     val role: String,
     val name: String,
-    val phoneNumber: String,
+    val phone: String,
     val email: String,
     val gender: String,
-    val dOB: String,
-    val password: String
+    val dob: String,
+    val password: String,
+    val profilePicture: String
 )

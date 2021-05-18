@@ -12,9 +12,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import java.util.HashMap
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var db: FirebaseFirestore
     companion object{
         private const val RC_SIGN_IN = 120
     }
@@ -32,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
+        db = FirebaseFirestore.getInstance()
         registerNowBtn!!.setOnClickListener {
             val intent = Intent(this@MainActivity, RegisterActivity::class.java)
             startActivity(intent)
@@ -80,14 +84,16 @@ class MainActivity : AppCompatActivity() {
     private fun signInWithGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+        finish()
     }
 
     private fun signIn(email: String, password: String) {
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if(task.isSuccessful) {
-                    val intent = Intent(this, ProfileActivity::class.java)
+                    val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent);
+                    finish()
                 }
                 else {
                     Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
@@ -127,6 +133,24 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("MainActivity", "signInWithCredential:success")
+
+                    val user = mAuth.currentUser
+                    user?.let {
+                        // Name, email address, and profile photo Url
+                        val name = user.displayName
+                        val email = user.email
+                        val photoUrl = user.photoUrl
+                        val phoneNum = user.phoneNumber
+
+                        // Check if user's email is verified
+                        val emailVerified = user.isEmailVerified
+
+                        // The user's ID, unique to the Firebase project. Do NOT use this value to
+                        // authenticate with your backend server, if you have one. Use
+                        // FirebaseUser.getToken() instead.
+                        val uid = user.uid
+                    }
+
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -136,5 +160,28 @@ class MainActivity : AppCompatActivity() {
                     Log.w("MainActivity", "signInWithCredential:failure", task.exception)
                 }
             }
+    }
+
+    private fun saveUserFireStore(txtName: String, txtPhone: String, txtEmail:String, gender:String, txtDate: String, txtPassword: String ){
+        val user: MutableMap<String, Any> = HashMap()
+        user["role"] = "User"
+        user["name"] = txtName
+        user["phone"] = txtPhone
+        user["email"] = txtEmail
+        user["gender"] = gender
+        user["dob"] = txtDate
+        user["password"] = txtPassword
+        user["profilePicture"] = gender
+
+        db.collection("users")
+            .document(mAuth.currentUser.uid.toString())
+            .set(user)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Register success ", Toast.LENGTH_SHORT ).show()
+            }
+            .addOnFailureListener{
+                Toast.makeText(this, "Failed to Register ", Toast.LENGTH_SHORT ).show()
+            }
+
     }
 }

@@ -7,7 +7,7 @@
     tools:context=".EditProfileActivity">
 
     <ImageView
-        android:id="@+id/tvEditProfileUserImage"
+        android:id="@+id/ivEditProfileUserImage"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="45dp"
@@ -24,7 +24,7 @@
         android:text="@string/change_phone_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEditProfileUserImage" />
+        app:layout_constraintTop_toBottomOf="@+id/ivEditProfileUserImage" />
 
     <EditText
         android:id="@+id/edtEditProfileName"
