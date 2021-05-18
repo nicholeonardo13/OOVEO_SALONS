@@ -48,11 +48,19 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     val img = newList.image
                     val name = newList.name
                     val address = newList.address
+                    val phoneNumber = newList.phoneNumber
+                    val location = newList.location
+                    val type = newList.type
+                    val about = newList.about
                     val mIntent = Intent(holder.itemView.context,DetailMerchantActivity::class.java)
                     mIntent.putExtra("id",id)
                     mIntent.putExtra("image",img)
                     mIntent.putExtra("name",name)
+                    mIntent.putExtra("phoneNumber",phoneNumber)
+                    mIntent.putExtra("location",location)
+                    mIntent.putExtra("type",type)
                     mIntent.putExtra("address",address)
+                    mIntent.putExtra("about",about)
                     holder.itemView.context.startActivity(mIntent)
                 }
             }

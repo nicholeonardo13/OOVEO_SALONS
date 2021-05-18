@@ -71,7 +71,11 @@ class BarberActivity : AppCompatActivity() {
                                         document.id as String,
                                         document.data?.get("name") as String,
                                         document.data?.get("address") as String,
-                                        document.data?.get("image") as String
+                                        document.data?.get("image") as String,
+                                        document.data?.get("phoneNumber") as String,
+                                        document.data?.get("location") as String,
+                                        document.data?.get("type") as String,
+                                        document.data?.get("aboutus") as String
                                 )
                         )
 //                        println("TESTT")

@@ -97,38 +97,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"/>
     
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/appBarLayout"-->
-<!--        android:layout_alignParentBottom="true">-->
 
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
-
-<!--    <com.ismaeldivita.chipnavigation.ChipNavigationBar-->
-<!--        android:id="@+id/bottom_nav_bar"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:background="@color/white"-->
-<!--        app:cnb_menuResource="@menu/nav_menu"-->
-<!--        />-->
-
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/viewPager"-->
-<!--        android:layout_below="@id/appBarLayout">-->
-
-<!--        <com.google.android.material.tabs.TabLayout-->
-<!--            android:id="@+id/tabs"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:tabBackground="@color/white"-->
-<!--            app:tabGravity="fill"-->
-<!--            app:tabInlineLabel="true"-->
-<!--            app:tabMode="fixed"-->
-<!--            app:tabTextAppearance="@style/customTabStyle"-->
-<!--            app:tabTextColor="@android:color/darker_gray" />-->
-<!--    </androidx.viewpager.widget.ViewPager>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

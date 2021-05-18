@@ -1,37 +1,61 @@
 package edu.bluejack20_2.ooveo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.tabs.TabLayout
 import com.google.firebase.firestore.FirebaseFirestore
+import edu.bluejack20_2.ooveo.fragments.*
+import edu.bluejack20_2.ooveo.fragments.adapters.viewPagerAdapter
 import java.util.ArrayList
 
-class DetailMerchantActivity : AppCompatActivity() {
+class DetailMerchantActivity : AppCompatActivity() , Communicator {
 
-    private lateinit var rcBarber : RecyclerView
-    private val db = FirebaseFirestore.getInstance()
 
-    private lateinit var serviceAdapter: ServiceAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_merchant)
 
-        rcBarber  = findViewById<RecyclerView>(R.id.rcService)
-
-        val linear = LinearLayoutManager(this)
-        rcBarber.layoutManager = linear
-        val topSpacingItemDecoration = TopSpacingItemDecoration(30)
-        rcBarber.addItemDecoration(topSpacingItemDecoration)
-        rcBarber.setHasFixedSize(true)
-        serviceAdapter = ServiceAdapter()
-
+        var id = intent.extras?.getString("id")
+        var address = intent.extras?.getString("address")
         var image = intent.extras?.getString("image")
+        var name = intent.extras?.getString("name")
+        var phoneNumber = intent.extras?.getString("phoneNumber")
+        var location = intent.extras?.getString("location")
+        var type = intent.extras?.getString("type")
+        var about = intent.extras?.getString("about")
+        if (id != null) {
+//            passDataCom(id)
+            var viewModel = ViewModelProvider(this).get(DetailMerchantActivityViewModel::class.java)
+            if (name != null) {
+                if (address != null) {
+                    if (image != null) {
+                        if (phoneNumber != null) {
+                            if (location != null) {
+                                if (type != null) {
+                                    if (about != null) {
+                                        viewModel.passData(id , name , address , image , phoneNumber , location , type , about)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            Log.d("ROR", "Berhasil")
+        }else {
+            Log.d("ROR", "GAGAL")
+        }
         var ivDetailMerchant = findViewById<ImageView>(R.id.ivDetailMerchant)
 
         val requestOption = RequestOptions()
@@ -43,41 +67,39 @@ class DetailMerchantActivity : AppCompatActivity() {
             .load(image)
             .into(ivDetailMerchant)
 
-        getAllServiceData()
-
-        rcBarber.adapter = serviceAdapter
-        serviceAdapter.notifyDataSetChanged()
+        setTab()
     }
 
-    private fun getAllServiceData(){
-
-        var id = intent.extras?.getString("id")
 
 
-        db.collection("merchants").document(id!!).collection("services").get()
-            .addOnSuccessListener {
-                var listServiceModel: ArrayList<ServiceModel> = ArrayList()
-                listServiceModel.clear()
-//                    Log.d("tests", "${it.documents}")
-                for (document in it.documents){
 
-                    listServiceModel.add(
-                        ServiceModel(
-                            document.id as String,
-                            document.data?.get("name") as String,
-                            document.data?.get("price") as Long,
-                            document.data?.get("description") as String
-                        )
-                    )
-//                        println("TESTT")
-                }
+    fun setTab(){
+        val adapter = viewPagerAdapter(supportFragmentManager)
+        adapter.addFragment(ServiceFragment() , "Services")
+        adapter.addFragment(FavouriteFragment() , "Reviews")
+        adapter.addFragment(MoreInfoFragment(), "More Info")
+        val viewPager = findViewById<ViewPager>(R.id.viewPager)
+        viewPager.adapter = adapter
+        val tabs = findViewById<TabLayout>(R.id.tabs)
+        tabs.setupWithViewPager(viewPager)
 
-                serviceAdapter.submitList(listServiceModel)
+//        tabs.getTabAt(0)!!.setIcon(R.drawable.ic_baseline_home_24)
+//        tabs.getTabAt(1)!!.setIcon(R.drawable.ic_baseline_favorite_24)
+//        tabs.getTabAt(2)!!.setIcon(R.drawable.ic_baseline_calendar_today_24)
+//        tabs.getTabAt(3)!!.setIcon(R.drawable.ic_baseline_account_circle_24)
+    }
 
-            }
-            .addOnFailureListener{
-                Log.d("DB Error", "get failed with ")
-            }
+    override fun passDataCom(id: String) {
+        val bundle = Bundle()
+        bundle.putString("ids" , id)
+
+        val transaction = this.supportFragmentManager.beginTransaction()
+
+        val fragmentService = ServiceFragment()
+        fragmentService.arguments = bundle
+
+        transaction.replace(R.id.viewPager, fragmentService)
+        transaction.commit()
 
     }
 }
