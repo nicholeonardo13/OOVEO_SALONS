@@ -13,26 +13,29 @@
         android:roundIcon="@mipmap/ic_ooveo_logo2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OOVEO_SALON">
-        <activity android:name=".DarkModeActivity"></activity>
-        <activity android:name=".fragments.MerchantRegisterActivity" />
+        <activity android:name=".homes.ReflexologyActivity"></activity>
+        <activity android:name=".homes.SalonActivity" />
+        <activity android:name=".homes.BeautyActivity" />
+        <activity android:name=".DarkModeActivity" />
+        <activity android:name=".MerchantRegisterActivity" />
         <activity android:name=".PhoneNumberVerificationActivity" />
         <activity android:name=".PhoneNumberActivity" />
         <activity android:name=".LanguageActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".MainActivity2" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".DetailMerchantActivity" />
-        <activity android:name=".BarberActivity" />
-        <activity android:name=".LandingActivity">
+        <activity android:name=".homes.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity2" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".homes.DetailMerchantActivity" />
+        <activity android:name=".homes.BarberActivity" />
+        <activity android:name=".LandingActivity" />
     </application>
 
 </manifest>

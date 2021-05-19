@@ -1,20 +1,20 @@
 package edu.bluejack20_2.ooveo.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.*
-import java.util.ArrayList
+import edu.bluejack20_2.ooveo.adapters.ServiceAdapter
+import edu.bluejack20_2.ooveo.model.ServiceModel
+import edu.bluejack20_2.ooveo.viewmodels.DetailMerchantActivityViewModel
+import java.util.*
 
 class ServiceFragment : Fragment() {
 
@@ -22,6 +22,8 @@ class ServiceFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
 
     private lateinit var serviceAdapter: ServiceAdapter
+    private lateinit var listServiceModel : ArrayList<ServiceModel>
+    private lateinit var tempList : ArrayList<ServiceModel>
 
      var ids = ""
 
@@ -48,9 +50,48 @@ class ServiceFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
+
         if(view == null){
             return
         }
+
+        var toolBar = view!!.findViewById<android.widget.SearchView>(R.id.searchss)
+
+        toolBar.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                tempList.clear()
+                val searchText = newText!!.toLowerCase(Locale.getDefault())
+
+                if(searchText.isNotEmpty()){
+
+                    listServiceModel.forEach {
+
+                        if(it.name.toLowerCase(Locale.getDefault()).contains(searchText)){
+                            tempList.add(it)
+                        }
+
+                    }
+
+//                    rcBarber.adapter!!.notifyDataSetChanged()
+                    serviceAdapter.notifyDataSetChanged()
+
+                }else {
+                    tempList.clear()
+                    tempList.addAll(listServiceModel)
+                    serviceAdapter.notifyDataSetChanged()
+                }
+
+
+                return false
+            }
+
+        })
 
         rcBarber  = view!!.findViewById<RecyclerView>(R.id.rcService)
 
@@ -79,8 +120,10 @@ class ServiceFragment : Fragment() {
         Log.d("YOYO", "idDDDD : ${id}")
         db.collection("merchants").document(id!!).collection("services").get()
                 .addOnSuccessListener {
-                    var listServiceModel: ArrayList<ServiceModel> = ArrayList()
+                    listServiceModel = ArrayList()
+                    tempList = ArrayList()
                     listServiceModel.clear()
+                    tempList.clear()
 //                    Log.d("tests", "${it.documents}")
                     for (document in it.documents){
                         listServiceModel.add(
@@ -93,11 +136,13 @@ class ServiceFragment : Fragment() {
                         )
 //                        println("TESTT")
                     }
-                    serviceAdapter.submitList(listServiceModel)
+                    tempList.addAll(listServiceModel)
+                    serviceAdapter.submitList(tempList)
                 }
                 .addOnFailureListener{
                     Log.d("DB Error", "get failed with ")
                 }
 
     }
+
 }

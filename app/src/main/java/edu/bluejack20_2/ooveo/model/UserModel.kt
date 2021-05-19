@@ -1,6 +1,6 @@
 package edu.bluejack20_2.ooveo.model
 
-data class User(
+data class UserModel(
     val id: String,
     val role: String,
     val name: String,

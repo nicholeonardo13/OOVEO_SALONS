@@ -1,11 +1,10 @@
-package edu.bluejack20_2.ooveo.fragments.adapters
+package edu.bluejack20_2.ooveo.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import java.util.ArrayList
 
-class viewPagerAdapter (supportFragmentManager: FragmentManager) : FragmentPagerAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+class viewPagerAdapter (supportFragmentManager: FragmentManager) : FragmentPagerAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val mFragmentList = ArrayList<Fragment>()
     private val mFragmentTitleList = ArrayList<String>()
@@ -22,9 +21,8 @@ class viewPagerAdapter (supportFragmentManager: FragmentManager) : FragmentPager
         return mFragmentTitleList[position]
     }
 
-    fun addFragment(fragment: Fragment , title : String){
+    fun addFragment(fragment: Fragment, title: String) {
         mFragmentList.add(fragment)
         mFragmentTitleList.add(title)
     }
-
 }

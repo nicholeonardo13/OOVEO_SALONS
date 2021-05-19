@@ -1,6 +1,5 @@
-package edu.bluejack20_2.ooveo
+package edu.bluejack20_2.ooveo.adapters
 
-import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import edu.bluejack20_2.ooveo.homes.DetailMerchantActivity
+import edu.bluejack20_2.ooveo.model.MerchantModel
+import edu.bluejack20_2.ooveo.R
 import java.util.ArrayList
 
 class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -28,8 +29,8 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return BarberViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.barber_item, parent, false)
+        return MerchantViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.merchant_item, parent, false)
         )
     }
 
@@ -38,12 +39,12 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
         when(holder){
-            is BarberViewHolder ->{
+            is MerchantViewHolder ->{
                 holder.binding(items.get(position))
 
                 val btnBookNow =  holder.itemView.findViewById<Button>(R.id.btnBookNow)
                 btnBookNow.setOnClickListener {
-                    Log.d("Click", "Barber Di Klik")
+                    Log.d("Click", "Merchant Di Klik")
                     val id = newList.id
                     val img = newList.image
                     val name = newList.name
@@ -52,7 +53,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     val location = newList.location
                     val type = newList.type
                     val about = newList.about
-                    val mIntent = Intent(holder.itemView.context,DetailMerchantActivity::class.java)
+                    val mIntent = Intent(holder.itemView.context, DetailMerchantActivity::class.java)
                     mIntent.putExtra("id",id)
                     mIntent.putExtra("image",img)
                     mIntent.putExtra("name",name)
@@ -71,17 +72,17 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return items.size
     }
 
-    class BarberViewHolder constructor(
+    class MerchantViewHolder constructor(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView){
 
-        val barber_image: ImageView = itemView.findViewById(R.id.barber_image)
-        val barber_name: TextView = itemView.findViewById(R.id.barber_name)
-        val barber_address: TextView = itemView.findViewById(R.id.barber_address)
+        val merchant_image: ImageView = itemView.findViewById(R.id.merchant_image)
+        val merchant_name: TextView = itemView.findViewById(R.id.merchant_name)
+        val merchant_address: TextView = itemView.findViewById(R.id.merchant_address)
 
         fun binding(barber: MerchantModel){
-            barber_name.setText(barber.name)
-            barber_address.setText(barber.address)
+            merchant_name.setText(barber.name)
+            merchant_address.setText(barber.address)
 
             val requestOption = RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background)
@@ -90,7 +91,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             Glide.with(itemView.context)
                 .applyDefaultRequestOptions(requestOption)
                 .load(barber.image)
-                .into(barber_image)
+                .into(merchant_image)
 
         }
 

@@ -1,4 +1,4 @@
-package edu.bluejack20_2.ooveo
+package edu.bluejack20_2.ooveo.homes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,11 +11,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenu
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.firestore.FirebaseFirestore
+import edu.bluejack20_2.ooveo.R
+import edu.bluejack20_2.ooveo.adapters.viewPagerAdapter
 import edu.bluejack20_2.ooveo.fragments.AppointmentFragment
 import edu.bluejack20_2.ooveo.fragments.FavouriteFragment
 import edu.bluejack20_2.ooveo.fragments.HomeFragment
 import edu.bluejack20_2.ooveo.fragments.ProfileFragment
-import edu.bluejack20_2.ooveo.fragments.adapters.viewPagerAdapter
+import edu.bluejack20_2.ooveo.model.MerchantModel
+import java.util.ArrayList
 
 class HomeActivity : AppCompatActivity() {
 
@@ -30,6 +33,8 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+
 
 //        readData()
 //        setTab()

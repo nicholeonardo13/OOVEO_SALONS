@@ -13,7 +13,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
+import edu.bluejack20_2.ooveo.homes.HomeActivity
 import java.util.HashMap
 
 class MainActivity : AppCompatActivity() {

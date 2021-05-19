@@ -16,15 +16,13 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import edu.bluejack20_2.ooveo.viewmodels.EditProfileActivityViewModel
 import java.io.IOException
-import java.util.*
 
 class EditProfileActivity : AppCompatActivity() {
     private lateinit var changePhoneNumberBtn: Button

@@ -1,10 +1,12 @@
-package edu.bluejack20_2.ooveo
+package edu.bluejack20_2.ooveo.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import edu.bluejack20_2.ooveo.R
+import edu.bluejack20_2.ooveo.model.ServiceModel
 
 class ServiceAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var items: List<ServiceModel> = ArrayList()

@@ -1,4 +1,4 @@
-package edu.bluejack20_2.ooveo
+package edu.bluejack20_2.ooveo.model
 
 data class MerchantModel(
     var id : String,

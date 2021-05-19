@@ -8,18 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.*
-import edu.bluejack20_2.ooveo.model.User
+import edu.bluejack20_2.ooveo.model.UserModel
+import edu.bluejack20_2.ooveo.viewmodels.EditProfileActivityViewModel
 
 class ProfileFragment : Fragment() {
     private var param1: String? = null
@@ -33,7 +31,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var edtName: TextView
-    private lateinit var user: User
+    private lateinit var userModel: UserModel
     private lateinit var edtEmail: TextView
     private lateinit var ivProfilePicture: ImageView
 
@@ -79,7 +77,7 @@ class ProfileFragment : Fragment() {
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    user = User(
+                    userModel = UserModel(
                         document.id.toString(),
                         document["role"].toString(),
                         document["name"].toString(),
@@ -90,8 +88,8 @@ class ProfileFragment : Fragment() {
                         document["password"].toString(),
                         document["profilePicture"].toString()
                     )
-                    edtName.setText(user.name)
-                    edtEmail.setText(user.email)
+                    edtName.setText(userModel.name)
+                    edtEmail.setText(userModel.email)
 
                     val requestOption = RequestOptions()
                         .placeholder(R.drawable.ic_launcher_background)
@@ -99,7 +97,7 @@ class ProfileFragment : Fragment() {
 
                     Glide.with(this)
                         .applyDefaultRequestOptions(requestOption)
-                        .load(user.profilePicture)
+                        .load(userModel.profilePicture)
                         .into(ivProfilePicture)
                     Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
 
@@ -137,8 +135,8 @@ class ProfileFragment : Fragment() {
         edtProfileBtn!!.setOnClickListener(View.OnClickListener {
 
             val viewModel = ViewModelProvider(requireActivity()).get(EditProfileActivityViewModel::class.java)
-            println("Print PP: "+ user.profilePicture)
-            viewModel.addPP(user.profilePicture)
+            println("Print PP: "+ userModel.profilePicture)
+            viewModel.addPP(userModel.profilePicture)
 
             var intent = Intent(this.context, EditProfileActivity::class.java)
             startActivity(intent)

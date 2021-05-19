@@ -1,18 +1,19 @@
-package edu.bluejack20_2.ooveo
+package edu.bluejack20_2.ooveo.homes
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.LinearLayout
+import android.view.Menu
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import java.util.ArrayList
+import edu.bluejack20_2.ooveo.model.MerchantModel
+import edu.bluejack20_2.ooveo.R
+import edu.bluejack20_2.ooveo.TopSpacingItemDecoration
+import edu.bluejack20_2.ooveo.adapters.RecyclerAdapter
+import java.util.*
 
 class BarberActivity : AppCompatActivity() {
 
@@ -20,6 +21,8 @@ class BarberActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
 
     private lateinit var barberAdapter: RecyclerAdapter
+    private lateinit var listMerchantModel :ArrayList<MerchantModel>
+    private lateinit var tempList: ArrayList<MerchantModel>
 
     private lateinit var barberList : ArrayList<MerchantModel>
 
@@ -27,6 +30,10 @@ class BarberActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_barber)
 
+        var toolBar = findViewById<Toolbar>(R.id.toolbar)
+        toolBar.title = ""
+
+        setSupportActionBar(toolBar)
         rcBarber  = findViewById<RecyclerView>(R.id.rcBarber)
 
         val linear = LinearLayoutManager(this)
@@ -61,8 +68,10 @@ class BarberActivity : AppCompatActivity() {
     private fun getAllMerchantData(){
         db.collection("merchants").whereEqualTo("type" , "Barber").get()
                 .addOnSuccessListener {
-                    var listMerchantModel:ArrayList<MerchantModel> = ArrayList()
+                    listMerchantModel = ArrayList()
+                    tempList = ArrayList()
                     listMerchantModel.clear()
+                    tempList.clear()
 //                    Log.d("tests", "${it.documents}")
                     for (document in it.documents){
 
@@ -78,16 +87,63 @@ class BarberActivity : AppCompatActivity() {
                                         document.data?.get("aboutus") as String
                                 )
                         )
+
 //                        println("TESTT")
                     }
+                    tempList.addAll(listMerchantModel)
 
-                    barberAdapter.submitList(listMerchantModel)
+                    barberAdapter.submitList(tempList)
 
                 }
                 .addOnFailureListener{
                     Log.d("DB Error", "get failed with ")
                 }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.search_menu, menu)
+        var item = menu?.findItem(R.id.search_action)
+        val searchView = item?.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                tempList.clear()
+                val searchText = newText!!.toLowerCase(Locale.getDefault())
+
+                if(searchText.isNotEmpty()){
+
+                    listMerchantModel.forEach {
+
+                        if(it.name.toLowerCase(Locale.getDefault()).contains(searchText)){
+                            tempList.add(it)
+                        }
+
+                    }
+
+//                    rcBarber.adapter!!.notifyDataSetChanged()
+                    barberAdapter.notifyDataSetChanged()
+
+                }else {
+                    tempList.clear()
+                    tempList.addAll(listMerchantModel)
+                    barberAdapter.notifyDataSetChanged()
+                }
+
+
+                return false
+            }
+
+        })
+
+
+        return super.onCreateOptionsMenu(menu)
     }
 
 }

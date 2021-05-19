@@ -1,4 +1,4 @@
-package edu.bluejack20_2.ooveo.fragments
+package edu.bluejack20_2.ooveo
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,8 +7,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import edu.bluejack20_2.ooveo.MainActivity
-import edu.bluejack20_2.ooveo.R
 
 class MerchantRegisterActivity : AppCompatActivity() {
 

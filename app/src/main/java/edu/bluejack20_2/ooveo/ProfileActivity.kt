@@ -3,14 +3,13 @@ package edu.bluejack20_2.ooveo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import edu.bluejack20_2.ooveo.model.User
+import edu.bluejack20_2.ooveo.model.UserModel
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var logoutBtn: Button
@@ -19,7 +18,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth;
     private lateinit var edtName: EditText
-    private lateinit var user: User
+    private lateinit var userModel: UserModel
     private lateinit var edtEmail: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package edu.bluejack20_2.ooveo
+package edu.bluejack20_2.ooveo.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

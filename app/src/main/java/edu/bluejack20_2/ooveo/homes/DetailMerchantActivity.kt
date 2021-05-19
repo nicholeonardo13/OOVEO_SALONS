@@ -1,21 +1,22 @@
-package edu.bluejack20_2.ooveo
+package edu.bluejack20_2.ooveo.homes
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import android.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
-import com.google.firebase.firestore.FirebaseFirestore
+import edu.bluejack20_2.ooveo.R
+import edu.bluejack20_2.ooveo.adapters.viewPagerAdapter
+import edu.bluejack20_2.ooveo.communicators.Communicator
 import edu.bluejack20_2.ooveo.fragments.*
-import edu.bluejack20_2.ooveo.fragments.adapters.viewPagerAdapter
-import java.util.ArrayList
+import edu.bluejack20_2.ooveo.viewmodels.DetailMerchantActivityViewModel
 
 class DetailMerchantActivity : AppCompatActivity() , Communicator {
 
@@ -24,6 +25,11 @@ class DetailMerchantActivity : AppCompatActivity() , Communicator {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_merchant)
+
+
+//        toolBar.title = ""
+//
+//        setSupportActionBar(toolBar)
 
         var id = intent.extras?.getString("id")
         var address = intent.extras?.getString("address")

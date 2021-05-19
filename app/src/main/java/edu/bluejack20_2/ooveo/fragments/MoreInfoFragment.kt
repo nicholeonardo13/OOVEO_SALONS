@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import edu.bluejack20_2.ooveo.DetailMerchantActivityViewModel
+import edu.bluejack20_2.ooveo.viewmodels.DetailMerchantActivityViewModel
 import edu.bluejack20_2.ooveo.R
 
 class MoreInfoFragment : Fragment() {

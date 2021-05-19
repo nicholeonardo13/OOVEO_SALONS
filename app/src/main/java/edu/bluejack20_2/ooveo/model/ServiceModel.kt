@@ -1,4 +1,4 @@
-package edu.bluejack20_2.ooveo
+package edu.bluejack20_2.ooveo.model
 
 data class ServiceModel(
     var id : String,

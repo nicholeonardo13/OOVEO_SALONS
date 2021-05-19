@@ -9,10 +9,8 @@ import android.view.View
 import android.widget.*
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import edu.bluejack20_2.ooveo.model.User
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
