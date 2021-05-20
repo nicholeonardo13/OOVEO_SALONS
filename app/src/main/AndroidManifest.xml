@@ -5,6 +5,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
 
     <application
         android:allowBackup="true"
@@ -13,7 +18,8 @@
         android:roundIcon="@mipmap/ic_ooveo_logo2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OOVEO_SALON">
-        <activity android:name=".homes.ReflexologyActivity"></activity>
+        <activity android:name=".homes.MapActivity"></activity>
+        <activity android:name=".homes.ReflexologyActivity" />
         <activity android:name=".homes.SalonActivity" />
         <activity android:name=".homes.BeautyActivity" />
         <activity android:name=".DarkModeActivity" />
@@ -36,6 +42,10 @@
         <activity android:name=".homes.DetailMerchantActivity" />
         <activity android:name=".homes.BarberActivity" />
         <activity android:name=".LandingActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC1hgW5a4QePlfh9-xKggyjk6J3Hv6gUNg" />
     </application>
 
 </manifest>

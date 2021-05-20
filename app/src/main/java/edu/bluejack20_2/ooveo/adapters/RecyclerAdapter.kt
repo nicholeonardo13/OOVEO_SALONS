@@ -18,8 +18,6 @@ import java.util.ArrayList
 
 class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-
-
     private var items: List<MerchantModel> = ArrayList()
 
     fun submitList(barberList: List<MerchantModel>){
