@@ -1,6 +1,7 @@
 package edu.bluejack20_2.ooveo
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,7 +14,6 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import java.util.HashMap
 
 class MainActivity : AppCompatActivity() {
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        registerNowBtn = findViewById(R.id.tvMerchantRegisterLogin)
+        registerNowBtn = findViewById(R.id.tvRegisterLogin)
         google_sign_in_btn = findViewById(R.id.ivMainGoogle)
         signinBtn = findViewById(R.id.btnMainLogin)
         txtEmail = findViewById(R.id.edtMainEmail)
@@ -84,7 +84,6 @@ class MainActivity : AppCompatActivity() {
     private fun signInWithGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
-        finish()
     }
 
     private fun signIn(email: String, password: String) {
@@ -134,22 +133,35 @@ class MainActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("MainActivity", "signInWithCredential:success")
 
+                    var name: String
+                    var email: String
+                    var photoUrl: Uri
+                    var phoneNum: String
+                    var uid: String
+
                     val user = mAuth.currentUser
-                    user?.let {
-                        // Name, email address, and profile photo Url
-                        val name = user.displayName
-                        val email = user.email
-                        val photoUrl = user.photoUrl
-                        val phoneNum = user.phoneNumber
+//                    user?.let {
+//                        // Name, email address, and profile photo Url
+//                        name = user.displayName
+//                        email = user.email
+//                        photoUrl = user.photoUrl
+//                        phoneNum = user.phoneNumber
+//
+//
+//                        // Check if user's email is verified
+//                        val emailVerified = user.isEmailVerified
+//
+//                        // The user's ID, unique to the Firebase project. Do NOT use this value to
+//                        // authenticate with your backend server, if you have one. Use
+//                        // FirebaseUser.getToken() instead.
+//                        uid = user.uid
+//
+//
+//                    }
+                    println("phone num: " + user.phoneNumber + " name: " + user.displayName + " email: " + user.email.toString() )
+                    saveUserFireStore(user.displayName, "Please add phone number", user.email, user.photoUrl.toString(), "xxx", "xxx" )
 
-                        // Check if user's email is verified
-                        val emailVerified = user.isEmailVerified
 
-                        // The user's ID, unique to the Firebase project. Do NOT use this value to
-                        // authenticate with your backend server, if you have one. Use
-                        // FirebaseUser.getToken() instead.
-                        val uid = user.uid
-                    }
 
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
@@ -162,16 +174,15 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun saveUserFireStore(txtName: String, txtPhone: String, txtEmail:String, gender:String, txtDate: String, txtPassword: String ){
+    private fun saveUserFireStore(txtName: String, txtPhone: String, txtEmail:String, photoUrl:String, txtDate: String, txtPassword: String){
         val user: MutableMap<String, Any> = HashMap()
         user["role"] = "User"
         user["name"] = txtName
         user["phone"] = txtPhone
         user["email"] = txtEmail
-        user["gender"] = gender
         user["dob"] = txtDate
         user["password"] = txtPassword
-        user["profilePicture"] = gender
+        user["profilePicture"] = photoUrl
 
         db.collection("users")
             .document(mAuth.currentUser.uid.toString())

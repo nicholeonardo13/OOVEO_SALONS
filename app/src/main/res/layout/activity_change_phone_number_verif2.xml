@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PhoneNumberVerificationActivity">
-
-
+    tools:context=".ChangePhoneNumberVerifActivity2">
 
     <ImageView
-        android:id="@+id/ivPhoneNumberAuth2"
+        android:id="@+id/ivChangePhoneNumber2Img"
         android:layout_width="match_parent"
         android:layout_height="370dp"
         android:scaleType="centerCrop"
@@ -19,7 +17,7 @@
         android:contentDescription="@string/verification_code_sms" />
 
     <TextView
-        android:id="@+id/tvPhoneNumberVerifPhoneNumberTxt"
+        android:id="@+id/tvChangePhoneNumber2PhoneNumberTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -33,21 +31,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvPhoneNumberVerifParagraph"
+        android:id="@+id/tvChangePhoneNumber2Paragraph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:text="OTP has been sent to Your Number Please Verify"
+        android:text="@string/verificationCode_P1"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumberVerifPhoneNumberTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/tvChangePhoneNumber2PhoneNumberTxt" />
 
     <EditText
-        android:id="@+id/edtPhoneNumberVerificationOTPCode"
+        android:id="@+id/edtChangePhoneNumber2OTPCode"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="64dp"
@@ -55,7 +53,7 @@
         android:background="@drawable/custom_input"
         android:ems="10"
         android:elevation="10dp"
-        android:inputType="phone"
+        android:inputType="number"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textSize="18sp"
@@ -63,10 +61,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivPhoneNumberImageMessage" />
+        app:layout_constraintTop_toBottomOf="@+id/ivChangePhoneNumber2Message"
+        tools:ignore="TextFields" />
 
     <Button
-        android:id="@+id/btnPhoneNumberVerificationCode"
+        android:id="@+id/btnChangePhoneNumber2VerificationCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -76,17 +75,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtPhoneNumberVerificationOTPCode"
+        app:layout_constraintTop_toBottomOf="@+id/edtChangePhoneNumber2OTPCode"
         app:layout_constraintVertical_bias="0.231" />
 
     <ImageView
-        android:id="@+id/ivPhoneNumberImageMessage"
+        android:id="@+id/ivChangePhoneNumber2Message"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginTop="100dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumberVerifParagraph"
+        app:layout_constraintTop_toBottomOf="@+id/tvChangePhoneNumber2Paragraph"
         app:srcCompat="@drawable/message_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

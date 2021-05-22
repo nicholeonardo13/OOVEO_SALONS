@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,18 +22,13 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var edtName: EditText
     private lateinit var user: User
     private lateinit var edtEmail: EditText
+    private lateinit var tvPhone: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         init()
         mAuth = FirebaseAuth.getInstance()
-
-
-
-
-
-
 
         logoutBtn!!.setOnClickListener(View.OnClickListener {
             //FirebaseAuth.getInstance().signOut();
@@ -75,6 +71,7 @@ class ProfileActivity : AppCompatActivity() {
         edtProfileBtn = findViewById(R.id.btnProfilEditProfile)
         edtName = findViewById(R.id.edtEditProfileName)
         edtEmail = findViewById(R.id.edtEditProfileEmail)
+        tvPhone = findViewById(R.id.tvProfilePhoneNumber)
 
     }
 

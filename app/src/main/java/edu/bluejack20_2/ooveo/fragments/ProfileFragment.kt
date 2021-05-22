@@ -36,6 +36,8 @@ class ProfileFragment : Fragment() {
     private lateinit var user: User
     private lateinit var edtEmail: TextView
     private lateinit var ivProfilePicture: ImageView
+    private lateinit var tvChangeTheme: TextView
+    private lateinit var tvPhone: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +53,6 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
@@ -68,6 +63,8 @@ class ProfileFragment : Fragment() {
         edtName = view!!.findViewById<TextView>(R.id.tvProfileUserName)
         edtEmail = view!!.findViewById<TextView>(R.id.tvProfileEmail)
         ivProfilePicture = view!!.findViewById<ImageView>(R.id.ivProfileUserImage)
+        tvChangeTheme= view!!.findViewById<TextView>(R.id.tvProfileChangeTheme)
+        tvPhone = view!!.findViewById<TextView>(R.id.tvProfilePhoneNumber)
 
         println(" ")
         println(" ")
@@ -83,15 +80,17 @@ class ProfileFragment : Fragment() {
                         document.id.toString(),
                         document["role"].toString(),
                         document["name"].toString(),
-                        document["phoneNumber"].toString(),
+                        document["phone"].toString(),
                         document["email"].toString(),
                         document["gender"].toString(),
                         document["dob"].toString(),
                         document["password"].toString(),
                         document["profilePicture"].toString()
                     )
-                    edtName.setText(user.name)
-                    edtEmail.setText(user.email)
+                    edtName.text = user.name
+                    edtEmail.text = user.email
+                    tvPhone.text = user.phone
+
 
                     val requestOption = RequestOptions()
                         .placeholder(R.drawable.ic_launcher_background)
@@ -103,6 +102,18 @@ class ProfileFragment : Fragment() {
                         .into(ivProfilePicture)
                     Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
 
+                    //MOVE TO EDIT PROFILE PAGE
+                    edtProfileBtn!!.setOnClickListener(View.OnClickListener {
+
+                        val viewModel = ViewModelProvider(requireActivity()).get(EditProfileActivityViewModel::class.java)
+                        println("Print PP: "+ user.profilePicture)
+                        viewModel.addPP(user.profilePicture)
+
+                        var intent = Intent(this.context, EditProfileActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
+                    })
+
                 } else {
                     Log.d("GAGAL", "No such document")
                 }
@@ -112,10 +123,6 @@ class ProfileFragment : Fragment() {
             }
 
 
-        //Change user image profile
-        userProfile!!.setOnClickListener(View.OnClickListener {
-
-        })
 
         //LOGOUT
         logoutBtn!!.setOnClickListener(View.OnClickListener {
@@ -127,22 +134,25 @@ class ProfileFragment : Fragment() {
 
         })
 
+        tvChangeTheme!!.setOnClickListener(View.OnClickListener {
+            var intent = Intent(this.context, DarkModeActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        })
+
         //CHANGE LANGUAGE
         languageBtn!!.setOnClickListener(View.OnClickListener {
             var intent = Intent(this.context, LanguageActivity::class.java)
             startActivity(intent)
         })
 
-        //MOVE TO EDIT PROFILE PAGE
-        edtProfileBtn!!.setOnClickListener(View.OnClickListener {
 
-            val viewModel = ViewModelProvider(requireActivity()).get(EditProfileActivityViewModel::class.java)
-            println("Print PP: "+ user.profilePicture)
-            viewModel.addPP(user.profilePicture)
+    }
 
-            var intent = Intent(this.context, EditProfileActivity::class.java)
-            startActivity(intent)
-        })
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+
     }
 
 

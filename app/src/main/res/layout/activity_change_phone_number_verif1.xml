@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PhoneNumberActivity">
+    tools:context=".ChangePhoneNumberVerifActivity1">
 
     <ImageView
-        android:id="@+id/ivChangePasswordAuth2"
+        android:id="@+id/ivChangePhoneNumber1Img"
         android:layout_width="match_parent"
         android:layout_height="370dp"
         android:scaleType="centerCrop"
@@ -17,13 +17,13 @@
         app:srcCompat="@drawable/ic_wave_1" />
 
     <TextView
-        android:id="@+id/tvChangePasswordAuth2PhoneNumberTxt"
+        android:id="@+id/tvChangePhoneNumber1AddPhoneNumberTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/phone_Number"
+        android:text="@string/new_phone_number"
         android:textColor="@color/white"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,21 +31,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvPhoneNumberParagraph"
+        android:id="@+id/tvChangePhoneNumber1Paragraph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/phone_number_p1"
+        android:text="@string/changePhoneNumber_P1"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvChangePasswordAuth2PhoneNumberTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/tvChangePhoneNumber1AddPhoneNumberTxt" />
 
     <EditText
-        android:id="@+id/edtPhoneNumberCodeArea"
+        android:id="@+id/edtChangePhoneNumber1CodeArea"
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
@@ -61,11 +61,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumberParagraph"
+        app:layout_constraintTop_toBottomOf="@+id/tvChangePhoneNumber1Paragraph"
         tools:ignore="TextFields" />
 
     <EditText
-        android:id="@+id/edtPhoneNumberPhoneNum"
+        android:id="@+id/edtChangePhoneNumber1PhoneNum"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="93dp"
@@ -74,17 +74,16 @@
         android:background="@drawable/custom_input"
         android:elevation="10dp"
         android:ems="10"
-        android:editable="false"
         android:inputType="phone"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edtChangePasswordCodeArea"
-        app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumberParagraph" />
+        app:layout_constraintStart_toEndOf="@+id/edtChangePhoneNumber1CodeArea"
+        app:layout_constraintTop_toBottomOf="@+id/tvChangePhoneNumber1Paragraph" />
 
     <TextView
-        android:id="@+id/tvChangePasswordP2"
+        android:id="@+id/tvChangePhoneNumber1P2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -95,10 +94,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtPhoneNumberPhoneNum" />
+        app:layout_constraintTop_toBottomOf="@+id/edtChangePhoneNumber1PhoneNum" />
 
     <Button
-        android:id="@+id/btnPhoneNumberSendVerificationCode"
+        android:id="@+id/btnChangePhoneNumber1SendVerificationCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -107,7 +106,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvChangePasswordP2"
+        app:layout_constraintTop_toBottomOf="@+id/tvChangePhoneNumber1P2"
         app:layout_constraintVertical_bias="0.26" />
+
+    <TextView
+        android:id="@+id/tvChangePhoneNumber1BackText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/back_to_profile_page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnChangePhoneNumber1SendVerificationCode" />
+
+    <TextView
+        android:id="@+id/tvChangePhoneNumberExample"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="example: 81276532***"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtChangePhoneNumber1PhoneNum" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
