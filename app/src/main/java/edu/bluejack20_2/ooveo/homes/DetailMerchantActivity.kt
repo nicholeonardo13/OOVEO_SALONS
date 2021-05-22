@@ -20,8 +20,6 @@ import edu.bluejack20_2.ooveo.viewmodels.DetailMerchantActivityViewModel
 
 class DetailMerchantActivity : AppCompatActivity() , Communicator {
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_merchant)

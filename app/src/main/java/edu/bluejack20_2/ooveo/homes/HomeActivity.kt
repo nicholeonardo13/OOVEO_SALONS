@@ -1,8 +1,10 @@
 package edu.bluejack20_2.ooveo.homes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,46 +12,86 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationMenu
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.R
 import edu.bluejack20_2.ooveo.adapters.viewPagerAdapter
-import edu.bluejack20_2.ooveo.fragments.AppointmentFragment
-import edu.bluejack20_2.ooveo.fragments.FavouriteFragment
-import edu.bluejack20_2.ooveo.fragments.HomeFragment
-import edu.bluejack20_2.ooveo.fragments.ProfileFragment
+import edu.bluejack20_2.ooveo.fragments.*
 import edu.bluejack20_2.ooveo.model.MerchantModel
+import edu.bluejack20_2.ooveo.model.UserModel
 import java.util.ArrayList
 
 class HomeActivity : AppCompatActivity() {
-
 
     private val db = FirebaseFirestore.getInstance()
     private val homeFragment = HomeFragment()
     private val favouriteFragment = FavouriteFragment()
     private val appointmentFragment = AppointmentFragment()
     private val profileFragment = ProfileFragment()
+    private val profileMerchantFragment = ProfileMerchantFragment()
+
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var userModel: UserModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-
-
-//        readData()
-//        setTab()
         replacementFragment(homeFragment)
 
-        val bottom_navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottom_navigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.ic_home -> replacementFragment(homeFragment)
-                R.id.ic_favourite -> replacementFragment(favouriteFragment)
-                R.id.ic_appointment -> replacementFragment(appointmentFragment)
-                R.id.ic_profile -> replacementFragment(profileFragment)
-            }
-            true
-        }
+        mAuth = FirebaseAuth.getInstance()
+
+        val docRef =  db.collection("users").document(mAuth.currentUser.uid.toString())
+        docRef.get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        userModel = UserModel(
+                                document.id.toString(),
+                                document["role"].toString(),
+                                document["name"].toString(),
+                                document["phoneNumber"].toString(),
+                                document["email"].toString(),
+                                document["gender"].toString(),
+                                document["dob"].toString(),
+                                document["password"].toString(),
+                                document["profilePicture"].toString()
+                        )
+
+                        if(userModel.role == "Merchant"){
+                            val bottom_navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+                            bottom_navigation.setOnNavigationItemSelectedListener {
+                                when(it.itemId){
+                                    R.id.ic_home -> replacementFragment(homeFragment)
+                                    R.id.ic_favourite -> replacementFragment(favouriteFragment)
+                                    R.id.ic_appointment -> replacementFragment(appointmentFragment)
+                                    R.id.ic_profile -> replacementFragment(profileMerchantFragment)
+                                }
+                                true
+                            }
+                        }else {
+                            val bottom_navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+                            bottom_navigation.setOnNavigationItemSelectedListener {
+                                when(it.itemId){
+                                    R.id.ic_home -> replacementFragment(homeFragment)
+                                    R.id.ic_favourite -> replacementFragment(favouriteFragment)
+                                    R.id.ic_appointment -> replacementFragment(appointmentFragment)
+                                    R.id.ic_profile -> replacementFragment(profileFragment)
+                                }
+                                true
+                            }
+                        }
+
+                    } else {
+                        Log.d("GAGAL", "No such document")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.d("TAG", "get failed with ", exception)
+                }
+
+
+
 
 //        getAllMerchantData()
 
@@ -79,24 +121,6 @@ class HomeActivity : AppCompatActivity() {
 //        tabs.getTabAt(1)!!.setIcon(R.drawable.ic_baseline_favorite_24)
 //        tabs.getTabAt(2)!!.setIcon(R.drawable.ic_baseline_calendar_today_24)
 //        tabs.getTabAt(3)!!.setIcon(R.drawable.ic_baseline_account_circle_24)
-
-    }
-
-    fun readData(){
-//        FirebaseApp.initializeApp();
-
-
-        val docRef = db.collection("tests").get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        Log.d("Ada", "DocumentSnapshot data: ${document.documents}")
-                    } else {
-                        Log.d("Gada", "No such document")
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.d("DB Error", "get failed with ", exception)
-                }
 
     }
 

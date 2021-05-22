@@ -53,16 +53,20 @@ class MainActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         signinBtn!!.setOnClickListener(View.OnClickListener {
-            var email: String =  txtEmail.text.toString()
-            var password: String = txtPassword.text.toString()
+//            var email: String =  txtEmail.text.toString()
+//            var password: String = txtPassword.text.toString()
+            var email: String =  "sei@gmail.com"
+            var password: String = "sipsipdripdrip"
 
-            if(email.isEmpty()){
-                Toast.makeText(this, "Email must be fiiled!", Toast.LENGTH_SHORT).show()
-            }else if(password.isEmpty()){
-                Toast.makeText(this, "Password must be filled!", Toast.LENGTH_SHORT).show()
-            }else{
-                signIn(email, password)
-            }
+//            if(email.isEmpty()){
+//                Toast.makeText(this, "Email must be fiiled!", Toast.LENGTH_SHORT).show()
+//            }else if(password.isEmpty()){
+//                Toast.makeText(this, "Password must be filled!", Toast.LENGTH_SHORT).show()
+//            }else{
+//                signIn(email, password)
+//            }
+
+            signIn(email, password)
          }
         )
 

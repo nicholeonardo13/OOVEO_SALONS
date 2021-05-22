@@ -9,8 +9,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +16,10 @@
         android:roundIcon="@mipmap/ic_ooveo_logo2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OOVEO_SALON">
-        <activity android:name=".homes.MapActivity"></activity>
+        <activity android:name=".ManageStylistActivity"></activity>
+        <activity android:name=".ManageServiceActivity" />
+        <activity android:name=".MerchantAdminActivity" />
+        <activity android:name=".homes.MapActivity" />
         <activity android:name=".homes.ReflexologyActivity" />
         <activity android:name=".homes.SalonActivity" />
         <activity android:name=".homes.BeautyActivity" />
@@ -30,18 +31,18 @@
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".homes.HomeActivity">
+        <activity android:name=".homes.HomeActivity" />
+        <activity android:name=".MainActivity2" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".homes.DetailMerchantActivity" />
+        <activity android:name=".homes.BarberActivity" />
+        <activity android:name=".LandingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity2" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".homes.DetailMerchantActivity" />
-        <activity android:name=".homes.BarberActivity" />
-        <activity android:name=".LandingActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

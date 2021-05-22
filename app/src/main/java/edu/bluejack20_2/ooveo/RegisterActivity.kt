@@ -30,7 +30,6 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var rbFemale: RadioButton
     private lateinit var rbMale: RadioButton
 
-
     private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {

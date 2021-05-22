@@ -35,7 +35,6 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val newList = items[position]
 
-
         when(holder){
             is MerchantViewHolder ->{
                 holder.binding(items.get(position))

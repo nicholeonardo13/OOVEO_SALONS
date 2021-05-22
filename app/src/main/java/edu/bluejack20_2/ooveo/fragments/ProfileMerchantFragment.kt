@@ -19,11 +19,12 @@ import edu.bluejack20_2.ooveo.*
 import edu.bluejack20_2.ooveo.model.UserModel
 import edu.bluejack20_2.ooveo.viewmodels.EditProfileActivityViewModel
 
-class ProfileFragment : Fragment() {
+class ProfileMerchantFragment : Fragment() {
 
     private lateinit var logoutBtn: Button
     private lateinit var languageBtn: Button
     private lateinit var edtProfileBtn: Button
+    private lateinit var adminMerchantBtn: Button
     private lateinit var mAuth: FirebaseAuth
     private lateinit var userProfile: ImageView
 
@@ -42,7 +43,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_profile_merchant, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -64,6 +65,7 @@ class ProfileFragment : Fragment() {
         edtName = view!!.findViewById<TextView>(R.id.tvMerchantName)
         edtEmail = view!!.findViewById<TextView>(R.id.tvMerchantAddress)
         ivProfilePicture = view!!.findViewById<ImageView>(R.id.ivProfileUserImage)
+        adminMerchantBtn = view!!.findViewById<Button>(R.id.btnProfileAdminMerchant)
 
         println(" ")
         println(" ")
@@ -139,7 +141,22 @@ class ProfileFragment : Fragment() {
             var intent = Intent(this.context, EditProfileActivity::class.java)
             startActivity(intent)
         })
+
+        //MOVE TO MERCHANT ADMIN PAGE
+        adminMerchantBtn!!.setOnClickListener(View.OnClickListener {
+
+//            val viewModel = ViewModelProvider(requireActivity()).get(EditProfileActivityViewModel::class.java)
+//            println("Print PP: "+ userModel.profilePicture)
+//            viewModel.addPP(userModel.profilePicture)
+
+            var intent = Intent(this.context, MerchantAdminActivity::class.java)
+            intent.putExtra("ownerID",userModel.id)
+            startActivity(intent)
+        })
     }
+
+
+
 
 
 }

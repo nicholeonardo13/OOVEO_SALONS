@@ -28,11 +28,6 @@ class ProfileActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
 
-
-
-
-
-
         logoutBtn!!.setOnClickListener(View.OnClickListener {
             //FirebaseAuth.getInstance().signOut();
             mAuth.signOut()
@@ -70,7 +65,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun init(){
         logoutBtn = findViewById(R.id.btnProfileLogout)
-        languageBtn = findViewById(R.id.btnProfileLanguage)
+        languageBtn = findViewById(R.id.btnManageService)
         edtProfileBtn = findViewById(R.id.btnProfilEditProfile)
         edtName = findViewById(R.id.edtEditProfileName)
         edtEmail = findViewById(R.id.edtEditProfileEmail)
