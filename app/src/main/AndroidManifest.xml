@@ -16,7 +16,10 @@
         android:roundIcon="@mipmap/ic_ooveo_logo2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OOVEO_SALON">
-        <activity android:name=".ManageStylistActivity"></activity>
+        <activity android:name=".DeleteServiceActivity"></activity>
+        <activity android:name=".UpdateServiceActivity" />
+        <activity android:name=".AddServiceActivity" />
+        <activity android:name=".ManageStylistActivity" />
         <activity android:name=".ManageServiceActivity" />
         <activity android:name=".MerchantAdminActivity" />
         <activity android:name=".homes.MapActivity" />

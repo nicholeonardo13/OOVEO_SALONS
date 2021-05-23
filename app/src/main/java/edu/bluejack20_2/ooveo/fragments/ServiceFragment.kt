@@ -108,7 +108,7 @@ class ServiceFragment : Fragment() {
             rcBarber.setHasFixedSize(true)
             serviceAdapter = ServiceAdapter()
 
-            getAllServiceData(it)
+            getAllServiceData2(it)
 
             rcBarber.adapter = serviceAdapter
             serviceAdapter.notifyDataSetChanged()
@@ -116,32 +116,64 @@ class ServiceFragment : Fragment() {
 
     }
 
-    private fun getAllServiceData(id : String){
+//    private fun getAllServiceData(id : String){
+//        Log.d("YOYO", "idDDDD : ${id}")
+//        db.collection("merchants").document(id!!).collection("services").get()
+//                .addOnSuccessListener {
+//                    listServiceModel = ArrayList()
+//                    tempList = ArrayList()
+//                    listServiceModel.clear()
+//                    tempList.clear()
+////                    Log.d("tests", "${it.documents}")
+//                    for (document in it.documents){
+//                        listServiceModel.add(
+//                                ServiceModel(
+//                                        document.id as String,
+//                                        document.data?.get("name") as String,
+//                                        document.data?.get("price") as Long,
+//                                        document.data?.get("description") as String,
+//                                        document.data?.get("merchantID") as String
+//
+//                                )
+//                        )
+////                        println("TESTT")
+//                    }
+//                    tempList.addAll(listServiceModel)
+//                    serviceAdapter.submitList(tempList)
+//                }
+//                .addOnFailureListener{
+//                    Log.d("DB Error", "get failed with ")
+//                }
+//
+//    }
+
+    private fun getAllServiceData2(id : String){
         Log.d("YOYO", "idDDDD : ${id}")
-        db.collection("merchants").document(id!!).collection("services").get()
-                .addOnSuccessListener {
-                    listServiceModel = ArrayList()
-                    tempList = ArrayList()
-                    listServiceModel.clear()
-                    tempList.clear()
+        db.collection("services").whereEqualTo("merchantID" , id).get()
+            .addOnSuccessListener {
+                listServiceModel = ArrayList()
+                tempList = ArrayList()
+                listServiceModel.clear()
+                tempList.clear()
 //                    Log.d("tests", "${it.documents}")
-                    for (document in it.documents){
-                        listServiceModel.add(
-                                ServiceModel(
-                                        document.id as String,
-                                        document.data?.get("name") as String,
-                                        document.data?.get("price") as Long,
-                                        document.data?.get("description") as String
-                                )
+                for (document in it.documents){
+                    listServiceModel.add(
+                        ServiceModel(
+                            document.id as String,
+                            document.data?.get("name") as String,
+                            document.data?.get("price") as Long,
+                            document.data?.get("description") as String,
+                            document.data?.get("merchantID") as String
                         )
+                    )
 //                        println("TESTT")
-                    }
-                    tempList.addAll(listServiceModel)
-                    serviceAdapter.submitList(tempList)
                 }
-                .addOnFailureListener{
-                    Log.d("DB Error", "get failed with ")
-                }
+                tempList.addAll(listServiceModel)
+                serviceAdapter.submitList(tempList)
+            }
+            .addOnFailureListener{
+                Log.d("DB Error", "get failed with ")
+            }
 
     }
 

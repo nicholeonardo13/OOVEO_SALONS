@@ -117,6 +117,7 @@ class MerchantAdminActivity : AppCompatActivity() {
         //MOVE TO Stylist
         stylistBtn!!.setOnClickListener(View.OnClickListener {
             var intent = Intent(this@MerchantAdminActivity, ManageStylistActivity::class.java)
+            intent.putExtra("id", merchantModel.id)
             startActivity(intent)
         })
 
