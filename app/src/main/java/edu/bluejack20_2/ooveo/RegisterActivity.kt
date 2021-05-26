@@ -18,6 +18,7 @@ import java.util.*
 class RegisterActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var myRef: DocumentReference
+    private lateinit var test: String
 
     private var datePickerDialog: DatePickerDialog? = null
     private lateinit var dateButton: Button
