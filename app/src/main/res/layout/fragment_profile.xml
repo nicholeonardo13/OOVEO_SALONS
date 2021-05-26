@@ -24,7 +24,7 @@
             android:contentDescription="@string/new_user" />
 
         <TextView
-            android:id="@+id/tvMerchantName"
+            android:id="@+id/tvProfileUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -35,7 +35,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ivProfileUserImage" />
 
         <TextView
-            android:id="@+id/tvMerchantAddress"
+            android:id="@+id/tvProfileEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -43,7 +43,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMerchantName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvProfileUserName" />
 
         <Button
             android:id="@+id/btnProfilEditProfile"
@@ -53,10 +53,10 @@
             android:text="@string/edit_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMerchantAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/tvProfileEmail" />
 
         <Button
-            android:id="@+id/btnManageService"
+            android:id="@+id/btnProfileLanguage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -68,7 +68,7 @@
             app:layout_constraintTop_toBottomOf="@+id/btnProfilEditProfile" />
 
         <Button
-            android:id="@+id/btnManageStylist"
+            android:id="@+id/btnProfileTermsAndCondition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -76,7 +76,7 @@
             android:text="@string/terms_and_condition"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnManageService" />
+            app:layout_constraintTop_toBottomOf="@+id/btnProfileLanguage" />
 
         <Button
             android:id="@+id/btnProfilePrivacyPolicy"
@@ -87,7 +87,7 @@
             android:text="@string/privacy_policy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnManageStylist" />
+            app:layout_constraintTop_toBottomOf="@+id/btnProfileTermsAndCondition" />
 
         <Button
             android:id="@+id/btnProfileLogout"

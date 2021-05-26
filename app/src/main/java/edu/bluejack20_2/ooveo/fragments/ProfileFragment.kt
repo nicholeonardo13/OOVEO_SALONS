@@ -58,11 +58,11 @@ class ProfileFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
 
         logoutBtn = view!!.findViewById<Button>(R.id.btnProfileLogout)
-        languageBtn = view!!.findViewById<Button>(R.id.btnManageService)
+        languageBtn = view!!.findViewById<Button>(R.id.btnProfileLanguage)
         edtProfileBtn = view!!.findViewById<Button>(R.id.btnProfilEditProfile)
         userProfile = view!!.findViewById<ImageView>(R.id.ivProfileUserImage)
-        edtName = view!!.findViewById<TextView>(R.id.tvMerchantName)
-        edtEmail = view!!.findViewById<TextView>(R.id.tvMerchantAddress)
+        edtName = view!!.findViewById<TextView>(R.id.tvProfileUserName)
+        edtEmail = view!!.findViewById<TextView>(R.id.tvProfileEmail)
         ivProfilePicture = view!!.findViewById<ImageView>(R.id.ivProfileUserImage)
 
         println(" ")
