@@ -24,7 +24,7 @@ class ChangePasswordAuthActivity1 : AppCompatActivity() {
     private lateinit var textPhoneNumber: EditText
     private lateinit var btnSendVericationCode: Button
     private lateinit var textCodeArea: EditText
-    private lateinit var backToEdtProfile: TextView
+
 
     lateinit var auth: FirebaseAuth
     lateinit var storedVerificationId:String
@@ -37,7 +37,6 @@ class ChangePasswordAuthActivity1 : AppCompatActivity() {
         init()
         auth = FirebaseAuth.getInstance()
 
-
         this.phone = intent.getStringExtra("phone").toString()
         this.email = intent.getStringExtra("email").toString()
         this.password = intent.getStringExtra("password").toString()
@@ -49,13 +48,6 @@ class ChangePasswordAuthActivity1 : AppCompatActivity() {
             var phoneV = phone.replaceRange(0, 1, "")
             textPhoneNumber.setText(phoneV)
         }
-
-        backToEdtProfile!!.setOnClickListener(View.OnClickListener {
-            var intent = Intent(this, EditProfileActivity::class.java)
-            startActivity(intent)
-            finish()
-        })
-
 
         btnSendVericationCode.setOnClickListener{
             sendVC()
@@ -122,6 +114,5 @@ class ChangePasswordAuthActivity1 : AppCompatActivity() {
         textPhoneNumber = findViewById(R.id.edtChangePasswordPhoneNum)
         btnSendVericationCode = findViewById(R.id.btnChangePasswordSendVerificationCode)
         textCodeArea = findViewById(R.id.edtChangePasswordCodeArea)
-        backToEdtProfile = findViewById(R.id.tvChangePasswordBackText)
     }
 }

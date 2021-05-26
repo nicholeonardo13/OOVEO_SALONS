@@ -155,6 +155,7 @@ class PhoneNumberVerificationActivity : AppCompatActivity() {
         user["dob"] = txtDate
         user["password"] = txtPassword
         user["profilePicture"] = photopict
+        user["mode"] = "light"
 
         db.collection("users")
                 .document(auth.currentUser.uid.toString())

@@ -36,11 +36,11 @@ class ChangePhoneNumberVerifActivity1 : AppCompatActivity() {
         init()
         auth = FirebaseAuth.getInstance()
 
-        backToEdtProfile!!.setOnClickListener(View.OnClickListener {
-            var intent = Intent(this, ProfileFragment::class.java)
-            startActivity(intent)
-            finish()
-        })
+//        backToEdtProfile!!.setOnClickListener(View.OnClickListener {
+//            var intent = Intent(this, ProfileFragment::class.java)
+//            startActivity(intent)
+//            finish()
+//        })
 
 
         btnSendVericationCode.setOnClickListener{
@@ -104,6 +104,5 @@ class ChangePhoneNumberVerifActivity1 : AppCompatActivity() {
         textPhoneNumber = findViewById(R.id.edtChangePhoneNumber1PhoneNum)
         btnSendVericationCode = findViewById(R.id.btnChangePhoneNumber1SendVerificationCode)
         textCodeArea = findViewById(R.id.edtChangePhoneNumber1CodeArea)
-        backToEdtProfile = findViewById(R.id.tvChangePhoneNumber1BackText)
     }
 }

@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:autofillHints="@string/email"
         android:hint="@string/email"
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spRegisterMerchantType" />
+        app:layout_constraintTop_toBottomOf="@+id/spnRegisterMerchantTypes" />
 
     <EditText
         android:id="@+id/edtMerchantRegisterAboutUs"
@@ -119,7 +119,7 @@
         android:id="@+id/tvMerchantRegisterAlreadyHaveAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="16dp"
         android:text="@string/already_have_an_account"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,26 +130,36 @@
         android:id="@+id/tvMerchantRegisterLogin"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/login"
         android:textColor="@color/mediumturquise"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tvMerchantRegisterAlreadyHaveAccount"
         app:layout_constraintTop_toBottomOf="@+id/btnMerchantRegisterRegister" />
 
 
-    <Spinner
-        android:id="@+id/spRegisterMerchantType"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/spnRegisterMerchantTypes"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/types"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtMerchantRegisterAboutUs" />
+        app:layout_constraintTop_toBottomOf="@+id/edtMerchantRegisterAboutUs">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="none"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

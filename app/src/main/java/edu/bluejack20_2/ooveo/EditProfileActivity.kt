@@ -38,7 +38,7 @@ class EditProfileActivity : AppCompatActivity() {
     private lateinit var textName: EditText
     private lateinit var textEmail: EditText
     private lateinit var profileUser: ImageView
-    private lateinit var user: User
+
     private lateinit var currentEmail: String
     private lateinit var currentPhone: String
     private lateinit var currentPhotoProfile: String
@@ -48,6 +48,7 @@ class EditProfileActivity : AppCompatActivity() {
     private var storageReference: StorageReference? = null
     private val PICK_IMAGE_REQUEST = 1234
 
+    private lateinit var user: User
     private lateinit var db: FirebaseFirestore
     private lateinit var myRef: DocumentReference
     private lateinit var mAuth: FirebaseAuth
@@ -67,20 +68,20 @@ class EditProfileActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance()
 
-        val viewModel = ViewModelProvider(this).get(EditProfileActivityViewModel::class.java)
-        viewModel.getPP().observe(this, {
-            val requestOption = RequestOptions()
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
-
-            Glide.with(this)
-                .applyDefaultRequestOptions(requestOption)
-                .load(it)
-                .into(profileUser)
-
-            println("THIS IS IT")
-            println(it)
-        })
+//        val viewModel = ViewModelProvider(this).get(EditProfileActivityViewModel::class.java)
+//        viewModel.getPP().observe(this, {
+//            val requestOption = RequestOptions()
+//                .placeholder(R.drawable.ic_launcher_background)
+//                .error(R.drawable.ic_launcher_background)
+//
+//            Glide.with(this)
+//                .applyDefaultRequestOptions(requestOption)
+//                .load(it)
+//                .into(profileUser)
+//
+//            println("THIS IS IT")
+//            println(it)
+//        })
 
         val docRef = db.collection("users").document(mAuth.currentUser.uid.toString())
         docRef.get()
@@ -95,7 +96,8 @@ class EditProfileActivity : AppCompatActivity() {
                         document["gender"].toString(),
                         document["dob"].toString(),
                         document["password"].toString(),
-                        document["profilePicture"].toString()
+                        document["profilePicture"].toString(),
+                            document["mode"].toString()
                     )
                     textName.setText(user.name)
                     textEmail.setText(user.email)
@@ -161,6 +163,7 @@ class EditProfileActivity : AppCompatActivity() {
                 ).show()
             } else {
                 updateDataUser(txtName, txtEmail)
+                finish()
             }
         })
 
@@ -278,8 +281,7 @@ class EditProfileActivity : AppCompatActivity() {
                             Log.d("SUKSES", "DocumentSnapshot successfully updated!")
                             Toast.makeText(this, "Success save changes", Toast.LENGTH_SHORT).show()
 
-                        }
-                            .addOnFailureListener { e ->
+                        }.addOnFailureListener { e ->
                                 Log.w("ERROR", "Error updating document", e)
                                 Toast.makeText(this, "Failed save changes", Toast.LENGTH_SHORT)
                                     .show()

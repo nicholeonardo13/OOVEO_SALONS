@@ -12,7 +12,7 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import java.util.concurrent.TimeUnit
 
-class PhoneNumberActivity : AppCompatActivity() {
+class  PhoneNumberActivity : AppCompatActivity() {
     private lateinit var sendVerificationCodeBtn: Button
     private lateinit var textCodeArea: EditText
     private lateinit var textPhoneNumber: EditText

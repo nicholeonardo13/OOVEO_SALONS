@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -14,6 +15,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
+import edu.bluejack20_2.ooveo.model.User
 import java.util.HashMap
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var signinBtn: Button
     private lateinit var txtEmail: EditText
     private lateinit var txtPassword: EditText
+
+    private lateinit var userModel: User
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if(task.isSuccessful) {
+                    getUserDataChangeMode()
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent);
                     finish()
@@ -140,24 +145,7 @@ class MainActivity : AppCompatActivity() {
                     var uid: String
 
                     val user = mAuth.currentUser
-//                    user?.let {
-//                        // Name, email address, and profile photo Url
-//                        name = user.displayName
-//                        email = user.email
-//                        photoUrl = user.photoUrl
-//                        phoneNum = user.phoneNumber
-//
-//
-//                        // Check if user's email is verified
-//                        val emailVerified = user.isEmailVerified
-//
-//                        // The user's ID, unique to the Firebase project. Do NOT use this value to
-//                        // authenticate with your backend server, if you have one. Use
-//                        // FirebaseUser.getToken() instead.
-//                        uid = user.uid
-//
-//
-//                    }
+
                     println("phone num: " + user.phoneNumber + " name: " + user.displayName + " email: " + user.email.toString() )
                     saveUserFireStore(user.displayName, "Please add phone number", user.email, user.photoUrl.toString(), "xxx", "xxx" )
 
@@ -183,6 +171,7 @@ class MainActivity : AppCompatActivity() {
         user["dob"] = txtDate
         user["password"] = txtPassword
         user["profilePicture"] = photoUrl
+        user["mode"] = "light"
 
         db.collection("users")
             .document(mAuth.currentUser.uid.toString())
@@ -193,6 +182,42 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener{
                 Toast.makeText(this, "Failed to Register ", Toast.LENGTH_SHORT ).show()
             }
+
+    }
+
+    fun  getUserDataChangeMode(){
+        val docRef = db.collection("users").document(mAuth.currentUser.uid.toString())
+        docRef.get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        userModel = User(
+                                document.id.toString(),
+                                document["role"].toString(),
+                                document["name"].toString(),
+                                document["phone"].toString(),
+                                document["email"].toString(),
+                                document["gender"].toString(),
+                                document["dob"].toString(),
+                                document["password"].toString(),
+                                document["profilePicture"].toString(),
+                                document["mode"].toString()
+                        )
+
+                        if(userModel.mode == "light"){
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        }else if(userModel.mode == "dark"){
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        }
+
+                        Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
+
+                    } else {
+                        Log.d("GAGAL", "No such document")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.d("TAG", "get failed with ", exception)
+                }
 
     }
 }

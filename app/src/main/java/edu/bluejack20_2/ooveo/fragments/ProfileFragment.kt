@@ -53,6 +53,12 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
@@ -74,83 +80,75 @@ class ProfileFragment : Fragment() {
 
         val docRef =  db.collection("users").document(mAuth.currentUser.uid.toString())
         docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    user = User(
-                        document.id.toString(),
-                        document["role"].toString(),
-                        document["name"].toString(),
-                        document["phone"].toString(),
-                        document["email"].toString(),
-                        document["gender"].toString(),
-                        document["dob"].toString(),
-                        document["password"].toString(),
-                        document["profilePicture"].toString()
-                    )
-                    edtName.text = user.name
-                    edtEmail.text = user.email
-                    tvPhone.text = user.phone
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        user = User(
+                                document.id.toString(),
+                                document["role"].toString(),
+                                document["name"].toString(),
+                                document["phone"].toString(),
+                                document["email"].toString(),
+                                document["gender"].toString(),
+                                document["dob"].toString(),
+                                document["password"].toString(),
+                                document["profilePicture"].toString(),
+                                document["mode"].toString()
+                        )
+                        edtName.text = user.name
+                        edtEmail.text = user.email
+                        tvPhone.text = user.phone
 
 
-                    val requestOption = RequestOptions()
-                        .placeholder(R.drawable.ic_launcher_background)
-                        .error(R.drawable.ic_launcher_background)
+                        val requestOption = RequestOptions()
+                                .placeholder(R.drawable.ic_launcher_background)
+                                .error(R.drawable.ic_launcher_background)
 
-                    Glide.with(this)
-                        .applyDefaultRequestOptions(requestOption)
-                        .load(user.profilePicture)
-                        .into(ivProfilePicture)
-                    Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
+                        Glide.with(this)
+                                .applyDefaultRequestOptions(requestOption)
+                                .load(user.profilePicture)
+                                .into(ivProfilePicture)
+                        Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
 
-                    //MOVE TO EDIT PROFILE PAGE
-                    edtProfileBtn!!.setOnClickListener(View.OnClickListener {
+                        //MOVE TO EDIT PROFILE PAGE
+                        edtProfileBtn!!.setOnClickListener(View.OnClickListener {
 
-                        val viewModel = ViewModelProvider(requireActivity()).get(EditProfileActivityViewModel::class.java)
-                        println("Print PP: "+ user.profilePicture)
-                        viewModel.addPP(user.profilePicture)
+                            val viewModel = ViewModelProvider(requireActivity()).get(EditProfileActivityViewModel::class.java)
+                            println("Print PP: "+ user.profilePicture)
+                            viewModel.addPP(user.profilePicture)
 
-                        var intent = Intent(this.context, EditProfileActivity::class.java)
-                        startActivity(intent)
-                        activity?.finish()
-                    })
+                            var intent = Intent(this.context, EditProfileActivity::class.java)
+                            startActivity(intent)
+                        })
 
-                } else {
-                    Log.d("GAGAL", "No such document")
+                        //LOGOUT
+                        logoutBtn!!.setOnClickListener(View.OnClickListener {
+                            //FirebaseAuth.getInstance().signOut();
+                            mAuth.signOut()
+                            val intent = Intent(this.context, MainActivity::class.java)
+                            startActivity(intent);
+
+
+                        })
+
+                        tvChangeTheme!!.setOnClickListener(View.OnClickListener {
+                            var intent = Intent(this.context, DarkModeActivity::class.java)
+                            startActivity(intent)
+                            activity?.finish()
+                        })
+
+                        //CHANGE LANGUAGE
+                        languageBtn!!.setOnClickListener(View.OnClickListener {
+                            var intent = Intent(this.context, LanguageActivity::class.java)
+                            startActivity(intent)
+                        })
+
+                    } else {
+                        Log.d("GAGAL", "No such document")
+                    }
                 }
-            }
-            .addOnFailureListener { exception ->
-                Log.d("TAG", "get failed with ", exception)
-            }
-
-
-
-        //LOGOUT
-        logoutBtn!!.setOnClickListener(View.OnClickListener {
-            //FirebaseAuth.getInstance().signOut();
-            mAuth.signOut()
-            val intent = Intent(this.context, MainActivity::class.java)
-            startActivity(intent);
-            activity?.finish()
-
-        })
-
-        tvChangeTheme!!.setOnClickListener(View.OnClickListener {
-            var intent = Intent(this.context, DarkModeActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
-        })
-
-        //CHANGE LANGUAGE
-        languageBtn!!.setOnClickListener(View.OnClickListener {
-            var intent = Intent(this.context, LanguageActivity::class.java)
-            startActivity(intent)
-        })
-
-
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+                .addOnFailureListener { exception ->
+                    Log.d("TAG", "get failed with ", exception)
+                }
 
 
     }
