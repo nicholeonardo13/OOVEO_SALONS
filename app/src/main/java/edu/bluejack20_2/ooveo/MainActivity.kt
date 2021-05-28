@@ -1,11 +1,13 @@
 package edu.bluejack20_2.ooveo
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -14,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.homes.HomeActivity
+import edu.bluejack20_2.ooveo.model.UserModel
 import java.util.HashMap
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +32,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var signinBtn: Button
     private lateinit var txtEmail: EditText
     private lateinit var txtPassword: EditText
+
+    private lateinit var userModel: UserModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,20 +58,18 @@ class MainActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         signinBtn!!.setOnClickListener(View.OnClickListener {
-//            var email: String =  txtEmail.text.toString()
-//            var password: String = txtPassword.text.toString()
-            var email: String =  "sei@gmail.com"
-            var password: String = "sipsipdripdrip"
+            var email: String =  txtEmail.text.toString()
+            var password: String = txtPassword.text.toString()
 
-//            if(email.isEmpty()){
-//                Toast.makeText(this, "Email must be fiiled!", Toast.LENGTH_SHORT).show()
-//            }else if(password.isEmpty()){
-//                Toast.makeText(this, "Password must be filled!", Toast.LENGTH_SHORT).show()
-//            }else{
-//                signIn(email, password)
-//            }
-
-            signIn(email, password)
+//            var email: String =  "sei@gmail.com"
+//            var password: String = "sipsipdripdrip"
+            if(email.isEmpty()){
+                Toast.makeText(this, "Email must be fiiled!", Toast.LENGTH_SHORT).show()
+            }else if(password.isEmpty()){
+                Toast.makeText(this, "Password must be filled!", Toast.LENGTH_SHORT).show()
+            }else{
+                signIn(email, password)
+            }
          }
         )
 
@@ -78,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        registerNowBtn = findViewById(R.id.tvMerchantRegisterLogin)
+        registerNowBtn = findViewById(R.id.tvRegisterLogin)
         google_sign_in_btn = findViewById(R.id.ivMainGoogle)
         signinBtn = findViewById(R.id.btnMainLogin)
         txtEmail = findViewById(R.id.edtMainEmail)
@@ -88,13 +91,13 @@ class MainActivity : AppCompatActivity() {
     private fun signInWithGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
-        finish()
     }
 
     private fun signIn(email: String, password: String) {
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if(task.isSuccessful) {
+                    getUserDataChangeMode()
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent);
                     finish()
@@ -138,22 +141,18 @@ class MainActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("MainActivity", "signInWithCredential:success")
 
+                    var name: String
+                    var email: String
+                    var photoUrl: Uri
+                    var phoneNum: String
+                    var uid: String
+
                     val user = mAuth.currentUser
-                    user?.let {
-                        // Name, email address, and profile photo Url
-                        val name = user.displayName
-                        val email = user.email
-                        val photoUrl = user.photoUrl
-                        val phoneNum = user.phoneNumber
 
-                        // Check if user's email is verified
-                        val emailVerified = user.isEmailVerified
+                    println("phone num: " + user.phoneNumber + " name: " + user.displayName + " email: " + user.email.toString() )
+                    saveUserFireStore(user.displayName, "Please add phone number", user.email, user.photoUrl.toString(), "xxx", "xxx" )
 
-                        // The user's ID, unique to the Firebase project. Do NOT use this value to
-                        // authenticate with your backend server, if you have one. Use
-                        // FirebaseUser.getToken() instead.
-                        val uid = user.uid
-                    }
+
 
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
@@ -166,16 +165,16 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun saveUserFireStore(txtName: String, txtPhone: String, txtEmail:String, gender:String, txtDate: String, txtPassword: String ){
+    private fun saveUserFireStore(txtName: String, txtPhone: String, txtEmail:String, photoUrl:String, txtDate: String, txtPassword: String){
         val user: MutableMap<String, Any> = HashMap()
         user["role"] = "User"
         user["name"] = txtName
         user["phone"] = txtPhone
         user["email"] = txtEmail
-        user["gender"] = gender
         user["dob"] = txtDate
         user["password"] = txtPassword
-        user["profilePicture"] = gender
+        user["profilePicture"] = photoUrl
+        user["mode"] = "light"
 
         db.collection("users")
             .document(mAuth.currentUser.uid.toString())
@@ -186,6 +185,42 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener{
                 Toast.makeText(this, "Failed to Register ", Toast.LENGTH_SHORT ).show()
             }
+
+    }
+
+    fun  getUserDataChangeMode(){
+        val docRef = db.collection("users").document(mAuth.currentUser.uid.toString())
+        docRef.get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        userModel = UserModel(
+                                document.id.toString(),
+                                document["role"].toString(),
+                                document["name"].toString(),
+                                document["phone"].toString(),
+                                document["email"].toString(),
+                                document["gender"].toString(),
+                                document["dob"].toString(),
+                                document["password"].toString(),
+                                document["profilePicture"].toString(),
+                                document["mode"].toString()
+                        )
+
+                        if(userModel.mode == "light"){
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        }else if(userModel.mode == "dark"){
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        }
+
+                        Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
+
+                    } else {
+                        Log.d("GAGAL", "No such document")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.d("TAG", "get failed with ", exception)
+                }
 
     }
 }

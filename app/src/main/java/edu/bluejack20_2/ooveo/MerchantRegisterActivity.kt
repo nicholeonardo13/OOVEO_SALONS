@@ -33,16 +33,16 @@ class MerchantRegisterActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        textName = findViewById(R.id.edtMerchantRegisterName)
+        textName = findViewById(R.id.edtRegisterName)
         textPhoneNumber = findViewById(R.id.edtMerchantRegisterPhoneNumber)
-        textEmail = findViewById(R.id.edtMerchantRegisterEmail)
+        textEmail = findViewById(R.id.edtRegisterEmail)
         textAddress = findViewById(R.id.edtMerchantRegisterAddress)
-        textPassword = findViewById(R.id.edtMerchantRegisterPassword)
-        textRepassword = findViewById(R.id.edtMerchantRegisterRePassword)
+        textPassword = findViewById(R.id.edtRegisterPassword)
+        textRepassword = findViewById(R.id.edtRegisterRePassword)
         textSelectedFile = findViewById(R.id.tvMerchantRegisterBanner)
-        tvLogin = findViewById(R.id.tvMerchantRegisterLogin)
+        tvLogin = findViewById(R.id.tvRegisterLogin)
         btnUploadBanner = findViewById(R.id.btnMerchantRegisterUploadbanner)
-        btnRegister = findViewById(R.id.btnMerchantRegisterRegister)
+        btnRegister = findViewById(R.id.btnRegisterRegister)
     }
 
 

@@ -14,32 +14,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="fitXY"
         tools:srcCompat="@tools:sample/avatars" />
-
-    <Button
-        android:id="@+id/btnEditProfileChangePhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/change_phone_number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivEditProfileUserImage" />
 
     <EditText
         android:id="@+id/edtEditProfileName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints="@string/name"
         android:ems="10"
+        android:hint="@string/name"
         android:inputType="textPersonName"
-        android:text="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEditProfileChangePassword"
-        android:autofillHints="@string/name" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEditProfileChangePassword" />
 
     <EditText
         android:id="@+id/edtEditProfileEmail"
@@ -50,7 +41,7 @@
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="@string/email"
+        android:hint="@string/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtEditProfileName"
@@ -61,7 +52,7 @@
         android:id="@+id/btnEditProfileSaveChanges"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="100dp"
         android:text="@string/save_changes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -72,7 +63,7 @@
         android:id="@+id/btnEditProfileChangePassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:text="@string/change_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,5 +78,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnEditProfileChangePhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/change_phone_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivEditProfileUserImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

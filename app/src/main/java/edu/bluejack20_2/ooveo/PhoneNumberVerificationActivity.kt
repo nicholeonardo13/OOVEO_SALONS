@@ -82,16 +82,31 @@ class PhoneNumberVerificationActivity : AppCompatActivity() {
                         this.gender = intent.getStringExtra("gender").toString()
                         this.dob = intent.getStringExtra("dob").toString()
 
-                        linkPhoneWithEmail(email, password)
-                        saveUserFireStore(name, phone, email, gender, dob, hashPassword)
+//                        linkPhoneWithEmail(email, password)
+                        var emailCredential : AuthCredential = EmailAuthProvider.getCredential(email, password)
 
-                        startActivity(Intent(applicationContext, HomeActivity::class.java))
-                        finish()
-// ...
+                        auth.currentUser!!.linkWithCredential(emailCredential).addOnCompleteListener(this) { task ->
+                            if (task.isSuccessful) {
+                                Log.d("TAG", "linkWithCredential:success")
+
+                                val user = task.result?.user
+                                saveUserFireStore(name, phone, email, gender, dob, hashPassword)
+
+                                startActivity(Intent(applicationContext, HomeActivity::class.java))
+                                finish()
+
+                                Toast.makeText(applicationContext, "Link successful", Toast.LENGTH_LONG)
+                            } else {
+                                Log.w("TAG", "linkWithCredential:failure", task.exception)
+                                //Kalo gagal berarti no HP nya udh pernah di pake jadi gabisa register
+                                Toast.makeText(baseContext, "Phone Number already used, register failed.",
+                                    Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     } else {
-// Sign in failed, display a message and update the UI
+                        // Sign in failed, display a message and update the UI
                         if (task.exception is FirebaseAuthInvalidCredentialsException) {
-// The verification code entered was invalid
+                        // The verification code entered was invalid
                             println("CREDENTIAL GAGAL "+ credential)
                             println("CREDENTIAL GAGAL "+ credential)
 
@@ -102,11 +117,11 @@ class PhoneNumberVerificationActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        otpCode = findViewById(R.id.edtPhoneNumberOTPCode)
-        verifyBtn = findViewById(R.id.btnPhoneNumVerificationCode)
+        otpCode = findViewById(R.id.edtPhoneNumberVerificationOTPCode)
+        verifyBtn = findViewById(R.id.btnPhoneNumberVerificationCode)
     }
 
-    private fun linkPhoneWithEmail(email: String, password: String) {
+    private fun linkPhoneWithEmail(email: String, password: String){
 
         var emailCredential : AuthCredential = EmailAuthProvider.getCredential(email, password)
 
@@ -114,18 +129,6 @@ class PhoneNumberVerificationActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 Log.d("TAG", "linkWithCredential:success")
                 val user = task.result?.user
-
-                println("")
-                println("")
-                println("")
-                println("")
-                println("")
-                println("link successful")
-                println("")
-                println("")
-                println("")
-                println("")
-                println("")
 
                 Toast.makeText(applicationContext, "Link successful", Toast.LENGTH_LONG)
             } else {
@@ -153,6 +156,7 @@ class PhoneNumberVerificationActivity : AppCompatActivity() {
         user["dob"] = txtDate
         user["password"] = txtPassword
         user["profilePicture"] = photopict
+        user["mode"] = "light"
 
         db.collection("users")
                 .document(auth.currentUser.uid.toString())

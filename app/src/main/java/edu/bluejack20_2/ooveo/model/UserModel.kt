@@ -9,5 +9,6 @@ data class UserModel(
     val gender: String,
     val dob: String,
     val password: String,
-    val profilePicture: String
+    val profilePicture: String,
+    val mode: String
 )

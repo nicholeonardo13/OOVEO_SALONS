@@ -8,7 +8,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import at.favre.lib.crypto.bcrypt.BCrypt
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.SignInMethodQueryResult
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
@@ -16,6 +18,7 @@ import java.util.*
 class RegisterActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var myRef: DocumentReference
+    private lateinit var test: String
 
     private var datePickerDialog: DatePickerDialog? = null
     private lateinit var dateButton: Button
@@ -29,6 +32,8 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var edtRepassword: EditText
     private lateinit var rbFemale: RadioButton
     private lateinit var rbMale: RadioButton
+    private lateinit var registerAsMerchantBtn: TextView
+
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -47,10 +52,21 @@ class RegisterActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance()
 
+        registerAsMerchantBtn!!.setOnClickListener(View.OnClickListener {
+            var intent = Intent(this, RegisterMerchantActivity::class.java)
+            startActivity(intent)
+        })
+
         registerBtn!!.setOnClickListener( View.OnClickListener {
+
+                val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+                var checkFlagEmail: Int
+
                 var txtName: String = edtName.text.toString()
                 var txtPhone: String = edtPhone.text.toString()
-                var txtEmail: String = edtEmail.text.toString()
+                var phoneLength = txtPhone.length
+                var txtEmail: String = edtEmail.text.toString().trim()
+
                 var txtPassword: String = edtPassword.text.toString()
                 var txtRepassword: String = edtRepassword.text.toString()
                 var dateText: String = dateButton.text.toString()
@@ -63,12 +79,18 @@ class RegisterActivity : AppCompatActivity() {
 
                 if(txtName.isEmpty()){
                     Toast.makeText(this, "Name must be filled!", Toast.LENGTH_SHORT).show()
+                }else if(txtName.length < 3 ){
+                    Toast.makeText(this, "Name must be more than 3 character!", Toast.LENGTH_SHORT).show()
                 }else if(txtPhone.isEmpty()){
                     Toast.makeText(this, "Phone must be filled!", Toast.LENGTH_SHORT).show()
-                }else if(txtEmail.isEmpty()){
+                }else if(!(phoneLength == 12)){
+                    Toast.makeText(this, "Phone Number must be 12 characters", Toast.LENGTH_SHORT).show()
+                }
+                else if(txtEmail.isEmpty()){
                     Toast.makeText(this, "Email must be filled!", Toast.LENGTH_SHORT).show()
+                }else if(!(txtEmail.matches(emailPattern.toRegex()))) {
+                    Toast.makeText(applicationContext, "Invalid email address format",Toast.LENGTH_SHORT).show()
                 }else if(!rbFemale.isChecked && !rbMale.isChecked){
-
                     Toast.makeText(this, "Gender must be selected!", Toast.LENGTH_SHORT).show()
                 }else if(dateText == todaysDate){
                     Toast.makeText(this, "Date birth must be choose!", Toast.LENGTH_SHORT).show()
@@ -81,26 +103,46 @@ class RegisterActivity : AppCompatActivity() {
                 }else if(txtRepassword != txtPassword){
                     Toast.makeText(this, "Re-password doesn't match!", Toast.LENGTH_SHORT).show()
                 }else{
-                    val passHash = BCrypt.withDefaults().hashToString(12,txtPassword.toCharArray())
-                    createAccount(txtEmail, txtPassword, txtName, txtPhone, gender, dateText, passHash);
+                    mAuth.fetchSignInMethodsForEmail(txtEmail).addOnCompleteListener(OnCompleteListener<SignInMethodQueryResult>(){
+                        var check: Boolean = it.result!!.signInMethods!!.isEmpty()
 
+                        if(!check){
+                            Toast.makeText(this, "Email already used!", Toast.LENGTH_SHORT).show()
+                        }else{
+                            //Gausah di hash
+                            //val passHash = BCrypt.withDefaults().hashToString(12,txtPassword.toCharArray())
+                            createAccount(txtEmail, txtPassword, txtName, txtPhone, gender, dateText, txtPassword);
+                        }
+                    })
                 }
 
             }
         )
     }
 
+    private fun checkEmail(txtEmail: String): Boolean {
+        var flag: Boolean = false
+        mAuth.fetchSignInMethodsForEmail(txtEmail).addOnCompleteListener(OnCompleteListener<SignInMethodQueryResult>(){
+            var check: Boolean = it.result!!.signInMethods!!.isEmpty()
+            flag = check
+            println("flag 1: " + flag)
+        })
+        println("flag 2: " + flag)
+        return flag
+    }
 
     private fun init(){
-        textViewLogin = findViewById(R.id.tvMerchantRegisterLogin)
-        registerBtn = findViewById(R.id.btnMerchantRegisterRegister)
-        edtName = findViewById(R.id.edtMerchantRegisterName)
-        edtEmail = findViewById(R.id.edtMerchantRegisterEmail)
+        textViewLogin = findViewById(R.id.tvRegisterLogin)
+        registerBtn = findViewById(R.id.btnRegisterRegister)
+        edtName = findViewById(R.id.edtRegisterName)
+        edtEmail = findViewById(R.id.edtRegisterEmail)
         edtPhone = findViewById(R.id.edtMerchantRegisterPhoneNumber)
-        edtPassword = findViewById(R.id.edtMerchantRegisterPassword)
-        edtRepassword = findViewById(R.id.edtMerchantRegisterRePassword)
+        edtPassword = findViewById(R.id.edtRegisterPassword)
+        edtRepassword = findViewById(R.id.edtRegisterRePassword)
         rbFemale = findViewById(R.id.rbRegisterFemale)
         rbMale = findViewById(R.id.rbRegisterMale)
+        registerAsMerchantBtn = findViewById((R.id.tvRegisterAsMerchant))
+
     }
 
     private val todaysDate: String
@@ -166,24 +208,5 @@ class RegisterActivity : AppCompatActivity() {
         intent.putExtra("dob", txtDate)
         startActivity(intent)
         finish()
-
-//        mAuth.createUserWithEmailAndPassword(email, password)
-//            .addOnCompleteListener(this) { task ->
-//                if(task.isSuccessful) {
-////                  val registerIntent = Intent(this, MainActivity::class.java)
-////                  startActivity(registerIntent)
-//                    //KALO UDAH HARUS VERIFIKASI PHONE NUMBER DULU,
-//                    //JADI NTR LOGIN NYA PAKE NOMOR HP, bukan email, password
-//
-//                    saveUserFireStore(txtName, txtPhone, txtEmail, gender, txtDate, txtPassword)
-//                    var intent = Intent(this, PhoneNumberActivity::class.java)
-//                    intent.putExtra("email", email)
-//                    intent.putExtra("password", password)
-//                    startActivity(intent)
-//                }
-//                else {
-//                    Toast.makeText(this, "Register failed!", Toast.LENGTH_SHORT).show()
-//                }
-//            }
     }
 }

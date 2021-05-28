@@ -4,57 +4,47 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import edu.bluejack20_2.ooveo.fragments.ProfileFragment
 import java.util.concurrent.TimeUnit
 
-class  PhoneNumberActivity : AppCompatActivity() {
-    private lateinit var sendVerificationCodeBtn: Button
-    private lateinit var textCodeArea: EditText
+class ChangePhoneNumberVerifActivity1 : AppCompatActivity() {
     private lateinit var textPhoneNumber: EditText
-    private lateinit var mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
+    private lateinit var btnSendVericationCode: Button
+    private lateinit var textCodeArea: EditText
+    private lateinit var backToEdtProfile: TextView
+
 
     lateinit var auth: FirebaseAuth
     lateinit var storedVerificationId:String
     lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
-    private lateinit var email: String;
-    private lateinit var password: String;
-    private lateinit var name: String
-    private lateinit var phone: String
-    private lateinit var hashPassword: String
-    private lateinit var dob: String
-    private lateinit var gender: String
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_phone_number)
+        setContentView(R.layout.activity_change_phone_number_verif1)
+
         init()
         auth = FirebaseAuth.getInstance()
 
-        this.email = intent.getStringExtra("email").toString()
-        this.password = intent.getStringExtra("password").toString()
-        this.name = intent.getStringExtra("name").toString()
-        this.phone = intent.getStringExtra("phone").toString()
-        this.hashPassword = intent.getStringExtra("hashPassword").toString()
-        this.gender = intent.getStringExtra("gender").toString()
-        this.dob = intent.getStringExtra("dob").toString()
-
-        var phoneV = phone.substring(1, 12)
-        textPhoneNumber.setText(phoneV)
-//        var currentUser = auth.currentUser
-//        if(currentUser != null) {
-//            startActivity(Intent(this, HomeActivity::class.java))
+//        backToEdtProfile!!.setOnClickListener(View.OnClickListener {
+//            var intent = Intent(this, ProfileFragment::class.java)
+//            startActivity(intent)
 //            finish()
-//        }
+//        })
 
-        sendVerificationCodeBtn.setOnClickListener{
+
+        btnSendVericationCode.setOnClickListener{
+
             sendVC()
         }
 
@@ -62,7 +52,8 @@ class  PhoneNumberActivity : AppCompatActivity() {
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                startActivity(Intent(applicationContext, HomeActivity::class.java))
+                //ARAHIN KE CHANGE Phone nya
+                startActivity(Intent(applicationContext, ChangePhoneNumberVerifActivity2::class.java))
                 finish()
             }
 
@@ -78,22 +69,13 @@ class  PhoneNumberActivity : AppCompatActivity() {
                 Log.d("TAG","onCodeSent:$verificationId")
                 storedVerificationId = verificationId
                 resendToken = token
-                var intent = Intent(applicationContext, PhoneNumberVerificationActivity::class.java)
+                var intent = Intent(applicationContext, ChangePhoneNumberVerifActivity2::class.java)
                 intent.putExtra("storedVerificationId",storedVerificationId)
-                intent.putExtra("email", email)
-                intent.putExtra("password", password)
-                //PASS VALUE KE AUTH DISINI
-                intent.putExtra("hashPassword", hashPassword)
-                intent.putExtra("name", name)
-                intent.putExtra("phone", phone)
-                intent.putExtra("gender", gender)
-                intent.putExtra("dob", dob)
-
+                intent.putExtra("phone", textPhoneNumber.text.toString())
                 startActivity(intent)
                 finish()
             }
         }
-
     }
 
     private fun sendVC() {
@@ -105,7 +87,6 @@ class  PhoneNumberActivity : AppCompatActivity() {
             Toast.makeText(this, "Please enter country code and Phone Number", Toast.LENGTH_SHORT).show()
         }else{
             sendVerificationcode(phoneNumber)
-
         }
     }
 
@@ -119,10 +100,9 @@ class  PhoneNumberActivity : AppCompatActivity() {
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
-    private fun init() {
-        sendVerificationCodeBtn = findViewById(R.id.btnPhoneNumberSendVerificationCode)
-        textCodeArea = findViewById(R.id.edtPhoneNumberCodeArea)
-        textPhoneNumber = findViewById(R.id.edtPhoneNumberPhoneNum)
+    private fun init(){
+        textPhoneNumber = findViewById(R.id.edtChangePhoneNumber1PhoneNum)
+        btnSendVericationCode = findViewById(R.id.btnChangePhoneNumber1SendVerificationCode)
+        textCodeArea = findViewById(R.id.edtChangePhoneNumber1CodeArea)
     }
-
 }
