@@ -11,6 +11,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.SignInMethodQueryResult
 import com.google.firebase.firestore.FirebaseFirestore
+import edu.bluejack20_2.ooveo.homes.HomeActivity
 import java.util.*
 
 class RegisterMerchantActivity2 : AppCompatActivity() {

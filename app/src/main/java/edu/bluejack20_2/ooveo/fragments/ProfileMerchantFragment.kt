@@ -86,7 +86,9 @@ class ProfileMerchantFragment : Fragment() {
                         document["gender"].toString(),
                         document["dob"].toString(),
                         document["password"].toString(),
-                        document["profilePicture"].toString()
+                        document["profilePicture"].toString(),
+                        document["mode"].toString()
+
                     )
                     edtName.setText(userModel.name)
                     edtEmail.setText(userModel.email)

@@ -55,7 +55,8 @@ class HomeActivity : AppCompatActivity() {
                                 document["gender"].toString(),
                                 document["dob"].toString(),
                                 document["password"].toString(),
-                                document["profilePicture"].toString()
+                                document["profilePicture"].toString(),
+                                document["mode"].toString()
                         )
 
                         if(userModel.role == "Merchant"){

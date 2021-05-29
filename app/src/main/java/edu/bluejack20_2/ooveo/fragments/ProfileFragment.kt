@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.*
 import edu.bluejack20_2.ooveo.model.UserModel
+import edu.bluejack20_2.ooveo.viewmodels.EditProfileActivityViewModel
 
 class ProfileFragment : Fragment() {
     private var param1: String? = null
@@ -112,7 +113,8 @@ class ProfileFragment : Fragment() {
                         //MOVE TO EDIT PROFILE PAGE
                         edtProfileBtn!!.setOnClickListener(View.OnClickListener {
 
-                            val viewModel = ViewModelProvider(requireActivity()).get(EditProfileActivityViewModel::class.java)
+                            val viewModel = ViewModelProvider(requireActivity()).get(
+                                EditProfileActivityViewModel::class.java)
                             println("Print PP: "+ user.profilePicture)
                             viewModel.addPP(user.profilePicture)
 

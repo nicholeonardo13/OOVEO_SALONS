@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
+import edu.bluejack20_2.ooveo.homes.HomeActivity
 import java.util.concurrent.TimeUnit
 
 class  PhoneNumberActivity : AppCompatActivity() {
@@ -46,7 +47,9 @@ class  PhoneNumberActivity : AppCompatActivity() {
         this.gender = intent.getStringExtra("gender").toString()
         this.dob = intent.getStringExtra("dob").toString()
 
-        var phoneV = phone.substring(1, 12)
+//        var phoneV = phone.substring(1, 12)
+//        textPhoneNumber.setText(phoneV)
+        var phoneV = phone.replaceRange(0, 1, "")
         textPhoneNumber.setText(phoneV)
 //        var currentUser = auth.currentUser
 //        if(currentUser != null) {

@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import edu.bluejack20_2.ooveo.homes.HomeActivity
 import edu.bluejack20_2.ooveo.model.UserModel
 
 class LandingActivity : AppCompatActivity() {
