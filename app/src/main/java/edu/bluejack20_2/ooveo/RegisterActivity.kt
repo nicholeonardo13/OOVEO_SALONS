@@ -83,7 +83,7 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this, "Name must be more than 3 character!", Toast.LENGTH_SHORT).show()
                 }else if(txtPhone.isEmpty()){
                     Toast.makeText(this, "Phone must be filled!", Toast.LENGTH_SHORT).show()
-                }else if(!(phoneLength == 12)){
+                }else if((phoneLength < 10)){
                     Toast.makeText(this, "Phone Number must be 12 characters", Toast.LENGTH_SHORT).show()
                 }
                 else if(txtEmail.isEmpty()){

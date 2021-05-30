@@ -11,11 +11,12 @@ import com.bumptech.glide.request.RequestOptions
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import edu.bluejack20_2.ooveo.model.User
+import edu.bluejack20_2.ooveo.homes.HomeActivity
+import edu.bluejack20_2.ooveo.model.UserModel
 
 class LandingActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var userModel: User
+    private lateinit var userModel: UserModel
     private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +51,7 @@ class LandingActivity : AppCompatActivity() {
         docRef.get()
                 .addOnSuccessListener { document ->
                     if (document != null) {
-                        userModel = User(
+                        userModel = UserModel(
                                 document.id.toString(),
                                 document["role"].toString(),
                                 document["name"].toString(),

@@ -27,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import edu.bluejack20_2.ooveo.model.User
+import edu.bluejack20_2.ooveo.model.UserModel
 import java.io.IOException
 import java.util.*
 
@@ -48,7 +48,7 @@ class EditProfileActivity : AppCompatActivity() {
     private var storageReference: StorageReference? = null
     private val PICK_IMAGE_REQUEST = 1234
 
-    private lateinit var user: User
+    private lateinit var user: UserModel
     private lateinit var db: FirebaseFirestore
     private lateinit var myRef: DocumentReference
     private lateinit var mAuth: FirebaseAuth
@@ -87,7 +87,7 @@ class EditProfileActivity : AppCompatActivity() {
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    user = User(
+                    user = UserModel(
                         document.id.toString(),
                         document["role"].toString(),
                         document["name"].toString(),

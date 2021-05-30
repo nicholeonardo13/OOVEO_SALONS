@@ -73,4 +73,5 @@
         <item>Reflexology</item>
         <item>Salon </item>
     </string-array>
+    <string name="Merchant_Admin">Merchant Admin</string>
 </resources>

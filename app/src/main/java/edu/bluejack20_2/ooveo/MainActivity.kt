@@ -15,7 +15,8 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
-import edu.bluejack20_2.ooveo.model.User
+import edu.bluejack20_2.ooveo.homes.HomeActivity
+import edu.bluejack20_2.ooveo.model.UserModel
 import java.util.HashMap
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txtEmail: EditText
     private lateinit var txtPassword: EditText
 
-    private lateinit var userModel: User
+    private lateinit var userModel: UserModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +61,8 @@ class MainActivity : AppCompatActivity() {
             var email: String =  txtEmail.text.toString()
             var password: String = txtPassword.text.toString()
 
+//            var email: String =  "sei@gmail.com"
+//            var password: String = "sipsipdripdrip"
             if(email.isEmpty()){
                 Toast.makeText(this, "Email must be fiiled!", Toast.LENGTH_SHORT).show()
             }else if(password.isEmpty()){
@@ -190,7 +193,7 @@ class MainActivity : AppCompatActivity() {
         docRef.get()
                 .addOnSuccessListener { document ->
                     if (document != null) {
-                        userModel = User(
+                        userModel = UserModel(
                                 document.id.toString(),
                                 document["role"].toString(),
                                 document["name"].toString(),

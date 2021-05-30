@@ -11,7 +11,7 @@ import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import edu.bluejack20_2.ooveo.model.User
+import edu.bluejack20_2.ooveo.model.UserModel
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var logoutBtn: Button
@@ -20,7 +20,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth;
     private lateinit var edtName: EditText
-    private lateinit var user: User
+    private lateinit var user: UserModel
     private lateinit var edtEmail: EditText
     private lateinit var tvPhone: TextView
 
