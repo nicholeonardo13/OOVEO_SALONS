@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_ooveo_logo2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OOVEO_SALON">
-        <activity android:name=".ChangePhoneNumberVerifActivity2"></activity>
+        <activity android:name=".OnProgressAppointmentActivity"></activity>
+        <activity android:name=".ChangePhoneNumberVerifActivity2" />
         <activity android:name=".ChangePhoneNumberVerifActivity1" />
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".ChangePasswordAuthActivity2" />
