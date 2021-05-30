@@ -9,5 +9,4 @@ class OnProgressAppointmentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_on_progress_appointment)
     }
 
-
 }
