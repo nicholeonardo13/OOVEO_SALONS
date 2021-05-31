@@ -1,3 +1,77 @@
 <resources>
-    <string name="app_name">OOVEO_SALON</string>
+    <string name="app_name">OOVEO</string>
+    <string name="welcome_back">Welcome back.</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="hello_there">Hello there</string>
+    <string name="or_login_with">Or Login with Google</string>
+    <string name="new_user">New user?</string>
+    <string name="register_now">Register Now</string>
+    <string name="wave_img">wave-img</string>
+    <string name="google">google</string>
+    <string name="register">Register</string>
+    <string name="phone_number">Phone number</string>
+    <string name="name">Name</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="jan_01_2021">JAN 01 2021</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="re_enter_password">Re-enter Password</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_phone_number">Change Phone Number</string>
+    <string name="choose_language">CHOOSE LANGUAGE</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="language">Language</string>
+    <string name="terms_and_condition">Terms and Condition</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="logout">Logout</string>
+    <string name="versi_1_0_0">Versi 1.0.0</string>
+    <string name="pilih_bahasa">PILIH BAHASA</string>
+    <string name="phone_Number">Phone Number</string>
+    <string name="_62">+62</string>
+    <string name="verification_code_sms">Verification Code SMS</string>
+    <string name="verification_code_p1">Please enter the SMS code within in the next five Minutes. The code might be sent in 10 to 60 seconds.</string>
+    <string name="verification_code_p2">Please allow the counter to finish before you can request another SMS code, But relax it usually won\'t take that long.</string>
+    <string name="phone_number_p2">Rest assured we will never share your personal data with anyone. All data is encrypted to protected your privacy</string>
+    <string name="phone_number_p1">Please enter your mobile number to verify your account. We will send a notification code to your number via SMS.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register_merchant">Register Merchant</string>
+    <string name="address">Address</string>
+    <string name="upload_banner">Upload Banner</string>
+    <string name="no_file_seletced">No file seletced</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="enter_verification_code">Enter Verification Code</string>
+    <string name="send_verification_code">send verification code</string>
+    <string name="hai_terima_kasih_sudah_menginstall_ooveo">Hai, terima kasih sudah menginstall OOVEO!</string>
+    <string name="klik_bahasa_indonesia_untuk_melanjutkan_dengan_bahasa">Klik Bahasa Indonesia untuk melanjutkan dengan Bahasa.</string>
+    <string name="bahasa_indonesia">Bahasa Indonesia</string>
+    <string name="english">English</string>
+    <string name="click_english_to_continue_with_english">Click English to continue with English</string>
+    <string name="change_photo">change photo</string>
+    <string name="enable_dark_mode">Enable Dark Mode</string>
+    <string name="try_out_our_dark_mode">Try Out Our Dark Mode</string>
+    <string name="app_dark_mode">App Dark Mode</string>
+    <string name="register_new_merchant">Register new Merchant</string>
+    <string name="next">Next</string>
+    <string name="location">Location</string>
+    <string name="changePassword_p1">Make sure your number still active, we must to make sure it is real you to change password</string>
+    <string name="verificationCode_P1">OTP has been sent to Your Number Please Verify</string>
+    <string name="new_password">New Password</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_phone_number">New Phone Number</string>
+    <string name="back_to_change_phone_number">Back to change phone number</string>
+    <string name="changePhoneNumber_P1">Insert yout new Phone Number, make sure your number active to change phone Number</string>
+    <string name="back_to_profile_page">Back to profile page</string>
+    <string name="types">Types</string>
+    <string name="please_choose_type">Please choose type</string>
+    <string-array name="types">
+        <item>Barber</item>
+        <item>Beauty</item>
+        <item>Reflexology</item>
+        <item>Salon </item>
+    </string-array>
+    <string name="Merchant_Admin">Merchant Admin</string>
 </resources>

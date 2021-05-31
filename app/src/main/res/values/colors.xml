@@ -7,4 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="darkturqoise">#11cfc5</color>
+    <color name="darkturquise2">#00adc1</color>
+    <color name="mediumturquise">#61ccd8</color>
+    <color name="light_gray1">#E6E6E3</color>
+
+    //SET LIGHT MODE
+    <color name="colorPrimary">#11cfc5</color>
+    <color name="colorPrimaryDark">#00adc1</color>
+    <color name="colorAccent">#FFBB86FC</color>
+    <color name="mainText">#2D313D</color>
+    <color name="textAlt">#8D8F97</color>
+
+    <color name="mainBackground">#ffffffff</color>
+
 </resources>
