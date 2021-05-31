@@ -1,60 +1,79 @@
 package edu.bluejack20_2.ooveo.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.R
+import edu.bluejack20_2.ooveo.adapters.OnProgressAdapter
+import edu.bluejack20_2.ooveo.model.OnprogressModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HistoryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HistoryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+    private lateinit var listOngoingModel: ArrayList<OnprogressModel>
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_history, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HistoryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HistoryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    @SuppressLint("WrongConstant")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mAuth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+
+        val rvCompleted = view!!.findViewById<RecyclerView>(R.id.rvHistoryCompletedAppointment)
+
+        var linearLayout = LinearLayoutManager(view!!.context, LinearLayout.VERTICAL, false)
+
+        val userref = db.collection("users").document(mAuth.currentUser.uid)
+
+        Log.wtf("User ID : ", userref.toString())
+        db.collection("carts").whereEqualTo("user_id", userref)
+                .whereEqualTo("status", "completed").get()
+                .addOnSuccessListener {
+                    listOngoingModel = ArrayList()
+
+                    Log.wtf("debug 1", it.documents.size.toString())
+
+                    for (data in it) {
+                        Log.wtf("status history2: ", data["status"] as String)
+//                        if (data["status"] as String == "completed") {
+                            listOngoingModel.add(
+                                    OnprogressModel(
+                                            data["merchant_id"] as DocumentReference,
+                                            data["date"] as Timestamp,
+                                            data["merchant_id"] as DocumentReference,
+                                            data["start_time"] as String,
+                                            data["end_time"] as String,
+                                            data["service_id"] as DocumentReference,
+                                            data["status"] as String
+                                    )
+
+                            )
+//                        } else {
+//                            rvCompleted.visibility = View.INVISIBLE
+//                        }
+                    }
+                    rvCompleted.visibility = View.VISIBLE
+                    rvCompleted.layoutManager = linearLayout
+                    rvCompleted.adapter = OnProgressAdapter(listOngoingModel)
                 }
-            }
     }
 }

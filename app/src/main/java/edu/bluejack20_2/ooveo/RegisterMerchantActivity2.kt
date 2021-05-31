@@ -13,6 +13,7 @@ import com.google.firebase.auth.SignInMethodQueryResult
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.homes.HomeActivity
 import java.util.*
+import kotlin.collections.HashMap
 
 class RegisterMerchantActivity2 : AppCompatActivity() {
 
@@ -154,6 +155,7 @@ class RegisterMerchantActivity2 : AppCompatActivity() {
                                   bannerUrl:String, aboutUs: String, types: String, email:String,
                                   password: String){
         val user: MutableMap<String, Any> = HashMap()
+        val merchant: MutableMap<String, Any> = HashMap()
 
 
         user["name"] = name
@@ -168,6 +170,25 @@ class RegisterMerchantActivity2 : AppCompatActivity() {
         user["role"] = "Merchant"
         user["mode"] = "light"
 
+        merchant["aboutus"] = aboutUs
+        merchant["image"] = bannerUrl
+        merchant["location"] = location
+        merchant["address"] = address
+        merchant["name"] = name
+        merchant["phoneNumber"] = phoneNumber
+        merchant["type"] = types
+        merchant["ownerID"] = mAuth.currentUser.uid.toString()
+
+        db.collection("merchants")
+                .add(merchant)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "add to merchant success ", Toast.LENGTH_SHORT ).show()
+                }
+                .addOnFailureListener{
+                    Toast.makeText(this, "Failed add to merchants ", Toast.LENGTH_SHORT ).show()
+                }
+
+
         db.collection("users")
                 .document(mAuth.currentUser.uid.toString())
                 .set(user)
@@ -177,5 +198,7 @@ class RegisterMerchantActivity2 : AppCompatActivity() {
                 .addOnFailureListener{
                     Toast.makeText(this, "Failed to Register ", Toast.LENGTH_SHORT ).show()
                 }
+
+
 
     }}

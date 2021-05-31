@@ -1,60 +1,118 @@
 package edu.bluejack20_2.ooveo.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import edu.bluejack20_2.ooveo.adapters.OnProgressAdapter
 import edu.bluejack20_2.ooveo.R
+import edu.bluejack20_2.ooveo.model.OnprogressModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [OnGoinFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class OnGoinFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+    private lateinit var listOngoingModel: ArrayList<OnprogressModel>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
+    @SuppressLint("WrongConstant")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_on_goin, container, false)
+//        mAuth = FirebaseAuth.getInstance()
+//        db = FirebaseFirestore.getInstance()
+//
+//        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_on_goin, container, false)
+//
+//        val rvOngoing = view.findViewById<RecyclerView>(R.id.rvOngoingAppoinment)
+//
+//        var linearLayout = LinearLayoutManager(view.context, LinearLayout.VERTICAL, false)
+//
+//        val userref = db.collection("users").document(mAuth.currentUser.uid)
+//
+//
+//        db.collection("carts").whereEqualTo("user_id", userref).get()
+//                .addOnSuccessListener {
+//                    listOngoingModel = ArrayList()
+//
+//                    for (data in it) {
+//                        listOngoingModel.add(
+//                                OnprogressModel(
+//                                        data["merchant_id"] as DocumentReference,
+//                                        data["date"] as Timestamp,
+//                                        data["merchant_id"] as DocumentReference,
+//                                        data["start_time"] as String,
+//                                        data["end_time"] as String,
+//                                        data["service_id"] as DocumentReference
+//                                )
+//                        )
+//
+//                    }
+//                    rvOngoing.adapter = OnProgressAdapter(listOngoingModel)
+//                    rvOngoing.layoutManager = linearLayout
+//                }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment OnGoinFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OnGoinFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    @SuppressLint("WrongConstant")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mAuth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+
+        val rvOngoing = view!!.findViewById<RecyclerView>(R.id.rvOngoingAppoinment)
+
+        var linearLayout = LinearLayoutManager(view!!.context, LinearLayout.VERTICAL, false)
+
+        val userref = db.collection("users").document(mAuth.currentUser.uid)
+
+        Log.wtf("User ID : ", userref.toString())
+        db.collection("carts").whereEqualTo("user_id", userref).whereEqualTo("status", "ongoing")
+                .get()
+                .addOnSuccessListener {
+                    listOngoingModel = ArrayList()
+
+                    Log.wtf("debug 1", it.documents.size.toString())
+
+                    for (data in it) {
+                        Log.wtf("status ongoing1: ", data["status"] as String)
+//                        if (data["status"] as String == ("ongoing")) {
+                            listOngoingModel.add(
+                                    OnprogressModel(
+                                            data["merchant_id"] as DocumentReference,
+                                            data["date"] as Timestamp,
+                                            data["merchant_id"] as DocumentReference,
+                                            data["start_time"] as String,
+                                            data["end_time"] as String,
+                                            data["service_id"] as DocumentReference,
+                                            data["status"] as String
+                                    )
+
+                            )
+//                        }else{
+//                            rvOngoing.visibility = View.INVISIBLE
+//                        }
+
+
+                    }
+                    rvOngoing.visibility = View.VISIBLE
+                    rvOngoing.layoutManager = linearLayout
+                    rvOngoing.adapter = OnProgressAdapter(listOngoingModel)
                 }
-            }
+
     }
+
+
 }

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="10dp"
-    app:cardCornerRadius="2dp"
+    app:cardCornerRadius="10dp"
     app:cardPreventCornerOverlap="false"
     >
 
@@ -27,7 +27,7 @@
         <ImageView
             android:id="@+id/ivOnprogressImage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView

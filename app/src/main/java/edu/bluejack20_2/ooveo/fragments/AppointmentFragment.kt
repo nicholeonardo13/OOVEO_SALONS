@@ -37,14 +37,13 @@ class AppointmentFragment : Fragment() {
 
 
     fun setTab(){
-        val adapter = viewPagerAdapter(myContext!!.supportFragmentManager)
+        val adapter = viewPagerAdapter(childFragmentManager)
         adapter.addFragment(OnGoinFragment(), "On Going")
         adapter.addFragment(HistoryFragment(), "History")
         val viewPager = view!!.findViewById<ViewPager>(R.id.viewPager)
         viewPager.adapter = adapter
         val tabs = view!!.findViewById<TabLayout>(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
-
     }
 
     override fun onAttach(activity: Activity) {
