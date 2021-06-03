@@ -79,7 +79,8 @@ class OnGoinFragment : Fragment() {
         val userref = db.collection("users").document(mAuth.currentUser.uid)
 
         Log.wtf("User ID : ", userref.toString())
-        db.collection("carts").whereEqualTo("user_id", userref).whereEqualTo("status", "ongoing")
+        db.collection("carts").whereEqualTo("user_id", userref)
+                .whereEqualTo("status", "ongoing")
                 .get()
                 .addOnSuccessListener {
                     listOngoingModel = ArrayList()
