@@ -51,7 +51,6 @@
     <string name="english">English</string>
     <string name="click_english_to_continue_with_english">Click English to continue with English</string>
     <string name="change_photo">change photo</string>
-    <string name="enable_dark_mode">Enable Dark Mode</string>
     <string name="try_out_our_dark_mode">Try Out Our Dark Mode</string>
     <string name="app_dark_mode">App Dark Mode</string>
     <string name="register_new_merchant">Register new Merchant</string>
@@ -74,4 +73,23 @@
         <item>Salon </item>
     </string-array>
     <string name="Merchant_Admin">Merchant Admin</string>
+    <string name="enter_your_comment_or_request_here">Enter your comment or request here</string>
+    <string name="this_outlet_needs_it_s_customer_book_and_come_early_at_least_15_minutes_before_appointment">This outlet needs it\'s customer book and come early at least 15 Minutes before appointment</string>
+    <string name="to_honor_the_business_please_don_t_cancel_the_appointment_within_1_hour_before_your_commitment_is_truly_appreciated">To honor the business, please don\'t cancel the appointment within 1 hour before. Your commitment is truly appreciated.</string>
+    <string name="booking_comments_or_request">Booking Comments or Request</string>
+    <string name="checkin_policy">Checkin Policy</string>
+    <string name="stylist_name">Stylist Name</string>
+    <string name="service_name">Service name</string>
+    <string name="cancelation_policy">Cancelation Policy</string>
+    <string name="confirm_booking_and_pay">Confirm Booking and Pay</string>
+    <string name="starting_at_12_00">Starting at 12:00</string>
+    <string name="date">Date</string>
+    <string name="booking_summary">BOOKING SUMMARY</string>
+    <string name="_12_00_12_30">12:00 - 12:30</string>
+    <string name="idr_65_000">IDR. 65.000</string>
+    <string name="total">Total</string>
+    <string name="cash_on_merchant">Cash On Merchant</string>
+    <string name="disable_dark_mode">Disable Dark Mode</string>
+    <string name="enable_light_mode">Enable Dark Mode</string>
+    <string name="enable_dark_mode">Enable Dark Mode</string>
 </resources>

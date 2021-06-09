@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -27,6 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import edu.bluejack20_2.ooveo.fragments.ProfileFragment
+import edu.bluejack20_2.ooveo.homes.HomeActivity
 import edu.bluejack20_2.ooveo.model.UserModel
 import java.io.IOException
 import java.util.*
@@ -163,6 +166,8 @@ class EditProfileActivity : AppCompatActivity() {
                 ).show()
             } else {
                 updateDataUser(txtName, txtEmail)
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
                 finish()
             }
         })

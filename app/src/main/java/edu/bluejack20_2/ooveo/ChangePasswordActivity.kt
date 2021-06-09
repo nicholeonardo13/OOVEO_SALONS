@@ -84,7 +84,7 @@ class ChangePasswordActivity : AppCompatActivity() {
                                     ).addOnSuccessListener {
                                         Log.d("SUKSES", "DocumentSnapshot successfully updated!")
                                         Toast.makeText(this, "Success save changes", Toast.LENGTH_SHORT).show()
-                                        var intent = Intent(this, ProfileFragment::class.java)
+                                        var intent = Intent(applicationContext, EditProfileActivity::class.java)
                                         startActivity(intent)
                                         finish()
 

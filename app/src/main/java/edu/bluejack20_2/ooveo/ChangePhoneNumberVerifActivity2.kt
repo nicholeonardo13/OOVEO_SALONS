@@ -61,7 +61,7 @@ class ChangePhoneNumberVerifActivity2 : AppCompatActivity() {
                             ).addOnSuccessListener {
                                 Log.d("SUKSES", "DocumentSnapshot successfully updated!")
                                 Toast.makeText(this, "Success change phone number", Toast.LENGTH_SHORT).show()
-                                var intent = Intent(applicationContext, ProfileFragment::class.java)
+                                var intent = Intent(applicationContext, EditProfileActivity::class.java)
                                 startActivity(intent)
                                 finish()
 
