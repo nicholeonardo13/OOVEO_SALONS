@@ -1,5 +1,6 @@
 package edu.bluejack20_2.ooveo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -32,7 +33,7 @@ class AddServiceActivity : AppCompatActivity() {
 
             if(serviceName.isEmpty()){
                 Toast.makeText(this, "Name must be filled!", Toast.LENGTH_SHORT).show()
-            }else if(servicePrice.isEmpty()){
+            }else if(servicePrice.isEmpty() || Integer.parseInt(servicePrice) >  0){
                 Toast.makeText(this, "Price must be filled!", Toast.LENGTH_SHORT).show()
             }else if(serviceDesc.isEmpty()){
                 Toast.makeText(this, "Description must be filled!", Toast.LENGTH_SHORT).show()
@@ -44,6 +45,11 @@ class AddServiceActivity : AppCompatActivity() {
                 edtServiceName.setText("")
                 edtServicePrice.setText("")
                 edtServiceDesc.setText("")
+
+                var intent = Intent(this@AddServiceActivity, ManageServiceActivity::class.java)
+                intent.putExtra("id", ids)
+                startActivity(intent)
+                finish()
 
             }
         }

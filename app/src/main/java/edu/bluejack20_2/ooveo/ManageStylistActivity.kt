@@ -49,9 +49,9 @@ class ManageStylistActivity : AppCompatActivity() {
         val fabStylist = findViewById<FloatingActionButton>(R.id.fabAddStylist)
 
         fabStylist.setOnClickListener {
-//            var intent = Intent(this@ManageStylistActivity, AddServiceActivity::class.java)
-//            intent.putExtra("id", ids)
-//            startActivity(intent)
+            var intent = Intent(this@ManageStylistActivity, AddStylistActivity::class.java)
+            intent.putExtra("id", ids)
+            startActivity(intent)
         }
 
 

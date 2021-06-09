@@ -39,12 +39,22 @@ class UpdateServiceActivity : AppCompatActivity() {
         getAllServiceData()
 
         btnUpdateService.setOnClickListener {
-            updatePerson(serviceModel , getNewServiceMap())
 
-            var intent = Intent(this@UpdateServiceActivity, ManageServiceActivity::class.java)
-            intent.putExtra("id", serviceModel.merchantID)
-            startActivity(intent)
-            finish()
+            if(edtServiceName.toString().isEmpty()){
+                Toast.makeText(this, "Name must be filled", Toast.LENGTH_SHORT).show()
+            }else if(edtServicePrice.toString().isEmpty() || Integer.parseInt(edtServicePrice.toString()) > 0){
+                Toast.makeText(this, "Price must be more filled", Toast.LENGTH_SHORT).show()
+            }else if(edtServiceDesc.toString().isEmpty()){
+                Toast.makeText(this, "Description must be more filled", Toast.LENGTH_SHORT).show()
+            }else {
+                updatePerson(serviceModel , getNewServiceMap())
+
+                var intent = Intent(this@UpdateServiceActivity, ManageServiceActivity::class.java)
+                intent.putExtra("id", serviceModel.merchantID)
+                startActivity(intent)
+                finish()
+            }
+
         }
 
     }

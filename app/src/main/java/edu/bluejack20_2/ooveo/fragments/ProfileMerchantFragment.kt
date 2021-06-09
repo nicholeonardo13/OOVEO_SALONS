@@ -27,7 +27,6 @@ class ProfileMerchantFragment : Fragment() {
     private lateinit var adminMerchantBtn: Button
     private lateinit var mAuth: FirebaseAuth
     private lateinit var userProfile: ImageView
-
     private lateinit var db: FirebaseFirestore
     private lateinit var edtName: TextView
     private lateinit var userModel: UserModel
