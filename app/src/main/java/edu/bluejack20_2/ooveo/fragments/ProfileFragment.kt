@@ -104,10 +104,12 @@ class ProfileFragment : Fragment() {
                                 .placeholder(R.drawable.ic_launcher_background)
                                 .error(R.drawable.ic_launcher_background)
 
-                        Glide.with(this)
-                                .applyDefaultRequestOptions(requestOption)
-                                .load(user.profilePicture)
-                                .into(ivProfilePicture)
+                        if(activity?.applicationContext != null) {
+                            Glide.with(activity!!.applicationContext)
+                                    .applyDefaultRequestOptions(requestOption)
+                                    .load(user.profilePicture)
+                                    .into(ivProfilePicture)
+                        }
                         Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
 
                         //MOVE TO EDIT PROFILE PAGE

@@ -26,7 +26,7 @@
 
         <ImageView
             android:id="@+id/ivOnprogressImage"
-            android:layout_width="match_parent"
+            android:layout_width="385dp"
             android:layout_height="120dp"
             tools:srcCompat="@tools:sample/avatars" />
 
