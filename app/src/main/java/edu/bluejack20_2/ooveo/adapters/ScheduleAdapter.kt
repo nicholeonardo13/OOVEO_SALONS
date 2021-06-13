@@ -1,5 +1,6 @@
 package edu.bluejack20_2.ooveo.adapters
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +10,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import edu.bluejack20_2.ooveo.DeleteServiceActivity
-import edu.bluejack20_2.ooveo.LanjutkanSAActivity
-import edu.bluejack20_2.ooveo.R
-import edu.bluejack20_2.ooveo.UpdateServiceActivity
+import edu.bluejack20_2.ooveo.*
 import edu.bluejack20_2.ooveo.model.ScheduleModel
 
-class ScheduleAdapter(var merchantID : String , var serviceID : String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+class ScheduleAdapter(var merchantID: String, var serviceID: String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -39,24 +38,32 @@ class ScheduleAdapter(var merchantID : String , var serviceID : String) : Recycl
         val newList = items[position]
 
         when(holder){
-            is ScheduleViewHolder ->{
+            is ScheduleViewHolder -> {
                 holder.binding(items.get(position))
 
                 val btnChoose = holder.itemView.findViewById<Button>(R.id.btnChooseSchedule)
 
                 val id = newList.id
                 val stylistID = newList.stylistID
+                val date = newList.date
+                val hour = newList.hour
 
                 mAuth = FirebaseAuth.getInstance()
 
                 btnChoose.setOnClickListener {
-                    val mIntent = Intent(holder.itemView.context, LanjutkanSAActivity::class.java)
-                    mIntent.putExtra("id",id)
-                    mIntent.putExtra("stylistID",stylistID)
-                    mIntent.putExtra("merchantID",merchantID)
-                    mIntent.putExtra("serviceID",serviceID)
-                    mIntent.putExtra("userID",mAuth.currentUser.uid)
+                    val mIntent = Intent(
+                        holder.itemView.context,
+                        AppointmentCartActivity::class.java
+                    )
+                    mIntent.putExtra("id", id)
+                    mIntent.putExtra("date", date)
+                    mIntent.putExtra("hour", hour)
+                    mIntent.putExtra("stylistID", stylistID)
+                    mIntent.putExtra("merchantID", merchantID)
+                    mIntent.putExtra("serviceID", serviceID)
+                    mIntent.putExtra("userID", mAuth.currentUser.uid)
                     holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
                 }
 
             }

@@ -1,7 +1,6 @@
 package edu.bluejack20_2.ooveo.adapters
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import edu.bluejack20_2.ooveo.R
-import edu.bluejack20_2.ooveo.model.OnprogressModel
+import edu.bluejack20_2.ooveo.model.CartModel
 import java.text.SimpleDateFormat
 
-class OnProgressAdapter(var listCart: MutableList<OnprogressModel>): RecyclerView.Adapter<OnProgressAdapter.OnProgressHolder>()
+class OnProgressAdapter(var listCart: MutableList<CartModel>): RecyclerView.Adapter<OnProgressAdapter.OnProgressHolder>()
 {
 
     private lateinit var imageUrl: String

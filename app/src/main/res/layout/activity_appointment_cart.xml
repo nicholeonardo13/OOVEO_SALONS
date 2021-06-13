@@ -139,6 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/confirm_booking_and_pay"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -202,12 +203,12 @@
             android:id="@+id/tvAppointmentCartPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:text="@string/idr_65_000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tvAppointmentDetailTotalLable"
             app:layout_constraintTop_toBottomOf="@+id/tvAppointmentCartRangeTime" />
 
         <TextView
@@ -216,6 +217,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
             android:text="@string/to_honor_the_business_please_don_t_cancel_the_appointment_within_1_hour_before_your_commitment_is_truly_appreciated"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -228,7 +230,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="24dp"
             android:text="@string/this_outlet_needs_it_s_customer_book_and_come_early_at_least_15_minutes_before_appointment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -267,29 +269,16 @@
             android:id="@+id/editTextAppointmentCartRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:ems="10"
             android:hint="@string/enter_your_comment_or_request_here"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentCartBookingCommentsorRequest" />
-
-        <TextView
-            android:id="@+id/tvAppointmentCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:text="APPOINTMENT CART"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentCartBookingCommentsorRequest" />
 
         <TextView
             android:id="@+id/tvAppointmentCartStarttingAt"
@@ -304,7 +293,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvAppointmentCartDate" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/tvAppointmentDetailPaymentStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -316,10 +305,10 @@
             app:layout_constraintTop_toBottomOf="@+id/tvAppointmentCartRangeTime" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/tvAppointmentDetailTotalLable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="272dp"
+            android:layout_marginStart="260dp"
             android:layout_marginTop="32dp"
             android:text="@string/total"
             app:layout_constraintStart_toStartOf="parent"

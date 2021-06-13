@@ -12,6 +12,19 @@
         android:layout_height="match_parent"
         tools:context=".AppointmentDetailActivity">
 
+        <Button
+            android:id="@+id/btnAppointmentDetailChecin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/check_in_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvAppointmentDetailLocation"
             android:layout_width="wrap_content"
@@ -22,19 +35,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailBookingSummary" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailBarberName" />
 
         <TextView
             android:id="@+id/tvAppointmentDetailBookingSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:text="@string/booking_summary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/vAppointmentDetailSeparatorLine8" />
 
         <TextView
             android:id="@+id/tvAppointmentDetailDate"
@@ -48,7 +61,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailBookingSummary" />
 
         <TextView
             android:id="@+id/tvAppointmentDetailStartTime"
@@ -63,27 +76,65 @@
             app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailDate" />
 
         <View
-            android:id="@+id/vAppointmentDetailSeparatorLine1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailStartTime"
-            tools:ignore="MissingConstraints" />
-
-        <View
             android:id="@+id/vAppointmentDetailSeparatorLine"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:layout_marginTop="15dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailCheckinTime"
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:id="@+id/vAppointmentDetailSeparatorLine8"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailPhone"
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:id="@+id/vAppointmentDetailSeparatorLine9"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailCancelBooking"
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:id="@+id/vAppointmentDetailSeparatorLine7"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailTotalLable"
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:id="@+id/vAppointmentDetailSeparatorLine5"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailBookedConfirmedTitle"
             tools:ignore="MissingConstraints" />
 
         <View
@@ -97,6 +148,19 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailCancelationPolicy"
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:id="@+id/vAppointmentDetailSeparatorLine6"
+            android:layout_width="160dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailPaymentStatus"
             tools:ignore="MissingConstraints" />
 
         <View
@@ -130,26 +194,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
             android:text="@string/cancelation_policy"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.003"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailRequestBook" />
 
         <TextView
             android:id="@+id/tvAppointmentDetailServiceName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:text="@string/service_name"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailStartTime" />
+            app:layout_constraintTop_toBottomOf="@+id/vAppointmentDetailSeparatorLine5" />
 
         <TextView
             android:id="@+id/tvAppointmentDetailStylistName"
@@ -181,12 +246,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:text="@string/idr_65_000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailBookedConfirmedTitle" />
+            app:layout_constraintStart_toEndOf="@+id/tvAppointmentDetailTotalLable"
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailPaymentMethod" />
 
         <TextView
             android:id="@+id/tvAppoitmentDetailParagraphCancellation"
@@ -208,9 +274,11 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/this_outlet_needs_it_s_customer_book_and_come_early_at_least_15_minutes_before_appointment"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vAppointmentDetailSeparatorLine3" />
 
@@ -240,7 +308,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAppoitmentDetailParagraphCheckinPolicy" />
+            app:layout_constraintTop_toBottomOf="@+id/vAppointmentDetailSeparatorLine7" />
 
         <TextView
             android:id="@+id/tvAppointmentDetailStarttingAt"
@@ -255,31 +323,35 @@
             app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailDate" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/tvAppointmentDetailPaymentStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="@string/payment_method_cash_on_merchant"
+            android:layout_marginTop="16dp"
+            android:text="@string/payment_status"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailBookedConfirmedTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/vAppointmentDetailSeparatorLine" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/tvAppointmentDetailTotalLable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="272dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
             android:text="@string/total"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailBookedConfirmedTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailPaymentMethod" />
 
         <TextView
             android:id="@+id/tvAppointmentDetailRequestBook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="@string/booking_comments_or_request"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -312,12 +384,84 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Appointment Booked &amp; Confirmed"
+            android:text="@string/appointment_booked_amp_confirmed"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vAppointmentDetailSeparatorLine" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailStarttingAt" />
+
+        <TextView
+            android:id="@+id/tvAppointmentDetailPaymentMethod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/payment_method_cash_on_merchant"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailPaymentStatus" />
+
+        <TextView
+            android:id="@+id/tvAppointmentDetailPaymentStatusIs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:text="Unpaid"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tvAppointmentDetailPaymentMethod"
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailPaymentStatus" />
+
+        <TextView
+            android:id="@+id/tvAppointmentDetailBarberName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/name"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vAppointmentDetailSeparatorLine9" />
+
+        <TextView
+            android:id="@+id/tvAppointmentDetailAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailLocation" />
+
+        <TextView
+            android:id="@+id/tvAppointmentDetailPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/phone_number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAppointmentDetailAddress" />
+
+        <TextView
+            android:id="@+id/tvAppointmentDetailCancelBooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel_this_booking"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAppointmentDetailChecin" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

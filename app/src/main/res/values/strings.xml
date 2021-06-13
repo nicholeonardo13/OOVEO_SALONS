@@ -62,7 +62,7 @@
     <string name="current_password">Current Password</string>
     <string name="new_phone_number">New Phone Number</string>
     <string name="back_to_change_phone_number">Back to change phone number</string>
-    <string name="changePhoneNumber_P1">Insert yout new Phone Number, make sure your number active to change phone Number</string>
+    <string name="changePhoneNumber_P1">Insert your new Phone Number, make sure your number active to change phone Number</string>
     <string name="back_to_profile_page">Back to profile page</string>
     <string name="types">Types</string>
     <string name="please_choose_type">Please choose type</string>
@@ -103,4 +103,12 @@
     <string name="view_appointment_detail">View Appointment Detail</string>
     <string name="back_to_home">Back to Home</string>
     <string name="payment_method_cash_on_merchant">Payment Method: Cash On Merchant</string>
+    <string name="service_is">Service: </string>
+    <string name="idr">IDR. </string>
+    <string name="stylist_is">Stylist: </string>
+    <string name="check_in_btn">Check In</string>
+    <string name="appointment_booked_amp_confirmed"><![CDATA[Appointment Booked & Confirmed]]></string>
+    <string name="payment_status">Payment Status</string>
+    <string name="cancel_this_booking">Cancel this booking?</string>
+    <string name="unpaid">Unpaid</string>
 </resources>
