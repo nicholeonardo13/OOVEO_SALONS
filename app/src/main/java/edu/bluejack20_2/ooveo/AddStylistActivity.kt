@@ -79,6 +79,8 @@ class AddStylistActivity : AppCompatActivity() {
         stylist["gender"] = gender
         stylist["profilePicture"] = photo
         stylist["merchantID"] = ids
+//        stylist["startHour"] = ""
+//        stylist["endHour"] = ""
 
         db.collection("stylists").add(stylist)
             .addOnSuccessListener {

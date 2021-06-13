@@ -40,11 +40,15 @@ class UpdateServiceActivity : AppCompatActivity() {
 
         btnUpdateService.setOnClickListener {
 
-            if(edtServiceName.toString().isEmpty()){
+            var name = edtServiceName.toString()
+            var price = edtServicePrice.toString()
+            var desc = edtServiceDesc.toString()
+
+            if(name.equals("")){
                 Toast.makeText(this, "Name must be filled", Toast.LENGTH_SHORT).show()
-            }else if(edtServicePrice.toString().isEmpty() || Integer.parseInt(edtServicePrice.toString()) > 0){
+            }else if(price.equals("") || Integer.parseInt(price) > 0){
                 Toast.makeText(this, "Price must be more filled", Toast.LENGTH_SHORT).show()
-            }else if(edtServiceDesc.toString().isEmpty()){
+            }else if(desc.equals("")){
                 Toast.makeText(this, "Description must be more filled", Toast.LENGTH_SHORT).show()
             }else {
                 updatePerson(serviceModel , getNewServiceMap())

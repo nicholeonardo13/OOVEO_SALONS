@@ -10,35 +10,37 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
-import edu.bluejack20_2.ooveo.adapters.ServiceAdminAdapter
+import edu.bluejack20_2.ooveo.adapters.StylistAdapter
 import edu.bluejack20_2.ooveo.adapters.StylistAdminAdapter
-import edu.bluejack20_2.ooveo.model.ServiceModel
 import edu.bluejack20_2.ooveo.model.StylistModel
-import java.util.*
+import java.util.ArrayList
 
-class ManageStylistActivity : AppCompatActivity() {
+class ChooseStylistActivity : AppCompatActivity() {
+
     private lateinit var rcAdminStylist : RecyclerView
     private val db = FirebaseFirestore.getInstance()
 
-    private lateinit var sylistAdapter: StylistAdminAdapter
+    private lateinit var sylistAdapter: StylistAdapter
     private lateinit var listStylistModel : ArrayList<StylistModel>
     private lateinit var ids : String
-
+    private lateinit var serviceID : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_manage_stylist)
+        setContentView(R.layout.activity_choose_stylist)
 
         ids = intent.extras?.getString("id").toString()
+        serviceID = intent.extras?.getString("serviceID").toString()
 
-        rcAdminStylist  = findViewById<RecyclerView>(R.id.rcAdminStylist)
+
+        rcAdminStylist  = findViewById<RecyclerView>(R.id.rcStylist)
 
         val linear = LinearLayoutManager(this)
         rcAdminStylist.layoutManager = linear
         val topSpacingItemDecoration = TopSpacingItemDecoration(30)
         rcAdminStylist.addItemDecoration(topSpacingItemDecoration)
         rcAdminStylist.setHasFixedSize(true)
-        sylistAdapter = StylistAdminAdapter()
+        sylistAdapter = StylistAdapter()
 
         refreshPage()
 
@@ -46,15 +48,6 @@ class ManageStylistActivity : AppCompatActivity() {
 
         rcAdminStylist.adapter = sylistAdapter
         sylistAdapter.notifyDataSetChanged()
-
-        val fabStylist = findViewById<FloatingActionButton>(R.id.fabAddStylist)
-
-        fabStylist.setOnClickListener {
-            var intent = Intent(this@ManageStylistActivity, AddStylistActivity::class.java)
-            intent.putExtra("id", ids)
-            startActivity(intent)
-        }
-
 
     }
 
@@ -80,33 +73,20 @@ class ManageStylistActivity : AppCompatActivity() {
                 listStylistModel.clear()
                 for (document in it.documents){
 
-                    if(document?.get("startHour") == null || document?.get("endHour") == null){
+//                    if(document?.get("startHour") != null || document?.get("endHour") != null){
                         listStylistModel.add(
-                        StylistModel(
-                            document.id as String,
-                            document?.get("name") as String,
-                            document?.get("gender") as String,
-                            document?.get("profilePicture") as String,
-                            document?.get("merchantID") as String,
-//                            null ,
-//                            null
-                        )
+                            StylistModel(
+                                document.id as String,
+                                document?.get("name") as String,
+                                document?.get("gender") as String,
+                                document?.get("profilePicture") as String,
+                                document?.get("merchantID") as String,
+//                                document?.get("schedule") as ArrayList<String>,
+//                                document?.get("scheduleTimestamp") as Timestamp
+                            )
                         )
                         Log.e("haha" , "masuk ke if")
-                    }else {
-                        listStylistModel.add(
-                        StylistModel(
-                            document.id as String,
-                            document?.get("name") as String,
-                            document?.get("gender") as String,
-                            document?.get("profilePicture") as String,
-                            document?.get("merchantID") as String,
-//                            document?.get("schedule") as ArrayList<String>,
-//                            document.get("scheduleTimestamp") as Timestamp
-                        )
-                        )
-                        Log.e("haha" , "masuk ke else")
-                    }
+//                    }
 
 //                    listStylistModel.add(
 //                        StylistModel(
@@ -133,4 +113,6 @@ class ManageStylistActivity : AppCompatActivity() {
             }
 
     }
+
+
 }

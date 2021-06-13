@@ -8,20 +8,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
-import edu.bluejack20_2.ooveo.DeleteServiceActivity
+import edu.bluejack20_2.ooveo.ChooseScheduleActivity
 import edu.bluejack20_2.ooveo.R
 import edu.bluejack20_2.ooveo.ScheduleStylistAdminActivity
-import edu.bluejack20_2.ooveo.UpdateServiceActivity
-import edu.bluejack20_2.ooveo.model.ServiceModel
 import edu.bluejack20_2.ooveo.model.StylistModel
 
-class StylistAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class StylistAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private var items: List<StylistModel> = ArrayList()
     private lateinit var db : FirebaseFirestore
@@ -34,7 +30,7 @@ class StylistAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return StylistViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.stylist_admin_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.stylist_item, parent, false)
         )
     }
 
@@ -46,28 +42,11 @@ class StylistAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is StylistViewHolder ->{
                 holder.binding(items.get(position))
 
-                val btnUpdate = holder.itemView.findViewById<Button>(R.id.btnupdateStylistAdmin)
-                val btnDelete = holder.itemView.findViewById<Button>(R.id.btndeleteStylistAdmin)
-                val btnSchedule = holder.itemView.findViewById<Button>(R.id.btnScheduleStylistAdmin)
+                val btnChoose = holder.itemView.findViewById<Button>(R.id.btnChooseStylist)
                 val id = newList.id
 
-                btnUpdate.setOnClickListener {
-//                    val mIntent = Intent(holder.itemView.context, UpdateServiceActivity::class.java)
-//                    mIntent.putExtra("id",id)
-//                    holder.itemView.context.startActivity(mIntent)
-                }
-
-                btnDelete.setOnClickListener {
-                    println("DELETE DI KLIK")
-//                    val mIntent = Intent(holder.itemView.context, DeleteServiceActivity::class.java)
-//                    mIntent.putExtra("id",id)
-//                    holder.itemView.context.startActivity(mIntent)
-                }
-
-                btnSchedule.setOnClickListener {
-                    println("Schedule DI KLIK")
-                    val mIntent = Intent(holder.itemView.context, ScheduleStylistAdminActivity::class.java)
-                    Log.e("ini id" , id)
+                btnChoose.setOnClickListener {
+                    val mIntent = Intent(holder.itemView.context, ChooseScheduleActivity::class.java)
                     mIntent.putExtra("id",id)
                     holder.itemView.context.startActivity(mIntent)
                 }
@@ -86,7 +65,7 @@ class StylistAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         val stylist_name: TextView = itemView.findViewById(R.id.stylist_name)
         val stylist_gender: TextView = itemView.findViewById(R.id.stylist_gender)
-        val stylist_profile: ImageView = itemView.findViewById(R.id.ivStylistAdmin)
+        val stylist_profile: ImageView = itemView.findViewById(R.id.ivStylist)
 
         fun binding(stylist: StylistModel){
             stylist_name.setText(stylist.name)
@@ -105,5 +84,4 @@ class StylistAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     }
-
 }

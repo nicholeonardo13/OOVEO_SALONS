@@ -13,7 +13,12 @@
         android:roundIcon="@mipmap/ic_ooveo_logo2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OOVEO_SALON">
-        <activity android:name=".BookingPaymentActivity"></activity>
+        <activity android:name=".LanjutkanSAActivity"></activity>
+        <activity android:name=".ChooseScheduleActivity" />
+        <activity android:name=".ChooseStylistActivity" />
+        <activity android:name=".AddScheduleActivity" />
+        <activity android:name=".ScheduleStylistAdminActivity" />
+        <activity android:name=".BookingPaymentActivity" />
         <activity android:name=".AppointmentCartActivity" />
         <activity android:name=".OnProgressAppointmentActivity" />
         <activity android:name=".ChangePhoneNumberVerifActivity2" />
@@ -24,10 +29,11 @@
         <activity android:name=".RegisterMerchantActivity2" />
         <activity android:name=".RegisterMerchantActivity" />
         <activity android:name=".DarkModeActivity" />
-        <activity android:name=".fragments.MerchantRegisterActivity" />
+        <activity android:name=".MerchantRegisterActivity" />
         <activity android:name=".DeleteServiceActivity" />
         <activity android:name=".UpdateServiceActivity" />
         <activity android:name=".AddServiceActivity" />
+        <activity android:name=".AddStylistActivity" />
         <activity android:name=".ManageStylistActivity" />
         <activity android:name=".ManageServiceActivity" />
         <activity android:name=".MerchantAdminActivity" />
@@ -35,8 +41,6 @@
         <activity android:name=".homes.ReflexologyActivity" />
         <activity android:name=".homes.SalonActivity" />
         <activity android:name=".homes.BeautyActivity" />
-        <activity android:name=".DarkModeActivity" />
-        <activity android:name=".MerchantRegisterActivity" />
         <activity android:name=".PhoneNumberVerificationActivity" />
         <activity android:name=".PhoneNumberActivity" />
         <activity android:name=".LanguageActivity" />
