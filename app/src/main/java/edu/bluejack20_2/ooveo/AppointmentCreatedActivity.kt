@@ -45,6 +45,7 @@ class AppointmentCreatedActivity : AppCompatActivity() {
         backButton.setOnClickListener(View.OnClickListener {
             var intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
+            finish()
         })
     }
 

@@ -88,7 +88,7 @@ class AppointmentCartActivity : AppCompatActivity() {
                 val length = 6
                 bookingCode = getRandomString(length)
 
-                println(bookingCode)
+                Log.wtf("Booking Code", bookingCode)
                 //Disini berarti mau masukin ke cart
                 addToCart(requestTxt)
                 Log.wtf("YES BOOKING", "Add ke cart")
@@ -159,7 +159,7 @@ class AppointmentCartActivity : AppCompatActivity() {
     }
 
     fun getRandomString(length: Int) : String {
-        val charset = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+        val charset = ('A'..'Z') + ('0'..'9')
         return (1..length)
             .map { charset.random() }
             .joinToString("")

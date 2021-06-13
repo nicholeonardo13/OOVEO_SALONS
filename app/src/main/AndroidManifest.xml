@@ -13,12 +13,15 @@
         android:roundIcon="@mipmap/ic_ooveo_logo2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OOVEO_SALON">
-        <activity android:name=".AppointmentCreatedActivity"></activity>
+        <activity android:name=".AppointmentDetailActivity"></activity>
+        <activity android:name=".AppointmentCreatedActivity" />
         <activity android:name=".BookingPaymentActivity" />
         <activity android:name=".AppointmentCartActivity" />
+        <activity android:name=".ChooseStylistActivity" />
         <activity android:name=".OnProgressAppointmentActivity" />
         <activity android:name=".ChangePhoneNumberVerifActivity2" />
         <activity android:name=".ChangePhoneNumberVerifActivity1" />
+        <activity android:name=".ChooseScheduleActivity" />
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".ChangePasswordAuthActivity2" />
         <activity android:name=".ChangePasswordAuthActivity1" />
