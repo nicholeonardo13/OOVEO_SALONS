@@ -17,7 +17,7 @@ import edu.bluejack20_2.ooveo.R
 import edu.bluejack20_2.ooveo.ScheduleStylistAdminActivity
 import edu.bluejack20_2.ooveo.model.StylistModel
 
-class StylistAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class StylistAdapter(var merchantID : String  ,var serviceID : String) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private var items: List<StylistModel> = ArrayList()
     private lateinit var db : FirebaseFirestore
@@ -35,7 +35,6 @@ class StylistAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
         val newList = items[position]
 
         when(holder){
@@ -44,10 +43,13 @@ class StylistAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
                 val btnChoose = holder.itemView.findViewById<Button>(R.id.btnChooseStylist)
                 val id = newList.id
+                val merchantID = newList.merchantID
 
                 btnChoose.setOnClickListener {
                     val mIntent = Intent(holder.itemView.context, ChooseScheduleActivity::class.java)
                     mIntent.putExtra("id",id)
+                    mIntent.putExtra("merchantID",merchantID)
+                    mIntent.putExtra("serviceID",serviceID)
                     holder.itemView.context.startActivity(mIntent)
                 }
 
@@ -81,7 +83,5 @@ class StylistAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
                 .into(stylist_profile)
 
         }
-
-
     }
 }

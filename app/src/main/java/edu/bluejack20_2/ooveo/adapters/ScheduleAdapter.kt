@@ -15,7 +15,7 @@ import edu.bluejack20_2.ooveo.R
 import edu.bluejack20_2.ooveo.UpdateServiceActivity
 import edu.bluejack20_2.ooveo.model.ScheduleModel
 
-class ScheduleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ScheduleAdapter(var merchantID : String , var serviceID : String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -47,11 +47,14 @@ class ScheduleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val id = newList.id
                 val stylistID = newList.stylistID
 
+                mAuth = FirebaseAuth.getInstance()
 
                 btnChoose.setOnClickListener {
                     val mIntent = Intent(holder.itemView.context, LanjutkanSAActivity::class.java)
                     mIntent.putExtra("id",id)
                     mIntent.putExtra("stylistID",stylistID)
+                    mIntent.putExtra("merchantID",merchantID)
+                    mIntent.putExtra("serviceID",serviceID)
                     mIntent.putExtra("userID",mAuth.currentUser.uid)
                     holder.itemView.context.startActivity(mIntent)
                 }
