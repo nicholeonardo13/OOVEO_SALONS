@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,8 +23,10 @@
         app:layout_constraintTop_toBottomOf="@id/ivDetailMerchant"
         app:layout_constraintVertical_bias="0.257">
 
+
         <TextView
-            android:id="@+id/service_name"
+            android:layout_marginTop="10dp"
+            android:id="@+id/schedule_Date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="The Title of a Blog"
@@ -31,27 +34,41 @@
             android:textSize="19sp" />
 
         <TextView
-            android:id="@+id/service_price"
+            android:id="@+id/schedule_Hour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Mitch Tabian"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/service_desc"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Description"
-            android:textSize="12sp" />
+            android:layout_marginTop="10dp">
 
-        <Button
-            android:id="@+id/btnBookService"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Book Service" />
+            <Button
+                android:id="@+id/btnupdateScheduleAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/btndeleteScheduleAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Delete"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnupdateScheduleAdmin"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 

@@ -27,7 +27,6 @@ class ProfileMerchantFragment : Fragment() {
     private lateinit var adminMerchantBtn: Button
     private lateinit var mAuth: FirebaseAuth
     private lateinit var userProfile: ImageView
-
     private lateinit var db: FirebaseFirestore
     private lateinit var edtName: TextView
     private lateinit var userModel: UserModel
@@ -97,11 +96,11 @@ class ProfileMerchantFragment : Fragment() {
                         .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_background)
 
-                    Glide.with(this)
-                        .applyDefaultRequestOptions(requestOption)
-                        .load(userModel.profilePicture)
-                        .into(ivProfilePicture)
-                    Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
+//                    Glide.with(this)
+//                        .applyDefaultRequestOptions(requestOption)
+//                        .load(userModel.profilePicture)
+//                        .into(ivProfilePicture)
+//                    Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
 
                 } else {
                     Log.d("GAGAL", "No such document")

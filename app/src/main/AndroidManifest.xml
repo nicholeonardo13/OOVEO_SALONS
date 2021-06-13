@@ -25,10 +25,11 @@
         <activity android:name=".RegisterMerchantActivity2" />
         <activity android:name=".RegisterMerchantActivity" />
         <activity android:name=".DarkModeActivity" />
-        <activity android:name=".fragments.MerchantRegisterActivity" />
+        <activity android:name=".MerchantRegisterActivity" />
         <activity android:name=".DeleteServiceActivity" />
         <activity android:name=".UpdateServiceActivity" />
         <activity android:name=".AddServiceActivity" />
+        <activity android:name=".AddStylistActivity" />
         <activity android:name=".ManageStylistActivity" />
         <activity android:name=".ManageServiceActivity" />
         <activity android:name=".MerchantAdminActivity" />
@@ -36,8 +37,6 @@
         <activity android:name=".homes.ReflexologyActivity" />
         <activity android:name=".homes.SalonActivity" />
         <activity android:name=".homes.BeautyActivity" />
-        <activity android:name=".DarkModeActivity" />
-        <activity android:name=".MerchantRegisterActivity" />
         <activity android:name=".PhoneNumberVerificationActivity" />
         <activity android:name=".PhoneNumberActivity" />
         <activity android:name=".LanguageActivity" />
