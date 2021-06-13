@@ -22,6 +22,8 @@ class ChooseScheduleActivity : AppCompatActivity() {
     private lateinit var scheduleAdapter: ScheduleAdapter
     private lateinit var listScheduleModel : ArrayList<ScheduleModel>
     private lateinit var ids : String
+    private lateinit var merchantID : String
+    private lateinit var serviceID : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +32,8 @@ class ChooseScheduleActivity : AppCompatActivity() {
 
 
         ids = intent.extras?.getString("id").toString()
+        merchantID = intent.extras?.getString("merchantID").toString()
+        serviceID = intent.extras?.getString("serviceID").toString()
 
         rcAdminService  = findViewById<RecyclerView>(R.id.rcSchedule)
 
@@ -38,7 +42,7 @@ class ChooseScheduleActivity : AppCompatActivity() {
         val topSpacingItemDecoration = TopSpacingItemDecoration(30)
         rcAdminService.addItemDecoration(topSpacingItemDecoration)
         rcAdminService.setHasFixedSize(true)
-        scheduleAdapter = ScheduleAdapter()
+        scheduleAdapter = ScheduleAdapter(merchantID , serviceID)
 
         refreshPage()
 

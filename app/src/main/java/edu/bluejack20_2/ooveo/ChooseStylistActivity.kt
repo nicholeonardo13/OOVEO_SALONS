@@ -40,7 +40,7 @@ class ChooseStylistActivity : AppCompatActivity() {
         val topSpacingItemDecoration = TopSpacingItemDecoration(30)
         rcAdminStylist.addItemDecoration(topSpacingItemDecoration)
         rcAdminStylist.setHasFixedSize(true)
-        sylistAdapter = StylistAdapter()
+        sylistAdapter = StylistAdapter(ids , serviceID)
 
         refreshPage()
 
