@@ -40,6 +40,9 @@ class ProfileFragment : Fragment() {
     private lateinit var tvChangeTheme: TextView
     private lateinit var tvPhone: TextView
 
+    //SEMENTARA NANTI HAPUS
+    private lateinit var bookDummy: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -72,6 +75,9 @@ class ProfileFragment : Fragment() {
         ivProfilePicture = view!!.findViewById<ImageView>(R.id.ivProfileUserImage)
         tvChangeTheme= view!!.findViewById<TextView>(R.id.tvProfileChangeTheme)
         tvPhone = view!!.findViewById<TextView>(R.id.tvProfilePhoneNumber)
+
+        //HAPUS
+        bookDummy = view!!.findViewById<Button>(R.id.btnProfileBookSementara)
 
         println(" ")
         println(" ")
@@ -146,6 +152,11 @@ class ProfileFragment : Fragment() {
                             startActivity(intent)
                         })
 
+                        //BOOK DUMMY
+                        bookDummy.setOnClickListener(View.OnClickListener {
+                            var intent = Intent(this.context, AppointmentCartActivity::class.java)
+                            startActivity(intent)
+                        })
                     } else {
                         Log.d("GAGAL", "No such document")
                     }

@@ -25,7 +25,7 @@ class ServiceFragment : Fragment() {
     private lateinit var listServiceModel : ArrayList<ServiceModel>
     private lateinit var tempList : ArrayList<ServiceModel>
 
-     var ids = ""
+    var ids = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

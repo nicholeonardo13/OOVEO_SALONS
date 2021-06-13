@@ -74,8 +74,8 @@
     </string-array>
     <string name="Merchant_Admin">Merchant Admin</string>
     <string name="enter_your_comment_or_request_here">Enter your comment or request here</string>
-    <string name="this_outlet_needs_it_s_customer_book_and_come_early_at_least_15_minutes_before_appointment">This outlet needs it\'s customer book and come early at least 15 Minutes before appointment</string>
-    <string name="to_honor_the_business_please_don_t_cancel_the_appointment_within_1_hour_before_your_commitment_is_truly_appreciated">To honor the business, please don\'t cancel the appointment within 1 hour before. Your commitment is truly appreciated.</string>
+    <string name="this_outlet_needs_it_s_customer_book_and_come_early_at_least_15_minutes_before_appointment">This outlet needs its customer book and come early at least 15 Minutes before appointment</string>
+    <string name="to_honor_the_business_please_don_t_cancel_the_appointment_within_1_hour_before_your_commitment_is_truly_appreciated">To honor the business, please don not cancel the appointment within 1 hour before. Your commitment is truly appreciated.</string>
     <string name="booking_comments_or_request">Booking Comments or Request</string>
     <string name="checkin_policy">Checkin Policy</string>
     <string name="stylist_name">Stylist Name</string>
@@ -92,4 +92,15 @@
     <string name="disable_dark_mode">Disable Dark Mode</string>
     <string name="enable_light_mode">Enable Dark Mode</string>
     <string name="enable_dark_mode">Enable Dark Mode</string>
+    <string name="confirmBook_message">Your appointment will be made and you can make the payment at the merchant</string>
+    <string name="confirm_booking">Confirm Booking</string>
+    <string name="yes_proceed_booking">Yes, Proceed the booking</string>
+    <string name="no_cancel_booking">No, Cancel booking</string>
+    <string name="starting_at">Starting at</string>
+    <string name="booking_success">Booking Success</string>
+    <string name="booking_code">Booking Code: </string>
+    <string name="check_in_time">CHECK-IN TIME: </string>
+    <string name="view_appointment_detail">View Appointment Detail</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="payment_method_cash_on_merchant">Payment Method: Cash On Merchant</string>
 </resources>
