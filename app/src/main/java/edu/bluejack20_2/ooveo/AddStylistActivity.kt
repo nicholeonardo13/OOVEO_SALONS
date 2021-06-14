@@ -60,7 +60,7 @@ class AddStylistActivity : AppCompatActivity() {
                 edtStylistName.setText("")
 
 
-                var intent = Intent(this@AddStylistActivity, ManageServiceActivity::class.java)
+                var intent = Intent(this@AddStylistActivity, ManageStylistActivity::class.java)
                 intent.putExtra("id", ids)
                 startActivity(intent)
                 finish()

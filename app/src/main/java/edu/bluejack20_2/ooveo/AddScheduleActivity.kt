@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import edu.bluejack20_2.ooveo.model.ScheduleModel
 import edu.bluejack20_2.ooveo.model.ServiceModel
 import edu.bluejack20_2.ooveo.model.StylistModel
 import java.text.SimpleDateFormat
@@ -22,17 +23,15 @@ class AddScheduleActivity : AppCompatActivity() {
 
     private lateinit var db : FirebaseFirestore
     private lateinit var ids : String
-    private lateinit var listStylistModel : ArrayList<StylistModel>
+    private lateinit var listScheduleModel : ArrayList<ScheduleModel>
 
     private lateinit var numberPicker : NumberPicker
     private lateinit var btnAddJadwal : Button
 
     private lateinit var txtStart : TextView
 
-    private lateinit var stylisteModel : StylistModel
 
     private var formatStart = "";
-    private var formatEnd = "";
 
 
 
@@ -47,17 +46,22 @@ class AddScheduleActivity : AppCompatActivity() {
 
         btnAddJadwal = findViewById<Button>(R.id.btnAddJadwal)
         numberPicker = findViewById<NumberPicker>(R.id.numberPicker)
+        txtStart = findViewById<TextView>(R.id.txtTitleStart)
+
 
         numberPicker.minValue = 0
         numberPicker.maxValue = 23
 
+        listScheduleModel = ArrayList()
+
         numberPicker.setOnValueChangedListener { picker, oldVal, newVal ->
 
             formatStart = newVal.toString()
+            txtStart.setText(formatStart + ":00")
 
         }
 
-        txtStart = findViewById<TextView>(R.id.txtTitleStart)
+
 
 
 
@@ -80,100 +84,100 @@ class AddScheduleActivity : AppCompatActivity() {
 
 
 
-        getStylistData()
+//        getStylistData()
 
         btnAddJadwal.setOnClickListener {
             if(formatStart.equals("")){
                 Toast.makeText(this, "Start Hour must be filled", Toast.LENGTH_SHORT).show()
             }else {
-                addSchedule(stylisteModel , getNewStylistMap())
+                addSchedule()
             }
         }
     }
 
 
 
-    private fun getStylistData(){
-        db.collection("stylists").document(ids).get()
-            .addOnSuccessListener {
-                listStylistModel = ArrayList()
-                listStylistModel.clear()
-
-                stylisteModel = StylistModel(
-                    it.id as String,
-                    it.data?.get("name") as String,
-                    it.data?.get("gender") as String,
-                    it.data?.get("profilePicture") as String,
-                    it.data?.get("merchantID") as String,
-//                    it.data?.get("schedule") as ArrayList<String>,
-//                    it.data?.get("scheduleTimestamp") as Timestamp
-                )
-
-                listStylistModel.add(
-                    stylisteModel
-                )
-
-            }
-            .addOnFailureListener{
-                Log.d("DB Error", "get failed with ")
-            }
-
-    }
-
-
-    private fun getNewStylistMap(): Map<String, Any> {
-        val start = formatStart.toString()
-        var ss : ArrayList<String>
-        ss = ArrayList()
-        ss.add(start)
-        val map = mutableMapOf<String, Any>()
-        if(start != null) {
-            map["schedule"] = ss
-        }
-//        if(end != null) {
-//            map["schedule"] = end
-//        }
-
-        return map
-    }
-
-
-    private fun addSchedule(stylist: StylistModel, newStylistMap: Map<String, Any>)  {
-//        val stylistQuery = db.collection("stylists")
-//            .whereEqualTo("name", stylist.name)
-//            .whereEqualTo("gender" , stylist.gender)
-//            .get().addOnSuccessListener {
-//                for(document in it.documents) {
-//                    try {
-//                        //personCollectionRef.document(document.id).update("age", newAge).await()
-//                        db.collection("stylists").document(ids).set(
-//                            newStylistMap,
-//                            SetOptions.merge()
-//                        )
+//    private fun getStylistData(){
+//        db.collection("stylists").document(ids).get()
+//            .addOnSuccessListener {
+//                listStylistModel = ArrayList()
+//                listStylistModel.clear()
 //
-//                    } catch (e: Exception) {
-//                        Toast.makeText(this@AddScheduleActivity, e.message, Toast.LENGTH_LONG).show()
-//                    }
-//                }
+//                stylisteModel = StylistModel(
+//                    it.id as String,
+//                    it.data?.get("name") as String,
+//                    it.data?.get("gender") as String,
+//                    it.data?.get("profilePicture") as String,
+//                    it.data?.get("merchantID") as String,
+////                    it.data?.get("schedule") as ArrayList<String>,
+////                    it.data?.get("scheduleTimestamp") as Timestamp
+//                )
+//
+//                listStylistModel.add(
+//                    stylisteModel
+//                )
+//
 //            }
+//            .addOnFailureListener{
+//                Log.d("DB Error", "get failed with ")
+//            }
+//
+//    }
 
-        val schedule : MutableMap<String, Any> = HashMap()
+    private fun getAllSchedule(date : String , hour : String){
+        db.collection("schedules").whereEqualTo("stylistID" , ids).whereEqualTo("hour" , hour).get()
+            .addOnSuccessListener {
+                listScheduleModel = ArrayList()
+                listScheduleModel.clear()
+                for (document in it.documents){
+
+                    listScheduleModel.add(
+                        ScheduleModel(
+                            document.id as String,
+                            document.data?.get("date") as String,
+                            document.data?.get("hour") as String,
+                            document.data?.get("status") as String,
+                            document.data?.get("stylistID") as String
+                        )
+                    )
+
+//                        println("TESTT")
+                }
+
+
+                if(!listScheduleModel.isEmpty()){
+                    Toast.makeText(this@AddScheduleActivity , "Jam Sudah Adaa Pilih Jam Lain" , Toast.LENGTH_SHORT).show()
+                }else{
+                    val schedule : MutableMap<String, Any> = HashMap()
+                    schedule["date"] = date.toString()
+                    schedule["hour"] = hour
+                    schedule["status"] = "bisa"
+                    schedule["stylistID"] = ids
+
+                    db.collection("schedules").add(schedule)
+                        .addOnSuccessListener {
+                            Toast.makeText(this@AddScheduleActivity , "Berhasil" , Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this@AddScheduleActivity , "GAGAL" , Toast.LENGTH_SHORT).show()
+                        }
+                }
+
+            }
+
+    }
+
+
+    private fun addSchedule()  {
 
         val calendar = Calendar.getInstance()
         var date = SimpleDateFormat("MM/dd/yyyy").format(calendar.time)
 
-        schedule["date"] = date.toString()
-        schedule["hour"] = "0" + formatStart + ":00"
-        schedule["status"] = "bisa"
-        schedule["stylistID"] = ids
+        var hour = formatStart + ":00"
 
-        db.collection("schedules").add(schedule)
-            .addOnSuccessListener {
-                Toast.makeText(this@AddScheduleActivity , "Berhasil" , Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener {
-                Toast.makeText(this@AddScheduleActivity , "GAGAL" , Toast.LENGTH_SHORT).show()
-            }
+        getAllSchedule(date , hour)
+
+
     }
 
     }

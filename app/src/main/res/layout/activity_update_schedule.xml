@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddScheduleActivity">
-
+    tools:context=".UpdateScheduleActivity">
 
     <TextView
         android:id="@+id/txtSchedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        android:text="Add Stylist Schedule"
+        android:text="Update Stylist Schedule"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,14 +30,30 @@
         app:layout_constraintTop_toBottomOf="@+id/txtSchedule" />
 
     <Button
-        android:id="@+id/btnAddJadwal"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnScheduleDatePicker"
+        style="?android:spinnerStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="36dp"
-        android:text="Add Schedule"
+        android:layout_marginTop="40dp"
+        android:onClick="openDatePickerSchedule"
+        android:text="@string/jan_01_2021"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numberPicker" />
+
+    <Button
+        android:id="@+id/btnUpdateJadwal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Update Schedule"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnScheduleDatePicker" />
 
     <TextView
         android:id="@+id/txtMinutes"

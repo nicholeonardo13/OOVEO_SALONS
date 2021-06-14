@@ -22,7 +22,7 @@ class MerchantAdminActivity : AppCompatActivity() {
 
     private lateinit var serviceBtn: Button
     private lateinit var stylistBtn: Button
-    private lateinit var edtProfileBtn: Button
+    private lateinit var merchantProfileBtn: Button
     private lateinit var mAuth: FirebaseAuth
     private lateinit var userProfile: ImageView
 
@@ -32,7 +32,6 @@ class MerchantAdminActivity : AppCompatActivity() {
     private lateinit var edtAddress: TextView
     private lateinit var ivProfilePicture: ImageView
     private lateinit var listMerchantModel :ArrayList<MerchantModel>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +44,7 @@ class MerchantAdminActivity : AppCompatActivity() {
 
         serviceBtn = findViewById<Button>(R.id.btnManageService)
         stylistBtn = findViewById<Button>(R.id.btnManageStylist)
-        edtProfileBtn = findViewById<Button>(R.id.btnProfilEditProfile)
+        merchantProfileBtn = findViewById<Button>(R.id.btnMerchantEditProfile)
         userProfile = findViewById<ImageView>(R.id.ivProfileUserImage)
         edtName = findViewById<TextView>(R.id.tvMerchantName)
         edtAddress = findViewById<TextView>(R.id.tvMerchantAddress)
@@ -102,8 +101,11 @@ class MerchantAdminActivity : AppCompatActivity() {
 
 
         //Change user image profile
-        userProfile!!.setOnClickListener(View.OnClickListener {
-
+        merchantProfileBtn!!.setOnClickListener(View.OnClickListener {
+            Log.e("NN", "Ke Edit")
+            var intent = Intent(this@MerchantAdminActivity, EditMerchantActivity::class.java)
+            intent.putExtra("id", merchantModel.id)
+            startActivity(intent)
         })
 
 

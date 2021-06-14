@@ -8,9 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
-import edu.bluejack20_2.ooveo.DeleteServiceActivity
-import edu.bluejack20_2.ooveo.R
-import edu.bluejack20_2.ooveo.UpdateServiceActivity
+import edu.bluejack20_2.ooveo.*
 import edu.bluejack20_2.ooveo.model.ScheduleModel
 
 class ScheduleAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -42,17 +40,20 @@ class ScheduleAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
                 val btnDelete = holder.itemView.findViewById<Button>(R.id.btndeleteScheduleAdmin)
 
                 val id = newList.id
+                val stylistID = newList.stylistID
 
                 btnUpdate.setOnClickListener {
-                    val mIntent = Intent(holder.itemView.context, UpdateServiceActivity::class.java)
+                    val mIntent = Intent(holder.itemView.context, UpdateScheduleActivity::class.java)
                     mIntent.putExtra("id",id)
+                    mIntent.putExtra("stylistID",stylistID)
                     holder.itemView.context.startActivity(mIntent)
                 }
 
                 btnDelete.setOnClickListener {
                     println("DELETE DI KLIK")
-                    val mIntent = Intent(holder.itemView.context, DeleteServiceActivity::class.java)
+                    val mIntent = Intent(holder.itemView.context, DeleteScheduleActivity::class.java)
                     mIntent.putExtra("id",id)
+                    mIntent.putExtra("stylistID",stylistID)
                     holder.itemView.context.startActivity(mIntent)
                 }
 

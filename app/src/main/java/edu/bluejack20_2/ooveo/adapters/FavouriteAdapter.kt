@@ -8,26 +8,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import edu.bluejack20_2.ooveo.R
 import edu.bluejack20_2.ooveo.homes.DetailMerchantActivity
 import edu.bluejack20_2.ooveo.model.MerchantModel
-import edu.bluejack20_2.ooveo.R
-import edu.bluejack20_2.ooveo.model.FavouriteModel
-import edu.bluejack20_2.ooveo.model.ScheduleModel
 import java.util.ArrayList
 
-class RecyclerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FavouriteAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: List<MerchantModel> = ArrayList()
-    private lateinit var mID : String
-    private val db = FirebaseFirestore.getInstance()
-    private var mAuth = FirebaseAuth.getInstance();
-    private lateinit var listFavModel : ArrayList<FavouriteModel>
 
     fun submitList(barberList: List<MerchantModel>){
         items = barberList
@@ -37,7 +28,7 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MerchantViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.merchant_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.favourite_item, parent, false)
         )
     }
 
@@ -49,7 +40,6 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 holder.binding(items.get(position))
 
                 val btnBookNow =  holder.itemView.findViewById<Button>(R.id.btnBookNow)
-                val btnAddFav =  holder.itemView.findViewById<Button>(R.id.btnAddFav)
                 btnBookNow.setOnClickListener {
                     Log.d("Click", "Merchant Di Klik")
                     val id = newList.id
@@ -70,10 +60,6 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     mIntent.putExtra("address",address)
                     mIntent.putExtra("about",about)
                     holder.itemView.context.startActivity(mIntent)
-                }
-
-                btnAddFav.setOnClickListener {
-                    getAllSchedule(mAuth.uid.toString() , newList.id , holder)
                 }
             }
         }
@@ -106,47 +92,4 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         }
     }
-
-
-    private fun getAllSchedule(userID : String , merchantID : String , holder : RecyclerView.ViewHolder){
-        db.collection("favourites").whereEqualTo("userID" , userID).whereEqualTo("merchantID" , merchantID).get()
-            .addOnSuccessListener {
-                listFavModel = ArrayList()
-                listFavModel.clear()
-                for (document in it.documents){
-
-                    listFavModel.add(
-                        FavouriteModel(
-                            document.id as String,
-                            document.data?.get("userID") as String,
-                            document.data?.get("merchantID") as String,
-                        )
-                    )
-
-//                        println("TESTT")
-                }
-
-
-                if(!listFavModel.isEmpty()){
-                    Toast.makeText(holder.itemView.context , "Merchant Sudah Ada di My Favourite" , Toast.LENGTH_SHORT).show()
-                }else{
-                    val service : MutableMap<String, Any> = HashMap()
-
-
-                    service["userID"] = mAuth.uid.toString()
-                    service["merchantID"] = merchantID
-
-                    db.collection("favourites").add(service)
-                        .addOnSuccessListener {
-//                Toast.makeText(this@RecyclerAdapter , "Berhasil" , Toast.LENGTH_SHORT).show()
-                        }
-                        .addOnFailureListener {
-//                Toast.makeText(this@RecyclerAdapter , "GAGAL" , Toast.LENGTH_SHORT).show()
-                        }
-                }
-
-            }
-
-    }
-
 }
