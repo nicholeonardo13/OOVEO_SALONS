@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.malinskiy.superrecyclerview.SuperRecyclerView
 import edu.bluejack20_2.ooveo.model.MerchantModel
 import edu.bluejack20_2.ooveo.R
 import edu.bluejack20_2.ooveo.TopSpacingItemDecoration
@@ -17,12 +18,13 @@ import java.util.*
 
 class BarberActivity : AppCompatActivity() {
 
-    private lateinit var rcBarber : RecyclerView
+    private lateinit var rcBarber : SuperRecyclerView
     private val db = FirebaseFirestore.getInstance()
 
     private lateinit var barberAdapter: RecyclerAdapter
     private lateinit var listMerchantModel :ArrayList<MerchantModel>
     private lateinit var tempList: ArrayList<MerchantModel>
+    private var lagiSearch = false
 
     private lateinit var barberList : ArrayList<MerchantModel>
 
@@ -34,13 +36,15 @@ class BarberActivity : AppCompatActivity() {
         toolBar.title = ""
 
         setSupportActionBar(toolBar)
-        rcBarber  = findViewById<RecyclerView>(R.id.rcBarber)
+        rcBarber  = findViewById(R.id.rcBarber)
+
+        listMerchantModel = ArrayList()
 
         val linear = LinearLayoutManager(this)
-        rcBarber.layoutManager = linear
+        rcBarber.setLayoutManager( linear)
         val topSpacingItemDecoration = TopSpacingItemDecoration(30)
         rcBarber.addItemDecoration(topSpacingItemDecoration)
-        rcBarber.setHasFixedSize(true)
+//        rcBarber.setF (true)
         barberAdapter = RecyclerAdapter()
 
         getAllMerchantData()
@@ -48,29 +52,96 @@ class BarberActivity : AppCompatActivity() {
         rcBarber.adapter = barberAdapter
         barberAdapter.notifyDataSetChanged()
 
-    }
+        rcBarber.setupMoreListener({_ , _ , curr->
 
-
-
-    private fun clearAll(){
-        if(barberList != null){
-            barberList.clear()
-
-            if(barberAdapter != null){
-                barberAdapter.notifyDataSetChanged()
+            if(lagiSearch){
+                return@setupMoreListener
             }
-        }
 
-         barberList = ArrayList<MerchantModel>()
+            if(listMerchantModel.size == 0){
+//               Log.e("IT" , it.toString())
+                    db.collection("merchants").whereEqualTo("type" , "Barber").orderBy("name").limit(3).get()
+                        .addOnSuccessListener {
+//                            listMerchantModel = ArrayList()
+                            tempList = ArrayList()
+//                            listMerchantModel.clear()
+                            tempList.clear()
+//                    Log.e("tests", "${it.documents}")
+                            for (document in it.documents){
 
+                                listMerchantModel.add(
+                                    MerchantModel(
+                                        document.id as String,
+                                        document.data?.get("name") as String,
+                                        document.data?.get("address") as String,
+                                        document.data?.get("image") as String,
+                                        document.data?.get("phoneNumber") as String,
+                                        document.data?.get("location") as String,
+                                        document.data?.get("type") as String,
+                                        document.data?.get("aboutus") as String
+                                    )
+                                )
+
+//                        println("TESTT")
+                            }
+                            tempList.addAll(listMerchantModel)
+
+                            barberAdapter.submitList(tempList)
+
+                        }
+                        .addOnFailureListener{
+                            Log.d("DB Error", "get failed with ")
+                        }
+
+            }else{
+                var  curs = listMerchantModel[listMerchantModel.size-1]
+                Log.e("CURS" , curs.toString())
+                db.collection("merchants").document(curs.id).get().addOnSuccessListener {
+//               Log.e("IT" , it.toString())
+                    db.collection("merchants").whereEqualTo("type" , "Barber").orderBy("name").startAfter(it.data?.get("name")).limit(3).get()
+                        .addOnSuccessListener {
+//                            listMerchantModel = ArrayList()
+                            tempList = ArrayList()
+//                            listMerchantModel.clear()
+                            tempList.clear()
+//                    Log.e("tests", "${it.documents}")
+                            for (document in it.documents){
+
+                                listMerchantModel.add(
+                                    MerchantModel(
+                                        document.id as String,
+                                        document.data?.get("name") as String,
+                                        document.data?.get("address") as String,
+                                        document.data?.get("image") as String,
+                                        document.data?.get("phoneNumber") as String,
+                                        document.data?.get("location") as String,
+                                        document.data?.get("type") as String,
+                                        document.data?.get("aboutus") as String
+                                    )
+                                )
+
+//                        println("TESTT")
+                            }
+                            tempList.addAll(listMerchantModel)
+
+                            barberAdapter.submitList(tempList)
+
+                        }
+                        .addOnFailureListener{
+                            Log.d("DB Error", "get failed with ")
+                        }
+                }
+            }
+
+        },4)
     }
 
     private fun getAllMerchantData(){
-        db.collection("merchants").whereEqualTo("type" , "Barber").get()
+        db.collection("merchants").whereEqualTo("type" , "Barber").orderBy("name").limit(3).get()
                 .addOnSuccessListener {
                     listMerchantModel = ArrayList()
                     tempList = ArrayList()
-                    listMerchantModel.clear()
+//                    listMerchantModel.clear()
                     tempList.clear()
 //                    Log.d("tests", "${it.documents}")
                     for (document in it.documents){
@@ -114,11 +185,13 @@ class BarberActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
 
+
+
                 tempList.clear()
                 val searchText = newText!!.toLowerCase(Locale.getDefault())
 
                 if(searchText.isNotEmpty()){
-
+                    lagiSearch = true
                     listMerchantModel.forEach {
 
                         if(it.name.toLowerCase(Locale.getDefault()).contains(searchText)){
@@ -131,6 +204,7 @@ class BarberActivity : AppCompatActivity() {
                     barberAdapter.notifyDataSetChanged()
 
                 }else {
+                    lagiSearch = false
                     tempList.clear()
                     tempList.addAll(listMerchantModel)
                     barberAdapter.notifyDataSetChanged()

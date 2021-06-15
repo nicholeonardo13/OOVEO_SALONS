@@ -14,10 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import edu.bluejack20_2.ooveo.DeleteServiceActivity
-import edu.bluejack20_2.ooveo.R
-import edu.bluejack20_2.ooveo.ScheduleStylistAdminActivity
-import edu.bluejack20_2.ooveo.UpdateServiceActivity
+import edu.bluejack20_2.ooveo.*
 import edu.bluejack20_2.ooveo.model.ServiceModel
 import edu.bluejack20_2.ooveo.model.StylistModel
 
@@ -52,16 +49,16 @@ class StylistAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val id = newList.id
 
                 btnUpdate.setOnClickListener {
-//                    val mIntent = Intent(holder.itemView.context, UpdateServiceActivity::class.java)
-//                    mIntent.putExtra("id",id)
-//                    holder.itemView.context.startActivity(mIntent)
+                    val mIntent = Intent(holder.itemView.context, UpdateStylistActivity::class.java)
+                    mIntent.putExtra("id",id)
+                    holder.itemView.context.startActivity(mIntent)
                 }
 
                 btnDelete.setOnClickListener {
                     println("DELETE DI KLIK")
-//                    val mIntent = Intent(holder.itemView.context, DeleteServiceActivity::class.java)
-//                    mIntent.putExtra("id",id)
-//                    holder.itemView.context.startActivity(mIntent)
+                    val mIntent = Intent(holder.itemView.context, DeleteStylistActivity::class.java)
+                    mIntent.putExtra("id",id)
+                    holder.itemView.context.startActivity(mIntent)
                 }
 
                 btnSchedule.setOnClickListener {

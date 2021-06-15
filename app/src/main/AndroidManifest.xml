@@ -13,6 +13,14 @@
         android:roundIcon="@mipmap/ic_ooveo_logo2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OOVEO_SALON">
+        <activity android:name=".EditMerchantActivity"></activity>
+        <activity android:name=".DeleteStylistActivity" />
+        <activity android:name=".UpdateStylistActivity" />
+        <activity android:name=".DeleteScheduleActivity" />
+        <activity android:name=".UpdateScheduleActivity" />
+        <activity android:name=".AppointmentDetailActivity" />
+        <activity android:name=".ScheduleStylistAdminActivity" />
+        <activity android:name=".AddScheduleActivity" />
         <activity android:name=".ReviewActivity"></activity>
         <activity android:name=".AppointmentDetailActivity" />
         <activity android:name=".AppointmentCreatedActivity" />
@@ -50,6 +58,7 @@
         <activity android:name=".homes.HomeActivity" />
         <activity android:name=".MainActivity2" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".LanjutkanSAActivity" />
         <activity android:name=".homes.DetailMerchantActivity" />
         <activity android:name=".homes.BarberActivity" />
         <activity android:name=".LandingActivity">
