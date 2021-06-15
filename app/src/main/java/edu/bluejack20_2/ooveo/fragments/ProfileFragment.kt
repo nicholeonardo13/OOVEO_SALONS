@@ -27,7 +27,7 @@ class ProfileFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var logoutBtn: Button
-    private lateinit var languageBtn: Button
+//    private lateinit var languageBtn: Button
     private lateinit var edtProfileBtn: Button
     private lateinit var mAuth: FirebaseAuth
     private lateinit var userProfile: ImageView
@@ -41,7 +41,7 @@ class ProfileFragment : Fragment() {
     private lateinit var tvPhone: TextView
 
     //SEMENTARA NANTI HAPUS
-    private lateinit var bookDummy: Button
+//    private lateinit var bookDummy: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +67,7 @@ class ProfileFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
 
         logoutBtn = view!!.findViewById<Button>(R.id.btnProfileLogout)
-        languageBtn = view!!.findViewById<Button>(R.id.btnProfileLanguage)
+//        languageBtn = view!!.findViewById<Button>(R.id.btnProfileLanguage)
         edtProfileBtn = view!!.findViewById<Button>(R.id.btnProfilEditProfile)
         userProfile = view!!.findViewById<ImageView>(R.id.ivProfileUserImage)
         edtName = view!!.findViewById<TextView>(R.id.tvProfileUserName)
@@ -77,7 +77,7 @@ class ProfileFragment : Fragment() {
         tvPhone = view!!.findViewById<TextView>(R.id.tvProfilePhoneNumber)
 
         //HAPUS
-        bookDummy = view!!.findViewById<Button>(R.id.btnProfileBookSementara)
+//        bookDummy = view!!.findViewById<Button>(R.id.btnProfileBookSementara)
 
         println(" ")
         println(" ")
@@ -147,16 +147,12 @@ class ProfileFragment : Fragment() {
                         })
 
                         //CHANGE LANGUAGE
-                        languageBtn!!.setOnClickListener(View.OnClickListener {
-                            var intent = Intent(this.context, LanguageActivity::class.java)
-                            startActivity(intent)
-                        })
+//                        languageBtn!!.setOnClickListener(View.OnClickListener {
+//                            var intent = Intent(this.context, LanguageActivity::class.java)
+//                            startActivity(intent)
+//                        })
 
-                        //BOOK DUMMY
-                        bookDummy.setOnClickListener(View.OnClickListener {
-                            var intent = Intent(this.context, AppointmentCartActivity::class.java)
-                            startActivity(intent)
-                        })
+
                     } else {
                         Log.d("GAGAL", "No such document")
                     }

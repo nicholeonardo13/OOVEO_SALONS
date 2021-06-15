@@ -36,17 +36,17 @@ class OnProgressAdapter(var listCart: MutableList<CartModel>) :
 
     private lateinit var db: FirebaseFirestore
 
-    //YG DI PASSING
-    private lateinit var cartID: String
-    private lateinit var locationTxt: String
-    private lateinit var dateTxt: String
-    private lateinit var timeTxt: String
-    private lateinit var bookingCode: String
-    private lateinit var stylistID: String
-    private lateinit var merchantID: String
-    private lateinit var serviceID: String
-    private lateinit var paymentStatus: String
-    private lateinit var requestBook: String
+//    //YG DI PASSING
+//    private lateinit var cartID: String
+//    private lateinit var locationTxt: String
+//    private lateinit var dateTxt: String
+//    private lateinit var timeTxt: String
+//    private lateinit var bookingCode: String
+//    private lateinit var stylistID: String
+//    private lateinit var merchantID: String
+//    private lateinit var serviceID: String
+//    private lateinit var paymentStatus: String
+//    private lateinit var requestBook: String
 
 
     class OnProgressHolder(itemView: View) :
@@ -74,17 +74,17 @@ class OnProgressAdapter(var listCart: MutableList<CartModel>) :
         //Disini Bind data
         val user = listCart[position]
 
-        cartID = user.id
+       val cartID = user.id
 
         var format1 = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
-        dateTxt = format1.format(user.date.toDate())
+        val dateTxt = format1.format(user.date.toDate())
 
-        timeTxt = user.start_time
+        val timeTxt = user.start_time
 
         user.location.get().addOnSuccessListener {
             holder.tvLocation.text = it["location"] as String
-            locationTxt = it["location"] as String
-            merchantID = it.id.toString()
+            val locationTxt = it["location"] as String
+            val merchantID = it.id.toString()
 
             val requestOption = RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background)
@@ -100,17 +100,17 @@ class OnProgressAdapter(var listCart: MutableList<CartModel>) :
 
                 db.collection("carts").document(cartID).get().addOnSuccessListener { it ->
 
-                    bookingCode = it["bookingCode"] as String
+                    val bookingCode = it["bookingCode"] as String
                     var stylistRef = (it["stylist_id"] as DocumentReference)
                     var serviceRef = (it["service_id"] as DocumentReference)
-                    paymentStatus = it["payment_status"] as String
-                    requestBook = it["booking_request"] as String
+                    val paymentStatus = it["payment_status"] as String
+                    val requestBook = it["booking_request"] as String
 
                     stylistRef.get().addOnSuccessListener { it ->
-                        stylistID = it.id
+                        val stylistID = it.id
 
                         serviceRef.get().addOnSuccessListener {it ->
-                            serviceID = it.id
+                          val  serviceID = it.id
 
                             holder.btnDetail.setOnClickListener {
                                 val intent = Intent(holder.itemView.context, AppointmentDetailActivity::class.java)
@@ -119,6 +119,7 @@ class OnProgressAdapter(var listCart: MutableList<CartModel>) :
                                 intent.putExtra("date", dateTxt)
                                 intent.putExtra("time", timeTxt)
                                 intent.putExtra("bookingCode", bookingCode)
+
                                 Log.wtf("StylistID", stylistID)
                                 Log.wtf("merchantID", merchantID)
                                 Log.wtf("serviceID", serviceID)

@@ -265,8 +265,10 @@ class AppointmentDetailActivity : AppCompatActivity() {
                         builder.show()
                     })
                 } else if (statusCart == "completed") {
-                    reviewStatus = it["review_status"].toString()
+                    val reviewStatus = it["review_status"].toString()
 
+                        cancelBookBtn.visibility = View.INVISIBLE
+                    if (reviewStatus == "not") {
                         checkinBtn.text = getString(R.string.review_btn)
                         Log.wtf("review status", reviewStatus)
                         checkinBtn.setOnClickListener(View.OnClickListener {
@@ -279,15 +281,13 @@ class AppointmentDetailActivity : AppCompatActivity() {
                             reviewIntent.putExtra("totalPrice", totalPriceTxt)
                             startActivity(reviewIntent)
                         })
-                        cancelBookBtn.visibility = View.INVISIBLE
-                    if (reviewStatus == "not") {
                     }
-                    //                    else if (reviewStatus == "yes") {
-//                        checkinBtn.text = "You Have completed your Appointment!"
-//                        checkinBtn.isEnabled = false
-//                        checkinBtn.height = 65
-//                        cancelBookBtn.visibility = View.INVISIBLE
-//                    }
+                    else if (reviewStatus == "yes") {
+                        checkinBtn.text = "You Have completed your Appointment!"
+                        checkinBtn.isEnabled = false
+                        checkinBtn.height = 65
+                        cancelBookBtn.visibility = View.INVISIBLE
+                    }
 
                 }
             }
