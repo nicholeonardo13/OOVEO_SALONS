@@ -34,7 +34,7 @@
             android:id="@+id/stylist_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The Title of a Blog"
+            android:text="@string/the_title_of_a_blog"
             android:textColor="#000"
             android:textSize="19sp" />
 
@@ -56,7 +56,7 @@
                 android:id="@+id/btnChooseStylist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Choose"
+                android:text="@string/choose"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

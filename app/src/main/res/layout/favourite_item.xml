@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/merchant_name"
-                android:text="The Title of a Blog"
+                android:text="@string/the_title_of_a_blog"
                 android:textColor="#000"
                 android:textSize="19sp"
                 />
@@ -66,7 +66,7 @@
                     android:id="@+id/btnBookNow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Book Now"
+                    android:text="@string/book_now"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

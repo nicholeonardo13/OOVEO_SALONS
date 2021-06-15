@@ -46,7 +46,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@null"
-                android:hint="Search Here"
+                android:hint="@string/search_here"
                 android:imeOptions="actionSearch"
                 android:importantForAutofill="no"
                 android:inputType="text"
@@ -115,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Barber"
+                    android:text="@string/barber"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -150,7 +150,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Beauty Bar"
+                    android:text="@string/beauty_bar"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -185,7 +185,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Salon"
+                    android:text="@string/salon"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -221,7 +221,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Reflexology"
+                    android:text="@string/reflexology"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="20sp"
                     android:textStyle="bold" />
