@@ -72,6 +72,15 @@
         <item>Reflexology</item>
         <item>Salon </item>
     </string-array>
+
+    <string-array name="rating">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
     <string name="Merchant_Admin">Merchant Admin</string>
     <string name="enter_your_comment_or_request_here">Enter your comment or request here</string>
     <string name="this_outlet_needs_it_s_customer_book_and_come_early_at_least_15_minutes_before_appointment">This outlet needs its customer book and come early at least 15 Minutes before appointment</string>
@@ -111,4 +120,17 @@
     <string name="payment_status">Payment Status</string>
     <string name="cancel_this_booking">Cancel this booking?</string>
     <string name="unpaid">Unpaid</string>
+    <string name="cancelation_question">Are you sure to cancel this book? Please do not cancel the appointment within 1 hour before</string>
+    <string name="yes_cancel_book">Yes, Cancel this booking</string>
+    <string name="no_continue_booking">No, continue booking</string>
+    <string name="loading">Loading..</string>
+    <string name="detail">detail</string>
+    <string name="check_in_question">Check in?</string>
+    <string name="checin_message">Please come 15 minutes before to Check-In</string>
+    <string name="checkin_positive_message">I have read all the policy, Check-In</string>
+    <string name="cancel_checkin">Cancel Check-In</string>
+    <string name="review_btn">Review</string>
+    <string name="choose_rating">Choose Rating</string>
+    <string name="feedback">Feedback</string>
+    <string name="submit_review">Submit Review</string>
 </resources>

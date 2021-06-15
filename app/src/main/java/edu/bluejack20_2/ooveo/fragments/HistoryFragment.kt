@@ -57,6 +57,7 @@ class HistoryFragment : Fragment() {
 //                        if (data["status"] as String == "completed") {
                             listOngoingModel.add(
                                     CartModel(
+                                            data.id.toString(),
                                             data["merchant_id"] as DocumentReference,
                                             data["date"] as Timestamp,
                                             data["merchant_id"] as DocumentReference,

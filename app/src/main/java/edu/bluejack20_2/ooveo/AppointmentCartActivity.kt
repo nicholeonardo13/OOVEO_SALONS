@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.model.MerchantModel
 import edu.bluejack20_2.ooveo.model.ServiceModel
@@ -22,6 +23,7 @@ import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.collections.HashMap
 
 class AppointmentCartActivity : AppCompatActivity() {
@@ -54,6 +56,8 @@ class AppointmentCartActivity : AppCompatActivity() {
     private lateinit var serviceID: String
     private lateinit var scheduleID: String
     private lateinit var location: String
+    private lateinit var cartID: String
+    private lateinit var loadingDialog: LoadingDialog
 
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
@@ -65,7 +69,7 @@ class AppointmentCartActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-
+        loadingDialog = LoadingDialog(this)
 
 //        DAPETIN DULU DATA NYA DARI INTENT
 
@@ -150,8 +154,6 @@ class AppointmentCartActivity : AppCompatActivity() {
             }
 
 
-
-
         bookButton.setOnClickListener(View.OnClickListener {
             //tampilin pop up dulu, baru kalo YES, add ke DB
             val builder = AlertDialog.Builder(this)
@@ -167,23 +169,59 @@ class AppointmentCartActivity : AppCompatActivity() {
                 Log.wtf("Booking Code", bookingCode)
                 //Disini berarti mau masukin ke cart
                 val requestTxt = requestEdt.text.toString()
-                addToCart(requestTxt)
                 Log.wtf("YES BOOKING", "Add ke cart")
-                val newIntent = Intent(this, AppointmentCreatedActivity::class.java)
-                //KIRIM DATA PAKE INTENT
-                newIntent.putExtra("location", location)
-                newIntent.putExtra("date", date.toString())
-                newIntent.putExtra("time", startTime)
-                newIntent.putExtra("stylistID", stylistID)
-                newIntent.putExtra("merchantID", merchantID)
-                newIntent.putExtra("serviceID", serviceID)
-                newIntent.putExtra("userID", mAuth.currentUser.uid)
-                newIntent.putExtra("bookingCode", bookingCode)
-                newIntent.putExtra("payment_status", getString(R.string.unpaid))
-                newIntent.putExtra("request", requestTxt)
+                loadingDialog.startLoadingDialog()
+                val cart: MutableMap<String, Any> = HashMap()
+                var req = requestTxt
+                if(req.isEmpty()) req = "no request"
 
-                startActivity(newIntent)
-                finish()
+
+                cart["booking_request"] = req
+                cart["date"] = date
+                cart["start_time"] = startTime
+                cart["end_time"] = endHour(startTime)
+                cart["merchant_id"] = db.collection("merchants").document(merchantID)
+                cart["payment_type"] = "cash on merchant"
+                cart["service_id"] = db.collection("services").document(serviceID)
+                cart["status"] = "ongoing"
+                cart["stylist_id"] = db.collection("stylists").document(stylistID)
+                cart["user_id"] = db.collection("users").document(mAuth.currentUser.uid.toString())
+                cart["bookingCode"] = bookingCode
+                cart["payment_status"] = "Unpaid"
+                cart["review_status"] = "not"
+
+                db.collection("carts")
+                    .add(cart)
+                    .addOnSuccessListener {
+                        Log.wtf("YES BOOKING", "success add ke cart")
+                        Toast.makeText(this, "Booking Success", Toast.LENGTH_SHORT).show()
+                        Log.wtf("cart ID in cart App Page", it.id)
+                        cartID = it.id.toString()
+
+                        val newIntent = Intent(this, AppointmentCreatedActivity::class.java)
+                        //KIRIM DATA PAKE INTENT
+                        newIntent.putExtra("location", location)
+                        newIntent.putExtra("date", date.toString())
+                        newIntent.putExtra("time", startTime)
+                        newIntent.putExtra("stylistID", stylistID)
+                        newIntent.putExtra("merchantID", merchantID)
+                        newIntent.putExtra("serviceID", serviceID)
+                        newIntent.putExtra("userID", mAuth.currentUser.uid)
+                        newIntent.putExtra("bookingCode", bookingCode)
+                        newIntent.putExtra("payment_status", getString(R.string.unpaid))
+                        newIntent.putExtra("request", requestTxt)
+                        newIntent.putExtra("cartID", cartID)
+
+                        startActivity(newIntent)
+                        finish()
+                        loadingDialog.dismissDialog()
+                    }
+                    .addOnFailureListener{
+                        Log.wtf("NO BOOKING", "GAGAL add ke cart")
+                        Toast.makeText(this, "Failed to book, please try again", Toast.LENGTH_SHORT).show()
+                    }
+
+
             }
             builder.setNegativeButton(getString(R.string.no_cancel_booking)) { _: DialogInterface, _: Int ->
                 Log.wtf("NO CANCEL", "CANCEL")
@@ -230,16 +268,21 @@ class AppointmentCartActivity : AppCompatActivity() {
         cart["bookingCode"] = bookingCode
         cart["payment_status"] = "unpaid"
 
-        db.collection("carts")
+       db.collection("carts")
             .add(cart)
             .addOnSuccessListener {
                 Log.wtf("YES BOOKING", "success add ke cart")
                 Toast.makeText(this, "Booking Success", Toast.LENGTH_SHORT).show()
+                Log.wtf("cart ID in cart App Page", it.id)
+                cartID = it.id.toString()
+                loadingDialog.dismissDialog()
             }
             .addOnFailureListener{
                 Log.wtf("NO BOOKING", "GAGAL add ke cart")
                 Toast.makeText(this, "Failed to book, please try again", Toast.LENGTH_SHORT).show()
             }
+
+
     }
 
     fun getRandomString(length: Int) : String {

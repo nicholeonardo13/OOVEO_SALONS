@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_ooveo_logo2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OOVEO_SALON">
-        <activity android:name=".AppointmentDetailActivity"></activity>
+        <activity android:name=".ReviewActivity"></activity>
+        <activity android:name=".AppointmentDetailActivity" />
         <activity android:name=".AppointmentCreatedActivity" />
         <activity android:name=".BookingPaymentActivity" />
         <activity android:name=".AppointmentCartActivity" />

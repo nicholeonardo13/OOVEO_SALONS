@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -34,6 +35,7 @@ class AppointmentCreatedActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         //Get data dari hasil intent
+        val cartID = intent.getStringExtra("cartID").toString()
         val location = intent.getStringExtra("location").toString()
         val d = Timestamp.valueOf(intent.getStringExtra("date"))
 
@@ -71,6 +73,8 @@ class AppointmentCreatedActivity : AppCompatActivity() {
             intent.putExtra("userID", mAuth.currentUser.uid)
             intent.putExtra("payment_status", paymentStatus)
             intent.putExtra("request", request)
+            intent.putExtra("cartID", cartID)
+            Log.wtf("cart ID in created", cartID)
             startActivity(intent)
             finish()
 

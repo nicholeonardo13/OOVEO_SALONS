@@ -74,6 +74,7 @@ class RegisterMerchantActivity2 : AppCompatActivity() {
         val bannerURL = intent.getStringExtra("banner").toString()
 
         registerBtn!!.setOnClickListener(View.OnClickListener {
+            //Get type from spinner
             val typeInput = autoCompeleteTv.text.toString()
             val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
             txtAboutUs = aboutUs.text.toString()

@@ -92,6 +92,7 @@ class OnGoinFragment : Fragment() {
 //                        if (data["status"] as String == ("ongoing")) {
                             listOngoingModel.add(
                                     CartModel(
+                                            data.id.toString(),
                                             data["merchant_id"] as DocumentReference,
                                             data["date"] as Timestamp,
                                             data["merchant_id"] as DocumentReference,
