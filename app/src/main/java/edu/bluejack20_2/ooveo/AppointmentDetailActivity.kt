@@ -84,9 +84,9 @@ class AppointmentDetailActivity : AppCompatActivity() {
         val paymentStatus = intent.getStringExtra("payment_status").toString()
         val request = intent.getStringExtra("request").toString()
 
-        if (paymentStatus == "Unpaid") {
+        if (paymentStatus == getString(R.string.unpaid)) {
             paymentStatusTv.setTextColor(Color.parseColor("#FF0000"))
-        } else if (paymentStatus == "Paid") {
+        } else if (paymentStatus == getString(R.string.paid)) {
             paymentStatusTv.setTextColor(Color.parseColor("#20B2AA"))
         }
         paymentStatusTv.text = paymentStatus
@@ -186,7 +186,7 @@ class AppointmentDetailActivity : AppCompatActivity() {
 
                             val homeIntent = Intent(this, HomeActivity::class.java)
                             db.collection("carts").document(cartID).update(
-                                "payment_status", "Paid",
+                                "payment_status", getString(R.string.paid),
                                 "status", "completed"
 
                             ).addOnSuccessListener {

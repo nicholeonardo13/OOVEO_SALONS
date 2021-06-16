@@ -1,2 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">OOVEO</string>
+    <string name="welcome_back">Selamat datang.</string>
+    <string name="login">Gabung</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="hello_there">Hai!</string>
+    <string name="or_login_with">Atau Masuk dengan Google</string>
+    <string name="new_user">Pengguna baru?</string>
+    <string name="register_now">Daftar Sekarang</string>
+    <string name="wave_img">wave-img</string>
+    <string name="google">google</string>
+    <string name="register">Daftar</string>
+    <string name="phone_number">Nomor telepon</string>
+    <string name="name">Name</string>
+    <string name="female">Perempuan</string>
+    <string name="male">Pria</string>
+    <string name="jan_01_2021">JAN 01 2021</string>
+    <string name="already_have_an_account">Sudah memiliku akun?</string>
+    <string name="re_enter_password">Masukan ulang Password</string>
+    <string name="save_changes">Simpan Perubahan</string>
+    <string name="change_password">Ganti Password</string>
+    <string name="change_phone_number">Ganti Nomor Telepon</string>
+    <string name="choose_language">PILIH BAHASA</string>
+    <string name="edit_profile">Sunting Profil</string>
+    <string name="language">Bahasa</string>
+    <string name="terms_and_condition">Syarat dan Kondisi</string>
+    <string name="privacy_policy">Kebijakan Pribadi</string>
+    <string name="logout">Keluar</string>
+    <string name="versi_1_0_0">Versi 1.0.0</string>
+    <string name="pilih_bahasa">PILIH BAHASA</string>
+    <string name="phone_Number">Nomor Telepon</string>
+    <string name="_62">+62</string>
+    <string name="verification_code_sms">Kode Verifikasi SMS</string>
+    <string name="verification_code_p1">Silakan masukkan kode SMS dalam lima Menit berikutnya. Kode mungkin dikirim dalam 10 hingga 60 detik.</string>
+    <string name="verification_code_p2">Harap biarkan penghitung selesai sebelum Anda dapat meminta kode SMS lain, Tapi santai saja biasanya tidak akan lama.</string>
+    <string name="phone_number_p2">Yakinlah kami tidak akan pernah membagikan data pribadi Anda dengan siapa pun. Semua data dienkripsi untuk melindungi privasi Anda</string>
+    <string name="phone_number_p1">Silakan masukkan nomor ponsel Anda untuk memverifikasi akun Anda. Kami akan mengirimkan kode notifikasi ke nomor Anda melalui SMS.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Halo fragmen kosong</string>
+    <string name="register_merchant">Daftar Pedagang</string>
+    <string name="address">Alamat</string>
+    <string name="upload_banner">Unggah Spanduk</string>
+    <string name="no_file_seletced">Tidak ada file yang dipilih</string>
+    <string name="verification_code">Kode Verifikasi</string>
+    <string name="enter_verification_code">Masukan Kode Verifikasi</string>
+    <string name="send_verification_code">kirim kode verifikasi</string>
+    <string name="hai_terima_kasih_sudah_menginstall_ooveo">Hai, terima kasih sudah menginstall OOVEO!</string>
+    <string name="klik_bahasa_indonesia_untuk_melanjutkan_dengan_bahasa">Klik Bahasa Indonesia untuk melanjutkan dengan Bahasa.</string>
+    <string name="bahasa_indonesia">Bahasa Indonesia</string>
+    <string name="english">English</string>
+    <string name="click_english_to_continue_with_english">Click English to continue with English</string>
+    <string name="change_photo">ganti foto</string>
+    <string name="try_out_our_dark_mode">Cobalah Mode Gelap Kami</string>
+    <string name="app_dark_mode">Mode Gelap Aplikasi</string>
+    <string name="register_new_merchant">Daftarkan Merchant baru</string>
+    <string name="next">Selanjutnya</string>
+    <string name="location">Lokasi</string>
+    <string name="changePassword_p1">Pastikan nomor Anda masih aktif, kami harus memastikan itu asli Anda untuk mengubah kata sandi</string>
+    <string name="verificationCode_P1">OTP telah terkirim ke Nomor Anda Harap Verifikasi</string>
+    <string name="new_password">Password Baru</string>
+    <string name="current_password">Password Sekarang</string>
+    <string name="new_phone_number">Nomor Telepon Baru</string>
+    <string name="back_to_change_phone_number">Kembali untuk mengubah nomor telepon</string>
+    <string name="changePhoneNumber_P1">Masukkan Nomor Telepon baru Anda, pastikan nomor Anda aktif untuk mengubah Nomor Telepon</string>
+    <string name="back_to_profile_page">Kembali ke halaman profil</string>
+    <string name="types">Tipe</string>
+    <string name="please_choose_type">Silahkan pilih tipe</string>
+    <string-array name="types">
+        <item>Cukur</item>
+        <item>Kecantikan</item>
+        <item>Pijat</item>
+        <item>Salon </item>
+    </string-array>
+
+    <string-array name="rating">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string name="Merchant_Admin">Admin Pedagang</string>
+    <string name="enter_your_comment_or_request_here">Masukkan komentar atau permintaan Anda di sini</string>
+    <string name="this_outlet_needs_it_s_customer_book_and_come_early_at_least_15_minutes_before_appointment">Outlet ini membutuhkan buku pelanggan dan datang lebih awal setidaknya 15 Menit sebelum janji</string>
+    <string name="to_honor_the_business_please_don_t_cancel_the_appointment_within_1_hour_before_your_commitment_is_truly_appreciated">Untuk menghormati bisnis, mohon jangan membatalkan janji dalam waktu 1 jam sebelumnya. Komitmen Anda benar-benar dihargai.</string>
+    <string name="booking_comments_or_request">Pemesanan Komentar atau Permintaan</string>
+    <string name="checkin_policy">Kebijakan Check-in</string>
+    <string name="stylist_name">Nama penata gaya</string>
+    <string name="service_name">Nama layanan</string>
+    <string name="cancelation_policy">Kebijakan Pembatalan</string>
+    <string name="confirm_booking_and_pay">Konfirmasi Pemesanan dan Bayar</string>
+    <string name="starting_at_12_00">Mulai dari 12:00</string>
+    <string name="date">Tanggal</string>
+    <string name="booking_summary">RINGKASAN PEMESANAN</string>
+    <string name="_12_00_12_30">12:00 - 12:30</string>
+    <string name="idr_65_000">IDR. 65.000</string>
+    <string name="total">Total</string>
+    <string name="cash_on_merchant">Cash On Merchant</string>
+    <string name="disable_dark_mode">Nonaktifkan Mode Gelap</string>
+    <string name="enable_light_mode">Aktifkan Mode Gelap</string>
+    <string name="enable_dark_mode">Aktifkan Mode Gelap</string>
+    <string name="confirmBook_message">Janji Anda akan dibuat dan Anda dapat melakukan pembayaran di merchant</string>
+    <string name="confirm_booking">Konfirmasi Pemesanan</string>
+    <string name="yes_proceed_booking">Ya, Proses pemesanan</string>
+    <string name="no_cancel_booking">Tidak, Batalkan pemesanan</string>
+    <string name="starting_at">Dimulai dari</string>
+    <string name="booking_success">Pemesanan Berhasil</string>
+    <string name="booking_code">Kode Pemesanan: </string>
+    <string name="check_in_time">Waktu CHECK-IN: </string>
+    <string name="view_appointment_detail">Lihat Detail Janji</string>
+    <string name="back_to_home">Kembali ke Halaman Utama</string>
+    <string name="payment_method_cash_on_merchant">Metode Pembayaran: Cash On Merchant</string>
+    <string name="service_is">Layanan: </string>
+    <string name="idr">IDR. </string>
+    <string name="stylist_is">Penata gaya: </string>
+    <string name="check_in_btn">Check In</string>
+    <string name="appointment_booked_amp_confirmed"><![CDATA[Janji Dipesan dan Dikonfirmasi]]></string>
+    <string name="payment_status">Status Pembayaran</string>
+    <string name="cancel_this_booking">Batalkan pesanan?</string>
+    <string name="unpaid">Belum dibayar</string>
+    <string name="cancelation_question">Apakah Anda yakin akan membatalkan pesanan ini? Harap jangan membatalkan janji dalam waktu 1 jam sebelumnya</string>
+    <string name="yes_cancel_book">Ya, Batalkan pesanan</string>
+    <string name="no_continue_booking">Tidak, lanjutkan pemesanan</string>
+    <string name="loading">Loading..</string>
+    <string name="detail">detail</string>
+    <string name="check_in_question">Check in?</string>
+    <string name="checin_message">Harap datang 15 menit sebelum Check-In</string>
+    <string name="checkin_positive_message">Saya telah membaca semua kebijakan, Check-In</string>
+    <string name="cancel_checkin">Batalkan Check-In</string>
+    <string name="review_btn">Ulasan</string>
+    <string name="choose_rating">Pilih Peringkat</string>
+    <string name="feedback">Masukan</string>
+    <string name="submit_review">Kirim Ulasan</string>
+    <string name="add_stylist_schedule">Tambahkan Jadwal Penata Gaya</string>
+    <string name="start_hour_none">Jam Mulai: Tidak ada</string>
+    <string name="add_schedule">Tambah Jadwal</string>
+    <string name="_00">: 00</string>
+    <string name="add_new_service">Tambah Layanan Baru</string>
+    <string name="service_price">Harga Layanan</string>
+    <string name="add_new_stylist">Tambah Penata Gaya</string>
+    <string name="barber">Cukur</string>
+    <string name="beauty_bar">Kecantikan</string>
+    <string name="example_phone_number">contoh: 81276532***</string>
+    <string name="delete_service">Hapus Layanan</string>
+    <string name="service_description">Deskripsi Layanan</string>
+    <string name="delete_stylist">Hapus Penata Gaya</string>
+    <string name="search_here">Cari Disini</string>
+    <string name="salon">Salon</string>
+    <string name="reflexology">Pijat</string>
+    <string name="edit_merchant">Sunting Pedagang</string>
+    <string name="manage_stylist">Kelola Penata Gaya</string>
+    <string name="update_stylist_schedule">Perbarui Jadwal Penata Gaya</string>
+    <string name="update_schedule">Perbarui Jadwal</string>
+    <string name="update_service">Perbaharui Layanan</string>
+    <string name="the_title_of_a_blog">Judul Blog</string>
+    <string name="book_now">Pesa</string>
+    <string name="call">Telepon</string>
+    <string name="about_us">Tentang Kami</string>
+    <string name="change_theme">Ganti Tema</string>
+    <string name="merchant_rating_0">Peringkat Pedagang : 0</string>
+    <string name="add_to_favourite">Favorit</string>
+    <string name="time">Waktu</string>
+    <string name="description">Deskripsi</string>
+    <string name="delete">Hapus</string>
+    <string name="update">Perbaharui</string>
+    <string name="choose">Pilih</string>
+    <string name="book_service">Pesan Layanan</string>
+    <string name="schedule">Jadwal</string>
+    <string name="paid">Lunas</string>
+    <string name="register_as_merchant">Daftar Sebagai Pedagang</string>
+</resources>

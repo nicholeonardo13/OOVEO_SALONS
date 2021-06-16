@@ -168,4 +168,6 @@
     <string name="choose">Choose</string>
     <string name="book_service">Book Service</string>
     <string name="schedule">Schedule</string>
+    <string name="paid">Paid</string>
+    <string name="register_as_merchant">Register as Merchant</string>
 </resources>

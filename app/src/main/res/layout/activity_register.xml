@@ -184,7 +184,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Register as Merchant"
+        android:text="@string/register_as_merchant"
         android:textColor="@color/design_default_color_secondary_variant"
         android:textStyle="bold"
         android:typeface="normal"
