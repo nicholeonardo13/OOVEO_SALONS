@@ -70,7 +70,7 @@ class  PhoneNumberActivity : AppCompatActivity() {
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
-                Toast.makeText(applicationContext, "Failed", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, getString(R.string.duhGagal), Toast.LENGTH_LONG).show()
             }
 
             override fun onCodeSent(
@@ -105,7 +105,7 @@ class  PhoneNumberActivity : AppCompatActivity() {
         var phoneNumber: String = country_code + phone
 
         if(country_code.isEmpty() && phone.isEmpty()){
-            Toast.makeText(this, "Please enter country code and Phone Number", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.countryCodeandPassword), Toast.LENGTH_SHORT).show()
         }else{
             sendVerificationcode(phoneNumber)
 

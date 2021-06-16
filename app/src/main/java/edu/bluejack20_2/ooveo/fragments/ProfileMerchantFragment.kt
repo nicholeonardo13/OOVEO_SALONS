@@ -96,11 +96,11 @@ class ProfileMerchantFragment : Fragment() {
                         .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_background)
 
-//                    Glide.with(this)
-//                        .applyDefaultRequestOptions(requestOption)
-//                        .load(userModel.profilePicture)
-//                        .into(ivProfilePicture)
-//                    Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
+                    Glide.with(this)
+                        .applyDefaultRequestOptions(requestOption)
+                        .load(userModel.profilePicture)
+                        .into(ivProfilePicture)
+                    Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
 
                 } else {
                     Log.d("GAGAL", "No such document")

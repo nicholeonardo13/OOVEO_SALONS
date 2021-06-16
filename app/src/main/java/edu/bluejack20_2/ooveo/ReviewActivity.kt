@@ -57,9 +57,9 @@ class ReviewActivity : AppCompatActivity() {
             val feedbackTxt = feedbackEdt.text.toString()
 
             if(autoCompeleteTv.text.toString().isEmpty()){
-                Toast.makeText(this, "Please choose Rating", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.pilihRating), Toast.LENGTH_SHORT).show()
             }else if(feedbackTxt.isEmpty()){
-                Toast.makeText(this, "Please insert Feedback", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.isiFeedback), Toast.LENGTH_SHORT).show()
             }else{
                 val review: MutableMap<String, Any> = HashMap()
                 review["cartID"] = db.collection("carts").document(cartID)
@@ -75,9 +75,9 @@ class ReviewActivity : AppCompatActivity() {
                         finish()
                     }
 
-                    Toast.makeText(this, "Add Review Success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.berhasilAddReview), Toast.LENGTH_SHORT).show()
                 }.addOnFailureListener {
-                    Toast.makeText(this, "Failed to Add Review, Try later", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.failedAddReview), Toast.LENGTH_SHORT).show()
                 }
             }
 

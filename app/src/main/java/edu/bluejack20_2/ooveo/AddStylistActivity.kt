@@ -42,11 +42,11 @@ class AddStylistActivity : AppCompatActivity() {
             }
 
             if(txtName.isEmpty()){
-                Toast.makeText(this, "Name must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.errorName), Toast.LENGTH_SHORT).show()
             }else if(txtName.length < 3 ){
-                Toast.makeText(this, "Name must be more than 3 character!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.errorNameTiga), Toast.LENGTH_SHORT).show()
             }else if(!rbFemale.isChecked && !rbMale.isChecked) {
-                Toast.makeText(this, "Gender must be selected!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.errorGenderSelect), Toast.LENGTH_SHORT).show()
             }else {
 
                 if(gender == "Female"){
@@ -84,10 +84,10 @@ class AddStylistActivity : AppCompatActivity() {
 
         db.collection("stylists").add(stylist)
             .addOnSuccessListener {
-                Toast.makeText(this@AddStylistActivity , "Berhasil" , Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AddStylistActivity , getString(R.string.berhasilMessage) , Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
-                Toast.makeText(this@AddStylistActivity , "GAGAL" , Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AddStylistActivity , getString(R.string.gagalMessage) , Toast.LENGTH_SHORT).show()
             }
     }
 }

@@ -78,36 +78,36 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 if(txtName.isEmpty()){
-                    Toast.makeText(this, "Name must be filled!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.namaHilang), Toast.LENGTH_SHORT).show()
                 }else if(txtName.length < 3 ){
-                    Toast.makeText(this, "Name must be more than 3 character!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.namaKurangMen), Toast.LENGTH_SHORT).show()
                 }else if(txtPhone.isEmpty()){
-                    Toast.makeText(this, "Phone must be filled!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.phoneHilang), Toast.LENGTH_SHORT).show()
                 }else if((phoneLength < 10)){
-                    Toast.makeText(this, "Phone Number must be 12 characters", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.phoneKurangMen), Toast.LENGTH_SHORT).show()
                 }
                 else if(txtEmail.isEmpty()){
-                    Toast.makeText(this, "Email must be filled!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.emailHilang), Toast.LENGTH_SHORT).show()
                 }else if(!(txtEmail.matches(emailPattern.toRegex()))) {
-                    Toast.makeText(applicationContext, "Invalid email address format",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.emailSalahmen),Toast.LENGTH_SHORT).show()
                 }else if(!rbFemale.isChecked && !rbMale.isChecked){
-                    Toast.makeText(this, "Gender must be selected!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.genderHilang), Toast.LENGTH_SHORT).show()
                 }else if(dateText == todaysDate){
-                    Toast.makeText(this, "Date birth must be choose!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.dateHilang), Toast.LENGTH_SHORT).show()
                 }else if(txtPassword.isEmpty()){
-                    Toast.makeText(this, "Password must be filled!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.passwordHilang), Toast.LENGTH_SHORT).show()
                 }else if(txtPassword.length < 8){
-                    Toast.makeText(this, "Password must be more than 8 character!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.passwordKurangMen), Toast.LENGTH_SHORT).show()
                 }else if(txtRepassword.isEmpty()){
-                    Toast.makeText(this, "Re-password must be filled!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.rePasswordHilang), Toast.LENGTH_SHORT).show()
                 }else if(txtRepassword != txtPassword){
-                    Toast.makeText(this, "Re-password doesn't match!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.rePasswordTidakCocok), Toast.LENGTH_SHORT).show()
                 }else{
                     mAuth.fetchSignInMethodsForEmail(txtEmail).addOnCompleteListener(OnCompleteListener<SignInMethodQueryResult>(){
                         var check: Boolean = it.result!!.signInMethods!!.isEmpty()
 
                         if(!check){
-                            Toast.makeText(this, "Email already used!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, getString(R.string.emailUdahKepakeNih), Toast.LENGTH_SHORT).show()
                         }else{
                             //Gausah di hash
                             //val passHash = BCrypt.withDefaults().hashToString(12,txtPassword.toCharArray())

@@ -109,10 +109,10 @@ class HomeActivity : AppCompatActivity() {
 
     fun setTab(){
         val adapter = viewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(HomeFragment() , "Home")
-        adapter.addFragment(FavouriteFragment() , "Favourite")
-        adapter.addFragment(AppointmentFragment(), "Appointment")
-        adapter.addFragment(ProfileFragment(), "Profile")
+        adapter.addFragment(HomeFragment() , getString(R.string.homeMenu))
+        adapter.addFragment(FavouriteFragment() , getString(R.string.favMenu))
+        adapter.addFragment(AppointmentFragment(), getString(R.string.appoinmentMenu))
+        adapter.addFragment(ProfileFragment(), getString(R.string.profileMenu))
 //        val viewPager = findViewById<ViewPager>(R.id.viewPager)
 //        viewPager.adapter = adapter
 //        val tabs = findViewById<TabLayout>(R.id.tabs)

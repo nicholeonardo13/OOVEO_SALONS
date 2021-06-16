@@ -42,7 +42,7 @@ class PhoneNumberVerificationActivity : AppCompatActivity() {
                         storedVerificationId.toString(), otp)
                 signInWithPhoneAuthCredential(credential)
             }else{
-                Toast.makeText(this,"Enter OTP",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,getString(R.string.enterOTP),Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -58,7 +58,7 @@ class PhoneNumberVerificationActivity : AppCompatActivity() {
                     finish()
                 }
                 else {
-                    Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.loginGagalMen), Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -99,7 +99,7 @@ class PhoneNumberVerificationActivity : AppCompatActivity() {
                             } else {
                                 Log.w("TAG", "linkWithCredential:failure", task.exception)
                                 //Kalo gagal berarti no HP nya udh pernah di pake jadi gabisa register
-                                Toast.makeText(baseContext, "Phone Number already used, register failed.",
+                                Toast.makeText(baseContext, getString(R.string.phoneNumberSudahAda),
                                     Toast.LENGTH_SHORT).show()
                             }
                         }
@@ -110,7 +110,7 @@ class PhoneNumberVerificationActivity : AppCompatActivity() {
                             println("CREDENTIAL GAGAL "+ credential)
                             println("CREDENTIAL GAGAL "+ credential)
 
-                            Toast.makeText(this,"Invalid OTP",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this,getString(R.string.OTPInvalid),Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -130,10 +130,10 @@ class PhoneNumberVerificationActivity : AppCompatActivity() {
                 Log.d("TAG", "linkWithCredential:success")
                 val user = task.result?.user
 
-                Toast.makeText(applicationContext, "Link successful", Toast.LENGTH_LONG)
+                Toast.makeText(applicationContext, getString(R.string.suksesLink), Toast.LENGTH_LONG)
             } else {
                 Log.w("TAG", "linkWithCredential:failure", task.exception)
-                Toast.makeText(baseContext, "Authentication failed.",
+                Toast.makeText(baseContext, getString(R.string.failedToAuthenticate),
                         Toast.LENGTH_SHORT).show()
             }
         }
@@ -162,10 +162,10 @@ class PhoneNumberVerificationActivity : AppCompatActivity() {
                 .document(auth.currentUser.uid.toString())
                 .set(user)
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Register success ", Toast.LENGTH_SHORT ).show()
+                    Toast.makeText(this, getString(R.string.registerSukses), Toast.LENGTH_SHORT ).show()
                 }
                 .addOnFailureListener{
-                    Toast.makeText(this, "Failed to Register ", Toast.LENGTH_SHORT ).show()
+                    Toast.makeText(this, getString(R.string.registerGagal), Toast.LENGTH_SHORT ).show()
                 }
 
     }

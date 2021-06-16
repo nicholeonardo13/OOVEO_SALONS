@@ -196,7 +196,7 @@ class AppointmentDetailActivity : AppCompatActivity() {
                                 )
                                 Toast.makeText(
                                     this,
-                                    "Check-In Success",
+                                    getString(R.string.checkInSuccess),
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }.addOnFailureListener {
@@ -206,7 +206,7 @@ class AppointmentDetailActivity : AppCompatActivity() {
                                 )
                                 Toast.makeText(
                                     this,
-                                    "Check-In Failed",
+                                    getString(R.string.checkOutFailed),
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
@@ -240,7 +240,7 @@ class AppointmentDetailActivity : AppCompatActivity() {
                                     )
                                     Toast.makeText(
                                         this,
-                                        "Appointment Canceled",
+                                        getString(R.string.appointmentCancel),
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }.addOnFailureListener {
@@ -250,7 +250,7 @@ class AppointmentDetailActivity : AppCompatActivity() {
                                     )
                                     Toast.makeText(
                                         this,
-                                        "Appointment Canceled Failed",
+                                        getString(R.string.appointmentCancelFailed),
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
@@ -283,7 +283,7 @@ class AppointmentDetailActivity : AppCompatActivity() {
                         })
                     }
                     else if (reviewStatus == "yes") {
-                        checkinBtn.text = "You Have completed your Appointment!"
+                        checkinBtn.text = getString(R.string.haveCompleteAppointment)
                         checkinBtn.isEnabled = false
                         checkinBtn.height = 65
                         cancelBookBtn.visibility = View.INVISIBLE

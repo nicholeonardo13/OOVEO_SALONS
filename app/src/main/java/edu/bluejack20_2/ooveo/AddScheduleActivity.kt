@@ -88,7 +88,7 @@ class AddScheduleActivity : AppCompatActivity() {
 
         btnAddJadwal.setOnClickListener {
             if(formatStart.equals("")){
-                Toast.makeText(this, "Start Hour must be filled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.errorStartHour), Toast.LENGTH_SHORT).show()
             }else {
                 addSchedule()
             }
@@ -146,7 +146,7 @@ class AddScheduleActivity : AppCompatActivity() {
 
 
                 if(!listScheduleModel.isEmpty()){
-                    Toast.makeText(this@AddScheduleActivity , "Jam Sudah Adaa Pilih Jam Lain" , Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AddScheduleActivity , getString(R.string.errorJamDipilih) , Toast.LENGTH_SHORT).show()
                 }else{
                     val schedule : MutableMap<String, Any> = HashMap()
                     schedule["date"] = date.toString()
@@ -156,10 +156,10 @@ class AddScheduleActivity : AppCompatActivity() {
 
                     db.collection("schedules").add(schedule)
                         .addOnSuccessListener {
-                            Toast.makeText(this@AddScheduleActivity , "Berhasil" , Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@AddScheduleActivity , getString(R.string.berhasilMessage) , Toast.LENGTH_SHORT).show()
                         }
                         .addOnFailureListener {
-                            Toast.makeText(this@AddScheduleActivity , "GAGAL" , Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@AddScheduleActivity , getString(R.string.gagalMessage) , Toast.LENGTH_SHORT).show()
                         }
                 }
 
