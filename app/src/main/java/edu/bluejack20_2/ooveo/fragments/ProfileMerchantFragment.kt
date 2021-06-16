@@ -58,7 +58,6 @@ class ProfileMerchantFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
 
         logoutBtn = view!!.findViewById<Button>(R.id.btnProfileLogout)
-        languageBtn = view!!.findViewById<Button>(R.id.btnManageService)
         edtProfileBtn = view!!.findViewById<Button>(R.id.btnProfilEditProfile)
         userProfile = view!!.findViewById<ImageView>(R.id.ivProfileUserImage)
         edtName = view!!.findViewById<TextView>(R.id.tvMerchantName)
