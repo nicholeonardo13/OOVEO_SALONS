@@ -43,7 +43,7 @@ class MapActivity : AppCompatActivity() {
 //            google.isMyLocationEnabled = true
 
             val lang = com.google.android.gms.maps.model.LatLng(13.03,77.60)
-            google.addMarker(MarkerOptions().position(lang).title("Barber Location"))
+            google.addMarker(MarkerOptions().position(lang).title(getString(R.string.barberLocation)))
             google.animateCamera(CameraUpdateFactory.newLatLngZoom(lang, 15f))
 
         })

@@ -72,7 +72,7 @@ class UpdateScheduleActivity : AppCompatActivity() {
 
         btnUpdateJadwal.setOnClickListener {
             if(formatStart.equals("")){
-                Toast.makeText(this, "Start Hour must be filled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.jamHarusDiisi), Toast.LENGTH_SHORT).show()
             }else {
                 updateSchedule()
             }
@@ -177,7 +177,7 @@ class UpdateScheduleActivity : AppCompatActivity() {
 //                        println("TESTT")
 
 
-                txtStart.setText("Start Hour : " + scheduleModel.hour)
+                txtStart.setText(getString(R.string.jamAwal) + scheduleModel.hour)
 
 
             }
@@ -224,7 +224,7 @@ class UpdateScheduleActivity : AppCompatActivity() {
                 Log.e("BOM" , listScheduleModel.toString())
 
                 if(!listScheduleModel.isEmpty()){
-                    Toast.makeText(this@UpdateScheduleActivity , "Update Yang Bener Dong" , Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@UpdateScheduleActivity , getString(R.string.updateYangbener) , Toast.LENGTH_SHORT).show()
                     Log.e("masuk" , "MASUK KE SINI")
                 }else{
                     updatePerson(scheduleModel , getNewScheduleMap())

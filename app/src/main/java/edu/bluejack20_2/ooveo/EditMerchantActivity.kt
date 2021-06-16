@@ -50,6 +50,7 @@ class EditMerchantActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
 
         ids = intent.extras?.getString("id").toString()
+        var ownerID = intent.extras?.getString("ownerID")
 
         saveChangesBtn = findViewById(R.id.btnUpdateMerchantSaveChanges)
         textName = findViewById(R.id.edtUpdateMerchantName)
@@ -110,17 +111,17 @@ class EditMerchantActivity : AppCompatActivity() {
 
 
             if(txtName.isEmpty()){
-                Toast.makeText(this, "Name must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.nameHarusDiisi), Toast.LENGTH_SHORT).show()
             }else if(txtName.length < 3 ){
-                Toast.makeText(this, "Name must be more than 3 character!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.nameHarusLebihdaritiga), Toast.LENGTH_SHORT).show()
             }else if(txtAddress.equals("")){
-                Toast.makeText(this, "Address must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.addressHarusDiisi), Toast.LENGTH_SHORT).show()
             }else if(txtPhoneNumber.length < 12) {
-                Toast.makeText(this, "Phone Number must be 12 characters", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.phoneNumberharus12), Toast.LENGTH_SHORT).show()
             }else  {
                 updateDataUser(txtName, txtAddress , txtPhoneNumber)
                 val intent = Intent(this, MerchantAdminActivity::class.java)
-                intent.putExtra("id", merchantIDS)
+                intent.putExtra("ownerID", ownerID)
                 startActivity(intent)
                 finish()
             }
@@ -171,16 +172,16 @@ class EditMerchantActivity : AppCompatActivity() {
                     }
 
 
-                    Toast.makeText(applicationContext, "File Uploaded", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.fileKeUpload), Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
                     progressDialog.dismiss()
-                    Toast.makeText(applicationContext, "Failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.failedText), Toast.LENGTH_SHORT).show()
                 }
                 .addOnProgressListener { taskSnapShot ->
                     val progress =
                         100.00 * taskSnapShot.bytesTransferred / taskSnapShot.totalByteCount
-                    progressDialog.setMessage("Uploaded " + progress.toInt() + "%... ")
+                    progressDialog.setMessage(getString(R.string.keUploaded) + progress.toInt() + "%... ")
 
                 }
         }
@@ -197,12 +198,12 @@ class EditMerchantActivity : AppCompatActivity() {
 
         ).addOnSuccessListener {
             Log.d("SUKSES", "DocumentSnapshot successfully updated!")
-            Toast.makeText(this, "Success save changes", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.suksesSave), Toast.LENGTH_SHORT).show()
 
         }
             .addOnFailureListener { e ->
                 Log.w("ERROR", "Error updating document", e)
-                Toast.makeText(this, "Failed save changes", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.saveErrors), Toast.LENGTH_SHORT).show()
             }
     }
 }

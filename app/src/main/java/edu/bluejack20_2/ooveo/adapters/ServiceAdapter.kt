@@ -1,5 +1,6 @@
 package edu.bluejack20_2.ooveo.adapters
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +46,7 @@ class ServiceAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     mIntent.putExtra("id",id)
                     mIntent.putExtra("serviceID",idService)
                     holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
                 }
 
 

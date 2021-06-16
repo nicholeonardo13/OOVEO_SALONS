@@ -1,8 +1,14 @@
 package edu.bluejack20_2.ooveo
 
 import android.annotation.SuppressLint
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -194,7 +200,7 @@ class AppointmentCartActivity : AppCompatActivity() {
                     .add(cart)
                     .addOnSuccessListener {
                         Log.wtf("YES BOOKING", "success add ke cart")
-                        Toast.makeText(this, "Booking Success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.mantapBooking), Toast.LENGTH_SHORT).show()
                         Log.wtf("cart ID in cart App Page", it.id)
                         cartID = it.id.toString()
 
@@ -212,13 +218,46 @@ class AppointmentCartActivity : AppCompatActivity() {
                         newIntent.putExtra("request", requestTxt)
                         newIntent.putExtra("cartID", cartID)
 
+                        var builder : Notification.Builder
+                        var notificationManager : NotificationManager
+                        var notificationChannel : NotificationChannel
+                        val channelId = "edu.bluejack20_2.ooveo"
+                        var description = "Test"
+
+                        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            notificationChannel = NotificationChannel(channelId,description,NotificationManager.IMPORTANCE_HIGH)
+                            notificationChannel.enableLights(true)
+                            notificationChannel.lightColor = Color.GREEN
+                            notificationChannel.enableVibration(false)
+                            notificationManager.createNotificationChannel(notificationChannel)
+
+                            builder = Notification.Builder(this,channelId)
+                                .setContentTitle(getString(R.string.reminderBooking))
+                                .setContentText(getString(R.string.reminderBookingNotif) + startTime + " " + date.toString() + "")
+                                .setSmallIcon(R.drawable.barber_2)
+                                .setLargeIcon(BitmapFactory.decodeResource(this.resources,R.drawable.barber_2))
+//                                .setContentIntent(pendingIntent)
+                        }else{
+
+                            builder = Notification.Builder(this)
+                                .setContentTitle(getString(R.string.reminderBooking))
+                                .setContentText(getString(R.string.reminderBookingNotif) + startTime + " " + date.toString() + "")
+                                .setSmallIcon(R.drawable.barber_2)
+                                .setLargeIcon(BitmapFactory.decodeResource(this.resources,R.drawable.barber_2))
+//                                .setContentIntent(pendingIntent)
+                        }
+                        notificationManager.notify(1234,builder.build())
+
+
                         startActivity(newIntent)
                         finish()
                         loadingDialog.dismissDialog()
                     }
                     .addOnFailureListener{
                         Log.wtf("NO BOOKING", "GAGAL add ke cart")
-                        Toast.makeText(this, "Failed to book, please try again", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.gagalUntukBooking), Toast.LENGTH_SHORT).show()
                     }
 
 
@@ -272,14 +311,14 @@ class AppointmentCartActivity : AppCompatActivity() {
             .add(cart)
             .addOnSuccessListener {
                 Log.wtf("YES BOOKING", "success add ke cart")
-                Toast.makeText(this, "Booking Success", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.mantapBooking), Toast.LENGTH_SHORT).show()
                 Log.wtf("cart ID in cart App Page", it.id)
                 cartID = it.id.toString()
                 loadingDialog.dismissDialog()
             }
             .addOnFailureListener{
                 Log.wtf("NO BOOKING", "GAGAL add ke cart")
-                Toast.makeText(this, "Failed to book, please try again", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.bookingGagalTotal), Toast.LENGTH_SHORT).show()
             }
 
 

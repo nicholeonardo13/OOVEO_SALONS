@@ -1,6 +1,7 @@
 package edu.bluejack20_2.ooveo.adapters
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.util.Log
@@ -132,6 +133,7 @@ class OnProgressAdapter(var listCart: MutableList<CartModel>) :
                                 intent.putExtra("request", requestBook)
                                 intent.putExtra("cartID", cartID)
                                 holder.itemView.context.startActivity(intent)
+                                (holder.itemView.context as Activity).finish()
                             }
                         }
                     }

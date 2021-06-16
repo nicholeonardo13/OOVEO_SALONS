@@ -58,7 +58,6 @@ class ProfileMerchantFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
 
         logoutBtn = view!!.findViewById<Button>(R.id.btnProfileLogout)
-        languageBtn = view!!.findViewById<Button>(R.id.btnManageService)
         edtProfileBtn = view!!.findViewById<Button>(R.id.btnProfilEditProfile)
         userProfile = view!!.findViewById<ImageView>(R.id.ivProfileUserImage)
         edtName = view!!.findViewById<TextView>(R.id.tvMerchantName)
@@ -96,11 +95,11 @@ class ProfileMerchantFragment : Fragment() {
                         .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_background)
 
-//                    Glide.with(this)
-//                        .applyDefaultRequestOptions(requestOption)
-//                        .load(userModel.profilePicture)
-//                        .into(ivProfilePicture)
-//                    Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
+                    Glide.with(this)
+                        .applyDefaultRequestOptions(requestOption)
+                        .load(userModel.profilePicture)
+                        .into(ivProfilePicture)
+                    Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
 
                 } else {
                     Log.d("GAGAL", "No such document")

@@ -119,11 +119,11 @@ class UpdateStylistActivity : AppCompatActivity() {
             }
 
             if(txtName.isEmpty()){
-                Toast.makeText(this, "Name must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.namaHangus), Toast.LENGTH_SHORT).show()
             }else if(txtName.length < 3 ){
-                Toast.makeText(this, "Name must be more than 3 character!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.namaHangusKurang), Toast.LENGTH_SHORT).show()
             }else if(!rbFemale.isChecked && !rbMale.isChecked) {
-                Toast.makeText(this, "Gender must be selected!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.genderHangus), Toast.LENGTH_SHORT).show()
             }else  {
                 updateDataUser(txtName, gender)
                 val intent = Intent(this, ManageStylistActivity::class.java)
@@ -165,7 +165,7 @@ class UpdateStylistActivity : AppCompatActivity() {
         var imageURL: String = ""
         if (filePath != null) {
             val progressDialog = ProgressDialog(this)
-            progressDialog.setTitle("Uploading... ")
+            progressDialog.setTitle(getString(R.string.uploadingText))
             progressDialog.show()
 
             val imageRef = storageReference!!.child("stylist/" + ids)
@@ -179,16 +179,16 @@ class UpdateStylistActivity : AppCompatActivity() {
                     }
 
 
-                    Toast.makeText(applicationContext, "File Uploaded", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.fileKeUpload), Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
                     progressDialog.dismiss()
-                    Toast.makeText(applicationContext, "Failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.failedText), Toast.LENGTH_SHORT).show()
                 }
                 .addOnProgressListener { taskSnapShot ->
                     val progress =
                         100.00 * taskSnapShot.bytesTransferred / taskSnapShot.totalByteCount
-                    progressDialog.setMessage("Uploaded " + progress.toInt() + "%... ")
+                    progressDialog.setMessage(getString(R.string.keUploaded) + progress.toInt() + "%... ")
 
                 }
         }
@@ -205,12 +205,12 @@ class UpdateStylistActivity : AppCompatActivity() {
 
             ).addOnSuccessListener {
                 Log.d("SUKSES", "DocumentSnapshot successfully updated!")
-                Toast.makeText(this, "Success save changes", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.berhasilSaveChange), Toast.LENGTH_SHORT).show()
 
             }
                 .addOnFailureListener { e ->
                     Log.w("ERROR", "Error updating document", e)
-                    Toast.makeText(this, "Failed save changes", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.gagalSaveChange), Toast.LENGTH_SHORT).show()
                 }
         }
     }

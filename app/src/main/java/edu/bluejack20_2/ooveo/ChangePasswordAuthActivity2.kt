@@ -45,7 +45,7 @@ class ChangePasswordAuthActivity2 : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }else{
-                Toast.makeText(this,"Enter OTP", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,getString(R.string.enterOTP), Toast.LENGTH_SHORT).show()
             }
         }
     }

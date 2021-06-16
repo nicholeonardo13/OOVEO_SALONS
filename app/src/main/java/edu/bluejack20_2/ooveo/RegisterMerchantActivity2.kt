@@ -84,27 +84,27 @@ class RegisterMerchantActivity2 : AppCompatActivity() {
 
             println("Types $typeInput")
             if(txtAboutUs.isEmpty()){
-                Toast.makeText(this, "About Us must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.isiAbout), Toast.LENGTH_SHORT).show()
             }else if(typeInput.isEmpty()){
-                Toast.makeText(applicationContext, "Please choose types!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, getString(R.string.isiType),Toast.LENGTH_SHORT).show()
             }else if(txtEmail.isEmpty()){
-                Toast.makeText(this, "Email Us must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.isiEmail), Toast.LENGTH_SHORT).show()
             }else if(!(txtEmail.matches(emailPattern.toRegex()))) {
-                Toast.makeText(applicationContext, "Invalid email address format",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, getString(R.string.emailInvalids),Toast.LENGTH_SHORT).show()
             }else if(txtPassword.isEmpty()){
-                Toast.makeText(applicationContext, "Password must be filled!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, getString(R.string.isiPassword),Toast.LENGTH_SHORT).show()
             }else if(txtPassword.length < 8){
-                Toast.makeText(applicationContext, "Password must be more than 8 characters",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, getString(R.string.minPassword),Toast.LENGTH_SHORT).show()
             }else if(txtRepassword.isEmpty()){
-                Toast.makeText(applicationContext, "Repassword must be filled",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, getString(R.string.isiRePassword),Toast.LENGTH_SHORT).show()
             }else if(txtPassword != txtRepassword){
-                Toast.makeText(applicationContext, "Password and Re-password not match",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, getString(R.string.gakCocokPassword),Toast.LENGTH_SHORT).show()
             }else {
                 mAuth.fetchSignInMethodsForEmail(txtEmail).addOnCompleteListener(OnCompleteListener<SignInMethodQueryResult>(){
                     var check: Boolean = it.result!!.signInMethods!!.isEmpty()
 
                     if(!check){
-                        Toast.makeText(this, "Email already used!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.emailDahAda), Toast.LENGTH_SHORT).show()
                     }else{
                         //Gausah di hash
                         //val passHash = BCrypt.withDefaults().hashToString(12,txtPassword.toCharArray())
@@ -123,7 +123,7 @@ class RegisterMerchantActivity2 : AppCompatActivity() {
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w("FAILED CREATE REGISTER", "createUserWithEmail:failure", task.exception)
-                                        Toast.makeText(baseContext, "Authentication failed.",
+                                        Toast.makeText(baseContext, getString(R.string.gagalAuth),
                                                 Toast.LENGTH_SHORT).show()
                                     }
                                 }
@@ -183,10 +183,10 @@ class RegisterMerchantActivity2 : AppCompatActivity() {
         db.collection("merchants")
                 .add(merchant)
                 .addOnSuccessListener {
-                    Toast.makeText(this, "add to merchant success ", Toast.LENGTH_SHORT ).show()
+                    Toast.makeText(this, getString(R.string.addMerchantSukses), Toast.LENGTH_SHORT ).show()
                 }
                 .addOnFailureListener{
-                    Toast.makeText(this, "Failed add to merchants ", Toast.LENGTH_SHORT ).show()
+                    Toast.makeText(this, getString(R.string.failedAddMerchant), Toast.LENGTH_SHORT ).show()
                 }
 
 
@@ -194,10 +194,10 @@ class RegisterMerchantActivity2 : AppCompatActivity() {
                 .document(mAuth.currentUser.uid.toString())
                 .set(user)
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Register success ", Toast.LENGTH_SHORT ).show()
+                    Toast.makeText(this, getString(R.string.registerMantap), Toast.LENGTH_SHORT ).show()
                 }
                 .addOnFailureListener{
-                    Toast.makeText(this, "Failed to Register ", Toast.LENGTH_SHORT ).show()
+                    Toast.makeText(this, getString(R.string.registerTidakMantap), Toast.LENGTH_SHORT ).show()
                 }
 
 

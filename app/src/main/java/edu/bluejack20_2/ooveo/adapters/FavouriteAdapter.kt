@@ -1,5 +1,6 @@
 package edu.bluejack20_2.ooveo.adapters
 
+import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -60,6 +61,7 @@ class FavouriteAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     mIntent.putExtra("address",address)
                     mIntent.putExtra("about",about)
                     holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
                 }
             }
         }

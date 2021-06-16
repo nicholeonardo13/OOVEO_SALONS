@@ -30,6 +30,7 @@ class ChooseStylistActivity : AppCompatActivity() {
         setContentView(R.layout.activity_choose_stylist)
 
         ids = intent.extras?.getString("id").toString()
+        Log.e("BOBA", ids)
         serviceID = intent.extras?.getString("serviceID").toString()
 
 
@@ -67,6 +68,7 @@ class ChooseStylistActivity : AppCompatActivity() {
 
 
     private fun getAllMerchantData(){
+        Log.e("BOBA", ids)
         db.collection("stylists").whereEqualTo("merchantID" , ids).get()
             .addOnSuccessListener {
                 listStylistModel = ArrayList()

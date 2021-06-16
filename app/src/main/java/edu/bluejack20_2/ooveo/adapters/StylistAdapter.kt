@@ -1,5 +1,6 @@
 package edu.bluejack20_2.ooveo.adapters
 
+import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -51,6 +52,7 @@ class StylistAdapter(var merchantID : String  ,var serviceID : String) : Recycle
                     mIntent.putExtra("merchantID",merchantID)
                     mIntent.putExtra("serviceID",serviceID)
                     holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
                 }
 
             }

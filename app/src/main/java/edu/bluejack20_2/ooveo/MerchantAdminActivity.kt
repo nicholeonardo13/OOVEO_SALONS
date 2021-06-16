@@ -56,6 +56,8 @@ class MerchantAdminActivity : AppCompatActivity() {
         println("ID CURRENT USER")
         println(mAuth.currentUser.uid.toString())
 
+        Log.e("IDIDIDIIDDIID" , ids.toString())
+
         val docRef =  db.collection("merchants").whereEqualTo("ownerID" , ids)
         docRef.get()
             .addOnSuccessListener {
@@ -105,7 +107,9 @@ class MerchantAdminActivity : AppCompatActivity() {
             Log.e("NN", "Ke Edit")
             var intent = Intent(this@MerchantAdminActivity, EditMerchantActivity::class.java)
             intent.putExtra("id", merchantModel.id)
+            intent.putExtra("ownerID", ids)
             startActivity(intent)
+            finish()
         })
 
 
@@ -114,6 +118,7 @@ class MerchantAdminActivity : AppCompatActivity() {
             var intent = Intent(this@MerchantAdminActivity, ManageServiceActivity::class.java)
             intent.putExtra("id", merchantModel.id)
             startActivity(intent)
+            finish()
         })
 
         //MOVE TO Stylist
@@ -121,6 +126,7 @@ class MerchantAdminActivity : AppCompatActivity() {
             var intent = Intent(this@MerchantAdminActivity, ManageStylistActivity::class.java)
             intent.putExtra("id", merchantModel.id)
             startActivity(intent)
+            finish()
         })
 
     }

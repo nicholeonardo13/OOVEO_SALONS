@@ -1,5 +1,6 @@
 package edu.bluejack20_2.ooveo.adapters
 
+import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -70,6 +71,7 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     mIntent.putExtra("address",address)
                     mIntent.putExtra("about",about)
                     holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
                 }
 
                 btnAddFav.setOnClickListener {
@@ -128,7 +130,7 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
                 if(!listFavModel.isEmpty()){
-                    Toast.makeText(holder.itemView.context , "Merchant Sudah Ada di My Favourite" , Toast.LENGTH_SHORT).show()
+                    Toast.makeText(holder.itemView.context , holder.itemView.context.getString(R.string.merchantAddFav) , Toast.LENGTH_SHORT).show()
                 }else{
                     val service : MutableMap<String, Any> = HashMap()
 

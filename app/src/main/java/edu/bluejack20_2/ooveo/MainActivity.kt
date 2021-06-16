@@ -64,9 +64,9 @@ class MainActivity : AppCompatActivity() {
 //            var email: String =  "sei@gmail.com"
 //            var password: String = "sipsipdripdrip"
             if(email.isEmpty()){
-                Toast.makeText(this, "Email must be fiiled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.emailHarusDiisiBos), Toast.LENGTH_SHORT).show()
             }else if(password.isEmpty()){
-                Toast.makeText(this, "Password must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.passwordKosong), Toast.LENGTH_SHORT).show()
             }else{
                 signIn(email, password)
             }
@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                     finish()
                 }
                 else {
-                    Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.loginGagalMen), Toast.LENGTH_SHORT).show()
                 }
         }
     }
@@ -180,10 +180,10 @@ class MainActivity : AppCompatActivity() {
             .document(mAuth.currentUser.uid.toString())
             .set(user)
             .addOnSuccessListener {
-                Toast.makeText(this, "Register success ", Toast.LENGTH_SHORT ).show()
+                Toast.makeText(this, getString(R.string.berhasilRegister), Toast.LENGTH_SHORT ).show()
             }
             .addOnFailureListener{
-                Toast.makeText(this, "Failed to Register ", Toast.LENGTH_SHORT ).show()
+                Toast.makeText(this, getString(R.string.gagalRegister), Toast.LENGTH_SHORT ).show()
             }
 
     }

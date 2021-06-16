@@ -1,5 +1,6 @@
 package edu.bluejack20_2.ooveo.adapters
 
+import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -52,6 +53,7 @@ class StylistAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     val mIntent = Intent(holder.itemView.context, UpdateStylistActivity::class.java)
                     mIntent.putExtra("id",id)
                     holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
                 }
 
                 btnDelete.setOnClickListener {
@@ -59,6 +61,7 @@ class StylistAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     val mIntent = Intent(holder.itemView.context, DeleteStylistActivity::class.java)
                     mIntent.putExtra("id",id)
                     holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
                 }
 
                 btnSchedule.setOnClickListener {
@@ -67,6 +70,7 @@ class StylistAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     Log.e("ini id" , id)
                     mIntent.putExtra("id",id)
                     holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
                 }
 
             }
