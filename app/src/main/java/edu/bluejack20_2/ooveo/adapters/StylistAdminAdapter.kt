@@ -88,10 +88,16 @@ class StylistAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val stylist_name: TextView = itemView.findViewById(R.id.stylist_name)
         val stylist_gender: TextView = itemView.findViewById(R.id.stylist_gender)
         val stylist_profile: ImageView = itemView.findViewById(R.id.ivStylistAdmin)
+        lateinit var stylistGender: String
 
         fun binding(stylist: StylistModel){
             stylist_name.setText(stylist.name)
-            stylist_gender.setText(stylist.gender)
+            if(stylist.gender == "Female"){
+                stylistGender = itemView.context.getString(R.string.female)
+            }else if(stylist.gender == "Male"){
+                stylistGender = itemView.context.getString(R.string.male)
+            }
+            stylist_gender.setText(stylistGender)
 
             val requestOption = RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background)

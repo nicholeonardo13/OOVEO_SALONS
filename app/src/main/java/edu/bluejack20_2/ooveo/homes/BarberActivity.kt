@@ -8,6 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.malinskiy.superrecyclerview.SuperRecyclerView
 import edu.bluejack20_2.ooveo.model.MerchantModel
@@ -24,6 +25,7 @@ class BarberActivity : AppCompatActivity() {
     private lateinit var barberAdapter: RecyclerAdapter
     private lateinit var listMerchantModel :ArrayList<MerchantModel>
     private lateinit var tempList: ArrayList<MerchantModel>
+    private lateinit var mAuth: FirebaseAuth
     private var lagiSearch = false
 
     private lateinit var barberList : ArrayList<MerchantModel>
@@ -31,7 +33,7 @@ class BarberActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_barber)
-
+        mAuth = FirebaseAuth.getInstance()
         var toolBar = findViewById<Toolbar>(R.id.toolbar)
         toolBar.title = ""
 
@@ -60,7 +62,7 @@ class BarberActivity : AppCompatActivity() {
 
             if(listMerchantModel.size == 0){
 //               Log.e("IT" , it.toString())
-                    db.collection("merchants").whereEqualTo("type" , "Barber").orderBy("name").limit(3).get()
+                    db.collection("merchants").whereEqualTo("type" , "Barber").whereNotEqualTo("ownerID" , mAuth.currentUser.uid.toString()).orderBy("name").limit(3).get()
                         .addOnSuccessListener {
 //                            listMerchantModel = ArrayList()
                             tempList = ArrayList()
@@ -98,7 +100,7 @@ class BarberActivity : AppCompatActivity() {
                 Log.e("CURS" , curs.toString())
                 db.collection("merchants").document(curs.id).get().addOnSuccessListener {
 //               Log.e("IT" , it.toString())
-                    db.collection("merchants").whereEqualTo("type" , "Barber").orderBy("name").startAfter(it.data?.get("name")).limit(3).get()
+                    db.collection("merchants").whereEqualTo("type" , "Barber").orderBy("name").startAfter(it.data?.get("ownerID")).limit(3).get()
                         .addOnSuccessListener {
 //                            listMerchantModel = ArrayList()
                             tempList = ArrayList()
@@ -137,7 +139,7 @@ class BarberActivity : AppCompatActivity() {
     }
 
     private fun getAllMerchantData(){
-        db.collection("merchants").whereEqualTo("type" , "Barber").orderBy("name").limit(3).get()
+        db.collection("merchants").whereEqualTo("type" , "Barber").whereNotEqualTo("ownerID" , mAuth.currentUser.uid.toString()).orderBy("ownerID").limit(3).get()
                 .addOnSuccessListener {
                     listMerchantModel = ArrayList()
                     tempList = ArrayList()

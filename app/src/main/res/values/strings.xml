@@ -297,4 +297,5 @@
     <string name="reminderBookingNotif">Reminder, You Have Booking Appointment at </string>
     <string name="gagalUntukBooking">Failed to book, please try again</string>
     <string name="bookingGagalTotal">Failed to book, please try again</string>
+    <string name="test">Female</string>
 </resources>

@@ -125,7 +125,7 @@ class ProfileMerchantFragment : Fragment() {
 
         })
 
-//        //CHANGE LANGUAGE
+        //CHANGE LANGUAGE
 //        languageBtn!!.setOnClickListener(View.OnClickListener {
 //            var intent = Intent(this.context, LanguageActivity::class.java)
 //            startActivity(intent)
