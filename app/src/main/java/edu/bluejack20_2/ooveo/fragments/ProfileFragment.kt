@@ -27,7 +27,6 @@ class ProfileFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var logoutBtn: Button
-//    private lateinit var languageBtn: Button
     private lateinit var edtProfileBtn: Button
     private lateinit var mAuth: FirebaseAuth
     private lateinit var userProfile: ImageView
@@ -39,9 +38,6 @@ class ProfileFragment : Fragment() {
     private lateinit var ivProfilePicture: ImageView
     private lateinit var tvChangeTheme: TextView
     private lateinit var tvPhone: TextView
-
-    //SEMENTARA NANTI HAPUS
-//    private lateinit var bookDummy: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,8 +132,7 @@ class ProfileFragment : Fragment() {
                             mAuth.signOut()
                             val intent = Intent(this.context, MainActivity::class.java)
                             startActivity(intent);
-
-
+                            activity?.finish()
                         })
 
                         tvChangeTheme!!.setOnClickListener(View.OnClickListener {

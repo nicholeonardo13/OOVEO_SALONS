@@ -195,6 +195,7 @@ class AppointmentCartActivity : AppCompatActivity() {
                 cart["bookingCode"] = bookingCode
                 cart["payment_status"] = "Unpaid"
                 cart["review_status"] = "not"
+                cart["scheduleID"] = scheduleID
 
                 db.collection("carts")
                     .add(cart)
@@ -250,10 +251,14 @@ class AppointmentCartActivity : AppCompatActivity() {
                         }
                         notificationManager.notify(1234,builder.build())
 
+                        db.collection("schedules").document(scheduleID).update(
+                            "status", "tidak bisa"
+                        ).addOnSuccessListener {
+                            startActivity(newIntent)
+                            finish()
+                            loadingDialog.dismissDialog()
+                        }
 
-                        startActivity(newIntent)
-                        finish()
-                        loadingDialog.dismissDialog()
                     }
                     .addOnFailureListener{
                         Log.wtf("NO BOOKING", "GAGAL add ke cart")
@@ -306,6 +311,7 @@ class AppointmentCartActivity : AppCompatActivity() {
         cart["user_id"] = db.collection("users").document(mAuth.currentUser.uid.toString())
         cart["bookingCode"] = bookingCode
         cart["payment_status"] = "unpaid"
+
 
        db.collection("carts")
             .add(cart)

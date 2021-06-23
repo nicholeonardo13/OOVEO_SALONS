@@ -15,7 +15,7 @@
         <Button
             android:id="@+id/btnAppointmentDetailChecin"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"

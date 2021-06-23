@@ -39,7 +39,7 @@
     <string name="phone_number_p1">Silakan masukkan nomor ponsel Anda untuk memverifikasi akun Anda. Kami akan mengirimkan kode notifikasi ke nomor Anda melalui SMS.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Halo fragmen kosong</string>
-    <string name="register_merchant">Daftar Merchant</string>
+    <string name="register_merchant">Daftar Toko</string>
     <string name="address">Alamat</string>
     <string name="upload_banner">Unggah Spanduk</string>
     <string name="no_file_seletced">Tidak ada file yang dipilih</string>
@@ -54,7 +54,7 @@
     <string name="change_photo">ganti foto</string>
     <string name="try_out_our_dark_mode">Cobalah Mode Gelap Kami</string>
     <string name="app_dark_mode">Mode Gelap Aplikasi</string>
-    <string name="register_new_merchant">Daftarkan Merchant baru</string>
+    <string name="register_new_merchant">Daftarkan Toko baru</string>
     <string name="next">Selanjutnya</string>
     <string name="location">Lokasi</string>
     <string name="changePassword_p1">Pastikan nomor Anda masih aktif, kami harus memastikan itu asli Anda untuk mengubah kata sandi</string>
@@ -82,8 +82,8 @@
         <item>5</item>
     </string-array>
 
-    <string name="Merchant_Admin">Admin Merchant</string>
-    <string name="enter_your_comment_or_request_here">Masukkan komentar atau permintaan Anda di sini</string>
+    <string name="Merchant_Admin">Admin Toko</string>
+    <string name="enter_your_comment_or_request_here">Masukkan komentar atau permintaan </string>
     <string name="this_outlet_needs_it_s_customer_book_and_come_early_at_least_15_minutes_before_appointment">Outlet ini membutuhkan buku pelanggan dan datang lebih awal setidaknya 15 Menit sebelum janji</string>
     <string name="to_honor_the_business_please_don_t_cancel_the_appointment_within_1_hour_before_your_commitment_is_truly_appreciated">Untuk menghormati bisnis, mohon jangan membatalkan janji dalam waktu 1 jam sebelumnya. Komitmen Anda benar-benar dihargai.</string>
     <string name="booking_comments_or_request">Pemesanan Komentar atau Permintaan</string>
@@ -98,11 +98,11 @@
     <string name="_12_00_12_30">12:00 - 12:30</string>
     <string name="idr_65_000">IDR. 65.000</string>
     <string name="total">Total</string>
-    <string name="cash_on_merchant">Cash On Merchant</string>
+    <string name="cash_on_merchant">Cash On Toko</string>
     <string name="disable_dark_mode">Nonaktifkan Mode Gelap</string>
     <string name="enable_light_mode">Aktifkan Mode Gelap</string>
     <string name="enable_dark_mode">Aktifkan Mode Gelap</string>
-    <string name="confirmBook_message">Janji Anda akan dibuat dan Anda dapat melakukan pembayaran di merchant</string>
+    <string name="confirmBook_message">Janji Anda akan dibuat dan Anda dapat melakukan pembayaran di Toko</string>
     <string name="confirm_booking">Konfirmasi Pemesanan</string>
     <string name="yes_proceed_booking">Ya, Proses pemesanan</string>
     <string name="no_cancel_booking">Tidak, Batalkan pemesanan</string>
@@ -112,7 +112,7 @@
     <string name="check_in_time">Waktu CHECK-IN: </string>
     <string name="view_appointment_detail">Lihat Detail Janji</string>
     <string name="back_to_home">Kembali ke Halaman Utama</string>
-    <string name="payment_method_cash_on_merchant">Metode Pembayaran: Cash On Merchant</string>
+    <string name="payment_method_cash_on_merchant">Metode Pembayaran: Cash On Toko</string>
     <string name="service_is">Layanan: </string>
     <string name="idr">IDR. </string>
     <string name="stylist_is">Penata gaya: </string>
@@ -128,7 +128,7 @@
     <string name="detail">detail</string>
     <string name="check_in_question">Check in?</string>
     <string name="checin_message">Harap datang 15 menit sebelum Check-In</string>
-    <string name="checkin_positive_message">Saya telah membaca semua kebijakan, Check-In</string>
+    <string name="checkin_positive_message">Saya mengerti, Check-In</string>
     <string name="cancel_checkin">Batalkan Check-In</string>
     <string name="review_btn">Ulasan</string>
     <string name="choose_rating">Pilih Peringkat</string>
@@ -150,34 +150,34 @@
     <string name="search_here">Cari Disini</string>
     <string name="salon">Salon</string>
     <string name="reflexology">Pijat</string>
-    <string name="edit_merchant">Sunting Merchant</string>
+    <string name="edit_merchant">Sunting Toko</string>
     <string name="manage_stylist">Kelola Penata Gaya</string>
     <string name="update_stylist_schedule">Perbarui Jadwal Penata Gaya</string>
     <string name="update_schedule">Perbarui Jadwal</string>
     <string name="update_service">Perbaharui Layanan</string>
     <string name="the_title_of_a_blog">Judul Blog</string>
-    <string name="book_now">Pesa</string>
+    <string name="book_now">Pesan</string>
     <string name="call">Telepon</string>
     <string name="about_us">Tentang Kami</string>
     <string name="change_theme">Ganti Tema</string>
-    <string name="merchant_rating_0">Peringkat Merchant : 0</string>
+    <string name="merchant_rating_0">Peringkat Toko : 0</string>
     <string name="add_to_favourite">Favorit</string>
     <string name="time">Waktu</string>
     <string name="description">Deskripsi</string>
     <string name="delete">Hapus</string>
     <string name="update">Perbaharui</string>
     <string name="choose">Pilih</string>
-    <string name="book_service">Pesan Layanan</string>
+    <string name="book_service">Pesan</string>
     <string name="schedule">Jadwal</string>
     <string name="paid">Lunas</string>
-    <string name="register_as_merchant">Daftar Sebagai Merchant</string>
-    <string name="merchantAddFav">Merchant Sudah Ada di Favorit Saya</string>
+    <string name="register_as_merchant">Daftar Sebagai Toko</string>
+    <string name="merchantAddFav">Toko Sudah Ada di Favorit Saya</string>
     <string name="onGoingTab">Sedang Berjalan</string>
     <string name="historyTab">Riwayat</string>
     <string name="serviceTab">Layanan</string>
     <string name="reviewTab">Ulasan</string>
     <string name="moreInfoTab">Info Lebih</string>
-    <string name="homeMenu">Menu Utama</string>
+    <string name="homeMenu">Beranda</string>
     <string name="favMenu">Favorit</string>
     <string name="appoinmentMenu">Janji</string>
     <string name="profileMenu">Profil</string>
@@ -274,8 +274,8 @@
     <string name="gakCocokPassword">Password and Re-password tidak sama</string>
     <string name="emailDahAda">Email sudah terpakai!</string>
     <string name="gagalAuth">Otentikasi gagal.</string>
-    <string name="addMerchantSukses">Berhasil menambahkan merchant </string>
-    <string name="failedAddMerchant">Gagal menambahkan merchant </string>
+    <string name="addMerchantSukses">Berhasil menambahkan Toko </string>
+    <string name="failedAddMerchant">Gagal menambahkan Toko </string>
     <string name="registerMantap">Daftar sukses </string>
     <string name="registerTidakMantap">Gagal untuk mendaftar </string>
     <string name="pilihRating">Silahkan pilih rating</string>

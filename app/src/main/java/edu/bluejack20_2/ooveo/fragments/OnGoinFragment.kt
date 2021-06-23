@@ -16,6 +16,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.adapters.OnProgressAdapter
 import edu.bluejack20_2.ooveo.R
+import edu.bluejack20_2.ooveo.TopSpacingItemDecoration
 import edu.bluejack20_2.ooveo.model.CartModel
 
 class OnGoinFragment : Fragment() {
@@ -113,6 +114,9 @@ class OnGoinFragment : Fragment() {
                     }
                     rvOngoing.visibility = View.VISIBLE
                     rvOngoing.layoutManager = linearLayout
+                    val topSpacingItemDecoration = TopSpacingItemDecoration(30)
+                    rvOngoing.addItemDecoration(topSpacingItemDecoration)
+                    rvOngoing.setHasFixedSize(true)
                     rvOngoing.adapter = OnProgressAdapter(listOngoingModel)
                 }
 

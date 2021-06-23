@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.R
+import edu.bluejack20_2.ooveo.TopSpacingItemDecoration
 import edu.bluejack20_2.ooveo.adapters.OnProgressAdapter
 import edu.bluejack20_2.ooveo.model.CartModel
 
@@ -76,6 +77,9 @@ class HistoryFragment : Fragment() {
                     }
                     rvCompleted.visibility = View.VISIBLE
                     rvCompleted.layoutManager = linearLayout
+                    val topSpacingItemDecoration = TopSpacingItemDecoration(30)
+                    rvCompleted.addItemDecoration(topSpacingItemDecoration)
+                    rvCompleted.setHasFixedSize(true)
                     rvCompleted.adapter = OnProgressAdapter(listOngoingModel)
                 }
     }

@@ -60,10 +60,13 @@
             android:id="@+id/btnProfileAdminMerchant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             android:text="@string/Merchant_Admin"
-            app:layout_constraintTop_toBottomOf="@+id/btnProfilEditProfile"
-            tools:layout_editor_absoluteX="0dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnProfilEditProfile" />
 
         <Button
             android:id="@+id/btnProfileLogout"

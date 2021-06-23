@@ -58,6 +58,7 @@ class AppointmentDetailActivity : AppCompatActivity() {
     private lateinit var stylistNameTxt: String
     private lateinit var rangeTimeTxt: String
     private lateinit var totalPriceTxt: String
+    private lateinit var scheduleID: String
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -118,6 +119,7 @@ class AppointmentDetailActivity : AppCompatActivity() {
                     addressTv.text = merchant.address
                     phoneNumberTv.text = merchant.phoneNumber
 
+
                     //GET service
                     db.collection("services").document(serviceID).get()
                         .addOnSuccessListener { document ->
@@ -168,6 +170,7 @@ class AppointmentDetailActivity : AppCompatActivity() {
         db.collection("carts").document(cartID).get().addOnSuccessListener {
             if (it != null) {
                 statusCart = it["status"].toString()
+                scheduleID = it["scheduleID"].toString()
 
 
                 if (statusCart == "ongoing") {
@@ -232,6 +235,9 @@ class AppointmentDetailActivity : AppCompatActivity() {
                         ) { _: DialogInterface, _: Int ->
                             Log.wtf("cart ID in detail", cartID)
                             val homeIntent = Intent(this, HomeActivity::class.java)
+                            db.collection("schedules").document(scheduleID).update(
+                                "status", "bisa"
+                            )
                             db.collection("carts").document(cartID).delete()
                                 .addOnSuccessListener {
                                     Log.d(

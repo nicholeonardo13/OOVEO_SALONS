@@ -22,7 +22,7 @@ import edu.bluejack20_2.ooveo.viewmodels.EditProfileActivityViewModel
 class ProfileMerchantFragment : Fragment() {
 
     private lateinit var logoutBtn: Button
-    private lateinit var languageBtn: Button
+//    private lateinit var languageBtn: Button
     private lateinit var edtProfileBtn: Button
     private lateinit var adminMerchantBtn: Button
     private lateinit var mAuth: FirebaseAuth
@@ -125,11 +125,11 @@ class ProfileMerchantFragment : Fragment() {
 
         })
 
-        //CHANGE LANGUAGE
-        languageBtn!!.setOnClickListener(View.OnClickListener {
-            var intent = Intent(this.context, LanguageActivity::class.java)
-            startActivity(intent)
-        })
+//        //CHANGE LANGUAGE
+//        languageBtn!!.setOnClickListener(View.OnClickListener {
+//            var intent = Intent(this.context, LanguageActivity::class.java)
+//            startActivity(intent)
+//        })
 
         //MOVE TO EDIT PROFILE PAGE
         edtProfileBtn!!.setOnClickListener(View.OnClickListener {
