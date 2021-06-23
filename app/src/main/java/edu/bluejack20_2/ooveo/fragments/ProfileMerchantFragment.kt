@@ -126,10 +126,10 @@ class ProfileMerchantFragment : Fragment() {
         })
 
         //CHANGE LANGUAGE
-        languageBtn!!.setOnClickListener(View.OnClickListener {
-            var intent = Intent(this.context, LanguageActivity::class.java)
-            startActivity(intent)
-        })
+//        languageBtn!!.setOnClickListener(View.OnClickListener {
+//            var intent = Intent(this.context, LanguageActivity::class.java)
+//            startActivity(intent)
+//        })
 
         //MOVE TO EDIT PROFILE PAGE
         edtProfileBtn!!.setOnClickListener(View.OnClickListener {
