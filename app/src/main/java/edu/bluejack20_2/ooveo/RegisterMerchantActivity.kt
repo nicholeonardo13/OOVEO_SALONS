@@ -72,21 +72,21 @@ class RegisterMerchantActivity : AppCompatActivity() {
             txtViewUploadBanner = uploadBannerTextView.text.toString()
 
             if(txtName.isEmpty()){
-                Toast.makeText(this, "Name must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.kosongName), Toast.LENGTH_SHORT).show()
             }else if(txtName.length < 3 ){
-                Toast.makeText(this, "Name must be more than 3 character!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.kurangName), Toast.LENGTH_SHORT).show()
             }else if(txtAddress.isEmpty()){
-                Toast.makeText(this, "Address must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.kosongAddress), Toast.LENGTH_SHORT).show()
             }else if(txtAddress.length < 10){
-                Toast.makeText(this, "Address must be more than 10 characters!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.kurangAddress), Toast.LENGTH_SHORT).show()
             }else if(txtLocation.isEmpty()){
-                Toast.makeText(this, "Location must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.kosongLocation), Toast.LENGTH_SHORT).show()
             }else if(txtPhone.isEmpty()){
-                Toast.makeText(this, "Phone must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.kosongPhone), Toast.LENGTH_SHORT).show()
             }else if(txtPhone.length != 12){
-                Toast.makeText(this, "Phone Number must be 12 characters", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.kurangPhone), Toast.LENGTH_SHORT).show()
             }else if(bannerURL.isEmpty()){
-                Toast.makeText(this, "Please choose a banner", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.kosongBanner), Toast.LENGTH_SHORT).show()
             }else{
                 var intent = Intent(this, RegisterMerchantActivity2::class.java)
                 intent.putExtra("name", txtName)
@@ -150,19 +150,19 @@ class RegisterMerchantActivity : AppCompatActivity() {
                         imageRef.downloadUrl.addOnSuccessListener {
 
                             bannerURL = it.toString()
-                            Toast.makeText(applicationContext, "File Uploaded", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, getString(R.string.fileKeUpload), Toast.LENGTH_SHORT).show()
                         }
 
 
                     }
                     .addOnFailureListener {
                         progressDialog.dismiss()
-                        Toast.makeText(applicationContext, "Failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, getString(R.string.failedText), Toast.LENGTH_SHORT).show()
                     }
                     .addOnProgressListener { taskSnapShot ->
                         val progress =
                                 100.00 * taskSnapShot.bytesTransferred / taskSnapShot.totalByteCount
-                        progressDialog.setMessage("Uploaded " + progress.toInt() + "%... ")
+                        progressDialog.setMessage(getString(R.string.keUploaded) + progress.toInt() + "%... ")
 
                     }
         }

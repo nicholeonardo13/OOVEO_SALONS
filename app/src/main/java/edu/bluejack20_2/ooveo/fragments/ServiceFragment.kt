@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +24,7 @@ class ServiceFragment : Fragment() {
     private lateinit var listServiceModel : ArrayList<ServiceModel>
     private lateinit var tempList : ArrayList<ServiceModel>
 
-     var ids = ""
+    var ids = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

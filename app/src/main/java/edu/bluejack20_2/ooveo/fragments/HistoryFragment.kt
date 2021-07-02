@@ -15,13 +15,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.R
+import edu.bluejack20_2.ooveo.TopSpacingItemDecoration
 import edu.bluejack20_2.ooveo.adapters.OnProgressAdapter
-import edu.bluejack20_2.ooveo.model.OnprogressModel
+import edu.bluejack20_2.ooveo.model.CartModel
 
 class HistoryFragment : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    private lateinit var listOngoingModel: ArrayList<OnprogressModel>
+    private lateinit var listOngoingModel: ArrayList<CartModel>
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -56,14 +57,17 @@ class HistoryFragment : Fragment() {
                         Log.wtf("status history2: ", data["status"] as String)
 //                        if (data["status"] as String == "completed") {
                             listOngoingModel.add(
-                                    OnprogressModel(
+                                    CartModel(
+                                            data.id.toString(),
                                             data["merchant_id"] as DocumentReference,
                                             data["date"] as Timestamp,
                                             data["merchant_id"] as DocumentReference,
                                             data["start_time"] as String,
                                             data["end_time"] as String,
                                             data["service_id"] as DocumentReference,
-                                            data["status"] as String
+                                            data["status"] as String,
+                                            data["bookingCode"] as String,
+                                            data["payment_status"] as String
                                     )
 
                             )
@@ -73,6 +77,9 @@ class HistoryFragment : Fragment() {
                     }
                     rvCompleted.visibility = View.VISIBLE
                     rvCompleted.layoutManager = linearLayout
+                    val topSpacingItemDecoration = TopSpacingItemDecoration(30)
+                    rvCompleted.addItemDecoration(topSpacingItemDecoration)
+                    rvCompleted.setHasFixedSize(true)
                     rvCompleted.adapter = OnProgressAdapter(listOngoingModel)
                 }
     }

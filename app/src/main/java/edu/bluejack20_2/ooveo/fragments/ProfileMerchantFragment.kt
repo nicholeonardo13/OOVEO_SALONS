@@ -22,12 +22,11 @@ import edu.bluejack20_2.ooveo.viewmodels.EditProfileActivityViewModel
 class ProfileMerchantFragment : Fragment() {
 
     private lateinit var logoutBtn: Button
-    private lateinit var languageBtn: Button
+//    private lateinit var languageBtn: Button
     private lateinit var edtProfileBtn: Button
     private lateinit var adminMerchantBtn: Button
     private lateinit var mAuth: FirebaseAuth
     private lateinit var userProfile: ImageView
-
     private lateinit var db: FirebaseFirestore
     private lateinit var edtName: TextView
     private lateinit var userModel: UserModel
@@ -59,7 +58,6 @@ class ProfileMerchantFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
 
         logoutBtn = view!!.findViewById<Button>(R.id.btnProfileLogout)
-        languageBtn = view!!.findViewById<Button>(R.id.btnManageService)
         edtProfileBtn = view!!.findViewById<Button>(R.id.btnProfilEditProfile)
         userProfile = view!!.findViewById<ImageView>(R.id.ivProfileUserImage)
         edtName = view!!.findViewById<TextView>(R.id.tvMerchantName)
@@ -128,10 +126,10 @@ class ProfileMerchantFragment : Fragment() {
         })
 
         //CHANGE LANGUAGE
-        languageBtn!!.setOnClickListener(View.OnClickListener {
-            var intent = Intent(this.context, LanguageActivity::class.java)
-            startActivity(intent)
-        })
+//        languageBtn!!.setOnClickListener(View.OnClickListener {
+//            var intent = Intent(this.context, LanguageActivity::class.java)
+//            startActivity(intent)
+//        })
 
         //MOVE TO EDIT PROFILE PAGE
         edtProfileBtn!!.setOnClickListener(View.OnClickListener {

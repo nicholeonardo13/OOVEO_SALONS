@@ -1,5 +1,6 @@
 package edu.bluejack20_2.ooveo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -31,11 +32,11 @@ class AddServiceActivity : AppCompatActivity() {
             val serviceDesc = edtServiceDesc.text.toString()
 
             if(serviceName.isEmpty()){
-                Toast.makeText(this, "Name must be filled!", Toast.LENGTH_SHORT).show()
-            }else if(servicePrice.isEmpty()){
-                Toast.makeText(this, "Price must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.errorName), Toast.LENGTH_SHORT).show()
+            }else if(servicePrice.isEmpty() || Integer.parseInt(servicePrice) >  0){
+                Toast.makeText(this, getString(R.string.errorPrice), Toast.LENGTH_SHORT).show()
             }else if(serviceDesc.isEmpty()){
-                Toast.makeText(this, "Description must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.errorDescription), Toast.LENGTH_SHORT).show()
             }else {
 
                 val price = servicePrice.toLong()
@@ -44,6 +45,11 @@ class AddServiceActivity : AppCompatActivity() {
                 edtServiceName.setText("")
                 edtServicePrice.setText("")
                 edtServiceDesc.setText("")
+
+                var intent = Intent(this@AddServiceActivity, ManageServiceActivity::class.java)
+                intent.putExtra("id", ids)
+                startActivity(intent)
+                finish()
 
             }
         }
@@ -60,10 +66,10 @@ class AddServiceActivity : AppCompatActivity() {
 
         db.collection("services").add(service)
             .addOnSuccessListener {
-                Toast.makeText(this@AddServiceActivity , "Berhasil" , Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AddServiceActivity , getString(R.string.berhasilMessage) , Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
-                Toast.makeText(this@AddServiceActivity , "GAGAL" , Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AddServiceActivity , getString(R.string.gagalMessage) , Toast.LENGTH_SHORT).show()
             }
     }
 }

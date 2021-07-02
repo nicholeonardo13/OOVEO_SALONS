@@ -60,21 +60,21 @@ class ChangePhoneNumberVerifActivity2 : AppCompatActivity() {
                                 "phone", phoneNumber
                             ).addOnSuccessListener {
                                 Log.d("SUKSES", "DocumentSnapshot successfully updated!")
-                                Toast.makeText(this, "Success change phone number", Toast.LENGTH_SHORT).show()
-                                var intent = Intent(applicationContext, ProfileFragment::class.java)
+                                Toast.makeText(this, getString(R.string.successChangePhoneNumber), Toast.LENGTH_SHORT).show()
+                                var intent = Intent(applicationContext, EditProfileActivity::class.java)
                                 startActivity(intent)
                                 finish()
 
                             }.addOnFailureListener { e ->
                                     Log.w("ERROR", "Error updating document", e)
-                                    Toast.makeText(this, "Failed save changes", Toast.LENGTH_SHORT ).show()
+                                    Toast.makeText(this, getString(R.string.saveFailed), Toast.LENGTH_SHORT ).show()
                                 }
                         } else {
-                            Toast.makeText(this, "Success change phone number", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, getString(R.string.successChangePhoneNumber), Toast.LENGTH_SHORT).show()
                         }
                     })
             }else{
-                Toast.makeText(this, "Enter OTP", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.pleaseEnterOTP), Toast.LENGTH_SHORT).show()
             }
         }
     }

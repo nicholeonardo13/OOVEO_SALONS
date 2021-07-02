@@ -8,6 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.R
 import edu.bluejack20_2.ooveo.TopSpacingItemDecoration
@@ -22,11 +23,12 @@ class ReflexologyActivity : AppCompatActivity() {
     private lateinit var merchantAdapter: RecyclerAdapter
     private lateinit var listMerchantModel :ArrayList<MerchantModel>
     private lateinit var tempList: ArrayList<MerchantModel>
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reflexology)
-
+        mAuth = FirebaseAuth.getInstance()
         var toolBar = findViewById<Toolbar>(R.id.toolbar)
         toolBar.title = ""
 
@@ -50,7 +52,7 @@ class ReflexologyActivity : AppCompatActivity() {
 
 
     private fun getAllMerchantData(){
-        db.collection("merchants").whereEqualTo("type" , "Reflexology").get()
+        db.collection("merchants").whereEqualTo("type" , "Reflexology").whereNotEqualTo("ownerID" , mAuth.currentUser.uid.toString()).get()
             .addOnSuccessListener {
                 listMerchantModel = ArrayList()
                 tempList = ArrayList()

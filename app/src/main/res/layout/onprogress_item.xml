@@ -26,7 +26,7 @@
 
         <ImageView
             android:id="@+id/ivOnprogressImage"
-            android:layout_width="match_parent"
+            android:layout_width="385dp"
             android:layout_height="120dp"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -39,17 +39,22 @@
             android:id="@+id/tvOnprogressLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Location"/>
+            android:text="@string/location"/>
         <TextView
             android:id="@+id/tvOnprogressTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Time"/>
+            android:text="@string/time"/>
         <TextView
             android:id="@+id/tvOnprogressServiceName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Service Name"/>
+            android:text="@string/service_name"/>
+        <Button
+            android:id="@+id/btnOnprogressDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/detail"/>
 
     </LinearLayout>
 

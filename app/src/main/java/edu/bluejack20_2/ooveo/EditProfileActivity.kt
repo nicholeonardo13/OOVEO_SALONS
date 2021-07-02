@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -27,7 +28,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import edu.bluejack20_2.ooveo.fragments.ProfileFragment
+import edu.bluejack20_2.ooveo.homes.HomeActivity
 import edu.bluejack20_2.ooveo.model.UserModel
+import edu.bluejack20_2.ooveo.viewmodels.EditProfileActivityViewModel
 import java.io.IOException
 import java.util.*
 
@@ -68,20 +72,20 @@ class EditProfileActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance()
 
-//        val viewModel = ViewModelProvider(this).get(EditProfileActivityViewModel::class.java)
-//        viewModel.getPP().observe(this, {
-//            val requestOption = RequestOptions()
-//                .placeholder(R.drawable.ic_launcher_background)
-//                .error(R.drawable.ic_launcher_background)
-//
-//            Glide.with(this)
-//                .applyDefaultRequestOptions(requestOption)
-//                .load(it)
-//                .into(profileUser)
-//
-//            println("THIS IS IT")
-//            println(it)
-//        })
+        val viewModel = ViewModelProvider(this).get(EditProfileActivityViewModel::class.java)
+        viewModel.getPP().observe(this, {
+            val requestOption = RequestOptions()
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+
+            Glide.with(this)
+                .applyDefaultRequestOptions(requestOption)
+                .load(it)
+                .into(profileUser)
+
+            println("THIS IS IT")
+            println(it)
+        })
 
         val docRef = db.collection("users").document(mAuth.currentUser.uid.toString())
         docRef.get()
@@ -149,20 +153,22 @@ class EditProfileActivity : AppCompatActivity() {
             val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
             if (txtName.isEmpty()) {
-                Toast.makeText(this, "Name must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.namaKosong), Toast.LENGTH_SHORT).show()
             } else if (txtName.length < 3) {
-                Toast.makeText(this, "Name must be more than 3 character!", Toast.LENGTH_SHORT)
+                Toast.makeText(this, getString(R.string.namaKurang), Toast.LENGTH_SHORT)
                     .show()
             } else if (txtEmail.isEmpty()) {
-                Toast.makeText(this, "Email must be filled!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.emailKosong), Toast.LENGTH_SHORT).show()
             } else if (!(txtEmail.matches(emailPattern.toRegex()))) {
                 Toast.makeText(
                     applicationContext,
-                    "Invalid email address format",
+                    getString(R.string.invalidEmail),
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
                 updateDataUser(txtName, txtEmail)
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
                 finish()
             }
         })
@@ -198,7 +204,7 @@ class EditProfileActivity : AppCompatActivity() {
         var imageURL: String = ""
         if (filePath != null) {
             val progressDialog = ProgressDialog(this)
-            progressDialog.setTitle("Uploading... ")
+            progressDialog.setTitle(getString(R.string.uploadingText))
             progressDialog.show()
 
             val imageRef = storageReference!!.child("user/" + mAuth.currentUser.uid.toString())
@@ -212,16 +218,16 @@ class EditProfileActivity : AppCompatActivity() {
                     }
 
 
-                    Toast.makeText(applicationContext, "File Uploaded", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.fileUploads), Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
                     progressDialog.dismiss()
-                    Toast.makeText(applicationContext, "Failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.failedText), Toast.LENGTH_SHORT).show()
                 }
                 .addOnProgressListener { taskSnapShot ->
                     val progress =
                         100.00 * taskSnapShot.bytesTransferred / taskSnapShot.totalByteCount
-                    progressDialog.setMessage("Uploaded " + progress.toInt() + "%... ")
+                    progressDialog.setMessage(getString(R.string.uploadmen) + progress.toInt() + "%... ")
 
                 }
         }
@@ -246,12 +252,12 @@ class EditProfileActivity : AppCompatActivity() {
 
             ).addOnSuccessListener {
                 Log.d("SUKSES", "DocumentSnapshot successfully updated!")
-                Toast.makeText(this, "Success save changes", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.berhasilSave), Toast.LENGTH_SHORT).show()
 
             }
                 .addOnFailureListener { e ->
                     Log.w("ERROR", "Error updating document", e)
-                    Toast.makeText(this, "Failed save changes", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.gagalSave), Toast.LENGTH_SHORT).show()
                 }
         } else {
             //CHECK EMAIL UDAH PERNAH DI PAKE ATAU BELOM
@@ -260,7 +266,7 @@ class EditProfileActivity : AppCompatActivity() {
                     var check: Boolean = it.result!!.signInMethods!!.isEmpty()
 
                     if (!check) {
-                        Toast.makeText(this, "Email already used!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.emailUdahAda), Toast.LENGTH_SHORT).show()
                     } else {
                         val userAuth = mAuth.currentUser!!
 
@@ -279,11 +285,11 @@ class EditProfileActivity : AppCompatActivity() {
                             "profilePicture", currentPhotoProfile
                         ).addOnSuccessListener {
                             Log.d("SUKSES", "DocumentSnapshot successfully updated!")
-                            Toast.makeText(this, "Success save changes", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, getString(R.string.berhasilBerhasil), Toast.LENGTH_SHORT).show()
 
                         }.addOnFailureListener { e ->
                                 Log.w("ERROR", "Error updating document", e)
-                                Toast.makeText(this, "Failed save changes", Toast.LENGTH_SHORT)
+                                Toast.makeText(this, getString(R.string.gagalGagal), Toast.LENGTH_SHORT)
                                     .show()
                             }
                     }

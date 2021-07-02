@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.bluejack20_2.ooveo.adapters.ServiceAdminAdapter
 import edu.bluejack20_2.ooveo.adapters.StylistAdminAdapter
 import edu.bluejack20_2.ooveo.model.ServiceModel
 import edu.bluejack20_2.ooveo.model.StylistModel
-import java.util.ArrayList
+import java.util.*
 
 class ManageStylistActivity : AppCompatActivity() {
     private lateinit var rcAdminStylist : RecyclerView
@@ -49,9 +50,9 @@ class ManageStylistActivity : AppCompatActivity() {
         val fabStylist = findViewById<FloatingActionButton>(R.id.fabAddStylist)
 
         fabStylist.setOnClickListener {
-//            var intent = Intent(this@ManageStylistActivity, AddServiceActivity::class.java)
-//            intent.putExtra("id", ids)
-//            startActivity(intent)
+            var intent = Intent(this@ManageStylistActivity, AddStylistActivity::class.java)
+            intent.putExtra("id", ids)
+            startActivity(intent)
         }
 
 
@@ -79,20 +80,52 @@ class ManageStylistActivity : AppCompatActivity() {
                 listStylistModel.clear()
                 for (document in it.documents){
 
-                    listStylistModel.add(
+                    if(document?.get("startHour") == null || document?.get("endHour") == null){
+                        listStylistModel.add(
                         StylistModel(
                             document.id as String,
-                            document.data?.get("name") as String,
-                            document.data?.get("gender") as String,
-                            document.data?.get("profilePicture") as String,
-                            document.data?.get("merchantID") as String
+                            document?.get("name") as String,
+                            document?.get("gender") as String,
+                            document?.get("profilePicture") as String,
+                            document?.get("merchantID") as String,
+//                            null ,
+//                            null
                         )
-                    )
+                        )
+                        Log.e("haha" , "masuk ke if")
+                    }else {
+                        listStylistModel.add(
+                        StylistModel(
+                            document.id as String,
+                            document?.get("name") as String,
+                            document?.get("gender") as String,
+                            document?.get("profilePicture") as String,
+                            document?.get("merchantID") as String,
+//                            document?.get("schedule") as ArrayList<String>,
+//                            document.get("scheduleTimestamp") as Timestamp
+                        )
+                        )
+                        Log.e("haha" , "masuk ke else")
+                    }
+
+//                    listStylistModel.add(
+//                        StylistModel(
+//                            document.id as String,
+//                            document.data?.get("name") as String,
+//                            document.data?.get("gender") as String,
+//                            document.data?.get("profilePicture") as String,
+//                            document.data?.get("merchantID") as String,
+//                            document.get("startHour") as Timestamp,
+//                            document.get("endHour") as Timestamp
+//                        )
+//                    )
 
 //                        println("TESTT")
                 }
 
+                Log.e("hasil",listStylistModel.toString())
                 sylistAdapter.submitList(listStylistModel)
+
 
             }
             .addOnFailureListener{

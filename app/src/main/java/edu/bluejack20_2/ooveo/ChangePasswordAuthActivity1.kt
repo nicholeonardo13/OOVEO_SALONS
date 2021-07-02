@@ -43,7 +43,7 @@ class ChangePasswordAuthActivity1 : AppCompatActivity() {
 
         if(textPhoneNumber.text.equals("Please add phone number")){
 
-            Toast.makeText(applicationContext, "Please insert phone number first!", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, getString(R.string.errorInsertPhoneNumber), Toast.LENGTH_LONG).show()
         }else{
             var phoneV = phone.replaceRange(0, 1, "")
             textPhoneNumber.setText(phoneV)
@@ -65,7 +65,7 @@ class ChangePasswordAuthActivity1 : AppCompatActivity() {
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
-                Toast.makeText(applicationContext, "Failed", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, getString(R.string.failedText), Toast.LENGTH_LONG).show()
             }
 
             override fun onCodeSent(
@@ -93,7 +93,7 @@ class ChangePasswordAuthActivity1 : AppCompatActivity() {
         var phoneNumber: String = country_code + phone
 
         if(country_code.isEmpty() && phone.isEmpty()){
-            Toast.makeText(this, "Please enter country code and Phone Number", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.errorCountryCode), Toast.LENGTH_SHORT).show()
         }else{
             sendVerificationcode(phoneNumber)
 

@@ -79,9 +79,9 @@ class DetailMerchantActivity : AppCompatActivity() , Communicator {
 
     fun setTab(){
         val adapter = viewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(ServiceFragment() , "Services")
-        adapter.addFragment(FavouriteFragment() , "Reviews")
-        adapter.addFragment(MoreInfoFragment(), "More Info")
+        adapter.addFragment(ServiceFragment() , getString(R.string.serviceTab))
+        adapter.addFragment(ReviewFragment() , getString(R.string.reviewTab))
+        adapter.addFragment(MoreInfoFragment(), getString(R.string.moreInfoTab))
         val viewPager = findViewById<ViewPager>(R.id.viewPager)
         viewPager.adapter = adapter
         val tabs = findViewById<TabLayout>(R.id.tabs)

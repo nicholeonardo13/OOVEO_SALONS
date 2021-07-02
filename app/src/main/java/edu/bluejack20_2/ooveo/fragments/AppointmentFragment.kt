@@ -38,8 +38,8 @@ class AppointmentFragment : Fragment() {
 
     fun setTab(){
         val adapter = viewPagerAdapter(childFragmentManager)
-        adapter.addFragment(OnGoinFragment(), "On Going")
-        adapter.addFragment(HistoryFragment(), "History")
+        adapter.addFragment(OnGoinFragment(), getString(R.string.onGoingTab))
+        adapter.addFragment(HistoryFragment(), getString(R.string.historyTab))
         val viewPager = view!!.findViewById<ViewPager>(R.id.viewPager)
         viewPager.adapter = adapter
         val tabs = view!!.findViewById<TabLayout>(R.id.tabs)

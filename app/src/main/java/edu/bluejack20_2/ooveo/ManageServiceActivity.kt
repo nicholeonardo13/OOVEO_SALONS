@@ -4,16 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
-import edu.bluejack20_2.ooveo.adapters.RecyclerAdapter
-import edu.bluejack20_2.ooveo.adapters.ServiceAdapter
 import edu.bluejack20_2.ooveo.adapters.ServiceAdminAdapter
-import edu.bluejack20_2.ooveo.model.MerchantModel
 import edu.bluejack20_2.ooveo.model.ServiceModel
 import java.util.ArrayList
 

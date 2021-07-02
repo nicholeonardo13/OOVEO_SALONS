@@ -15,7 +15,7 @@ import edu.bluejack20_2.ooveo.model.UserModel
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var logoutBtn: Button
-    private lateinit var languageBtn: Button
+//    private lateinit var languageBtn: Button
     private lateinit var edtProfileBtn: Button
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth;
@@ -39,11 +39,11 @@ class ProfileActivity : AppCompatActivity() {
 
         })
 
-        languageBtn!!.setOnClickListener(View.OnClickListener {
-            var intent = Intent(this, LanguageActivity::class.java)
-            startActivity(intent)
-            finish()
-        })
+//        languageBtn!!.setOnClickListener(View.OnClickListener {
+//            var intent = Intent(this, LanguageActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        })
 
         edtProfileBtn!!.setOnClickListener(View.OnClickListener {
             var intent = Intent(this, EditProfileActivity::class.java)
@@ -67,7 +67,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun init(){
         logoutBtn = findViewById(R.id.btnProfileLogout)
-        languageBtn = findViewById(R.id.btnProfileLanguage)
+//        languageBtn = findViewById(R.id.btnProfileLanguage)
         edtProfileBtn = findViewById(R.id.btnProfilEditProfile)
         edtName = findViewById(R.id.edtEditProfileName)
         edtEmail = findViewById(R.id.edtEditProfileEmail)

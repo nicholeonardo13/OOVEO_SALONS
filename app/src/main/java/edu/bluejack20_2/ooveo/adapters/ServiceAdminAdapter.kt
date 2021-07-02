@@ -1,4 +1,5 @@
 package edu.bluejack20_2.ooveo.adapters
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +46,7 @@ class ServiceAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     val mIntent = Intent(holder.itemView.context, UpdateServiceActivity::class.java)
                     mIntent.putExtra("id",id)
                     holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
                 }
 
                 btnDelete.setOnClickListener {
@@ -52,6 +54,7 @@ class ServiceAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     val mIntent = Intent(holder.itemView.context, DeleteServiceActivity::class.java)
                     mIntent.putExtra("id",id)
                     holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
                 }
 
             }

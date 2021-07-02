@@ -68,14 +68,14 @@ class ChangePasswordActivity : AppCompatActivity() {
                     Log.d("REAUTHENTICATE", "User re-authenticated.")
 
                     if(txtNewPass.isEmpty()){
-                        Toast.makeText(this, "New Password must be filled!", Toast.LENGTH_SHORT ).show()
+                        Toast.makeText(this, getString(R.string.errorPasswordField), Toast.LENGTH_SHORT ).show()
                     }else{
                         //UPDATE PASSWORD
                         val newPassword = txtNewPass
                         userAuth!!.updatePassword(newPassword)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    Toast.makeText(this, "Success change password", Toast.LENGTH_SHORT ).show()
+                                    Toast.makeText(this, getString(R.string.successChangePassword), Toast.LENGTH_SHORT ).show()
                                     Log.d("UPDATE PASSWORD SUKSES", "User password updated.")
 
                                     val userRef = db.collection("users").document(mAuth.currentUser.uid.toString())
@@ -83,20 +83,20 @@ class ChangePasswordActivity : AppCompatActivity() {
                                         "password", txtNewPass
                                     ).addOnSuccessListener {
                                         Log.d("SUKSES", "DocumentSnapshot successfully updated!")
-                                        Toast.makeText(this, "Success save changes", Toast.LENGTH_SHORT).show()
-                                        var intent = Intent(this, ProfileFragment::class.java)
+                                        Toast.makeText(this, getString(R.string.successSaveChange), Toast.LENGTH_SHORT).show()
+                                        var intent = Intent(applicationContext, EditProfileActivity::class.java)
                                         startActivity(intent)
                                         finish()
 
                                     }
                                         .addOnFailureListener { e ->
                                             Log.w("ERROR", "Error updating document", e)
-                                            Toast.makeText(this, "Failed save changes", Toast.LENGTH_SHORT)
+                                            Toast.makeText(this, getString(R.string.errorSaveChange), Toast.LENGTH_SHORT)
                                                 .show()
                                         }
 
                                 }else{
-                                    Toast.makeText(this, "Failed change password", Toast.LENGTH_SHORT ).show()
+                                    Toast.makeText(this, getString(R.string.errorChangePassword), Toast.LENGTH_SHORT ).show()
                                     Log.w("CHFLD", task.exception.toString())
                                 }
                             }

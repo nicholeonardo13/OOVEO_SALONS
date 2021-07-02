@@ -27,7 +27,6 @@ class ProfileFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var logoutBtn: Button
-    private lateinit var languageBtn: Button
     private lateinit var edtProfileBtn: Button
     private lateinit var mAuth: FirebaseAuth
     private lateinit var userProfile: ImageView
@@ -64,7 +63,7 @@ class ProfileFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
 
         logoutBtn = view!!.findViewById<Button>(R.id.btnProfileLogout)
-        languageBtn = view!!.findViewById<Button>(R.id.btnProfileLanguage)
+//        languageBtn = view!!.findViewById<Button>(R.id.btnProfileLanguage)
         edtProfileBtn = view!!.findViewById<Button>(R.id.btnProfilEditProfile)
         userProfile = view!!.findViewById<ImageView>(R.id.ivProfileUserImage)
         edtName = view!!.findViewById<TextView>(R.id.tvProfileUserName)
@@ -72,6 +71,9 @@ class ProfileFragment : Fragment() {
         ivProfilePicture = view!!.findViewById<ImageView>(R.id.ivProfileUserImage)
         tvChangeTheme= view!!.findViewById<TextView>(R.id.tvProfileChangeTheme)
         tvPhone = view!!.findViewById<TextView>(R.id.tvProfilePhoneNumber)
+
+        //HAPUS
+//        bookDummy = view!!.findViewById<Button>(R.id.btnProfileBookSementara)
 
         println(" ")
         println(" ")
@@ -104,10 +106,12 @@ class ProfileFragment : Fragment() {
                                 .placeholder(R.drawable.ic_launcher_background)
                                 .error(R.drawable.ic_launcher_background)
 
-                        Glide.with(this)
-                                .applyDefaultRequestOptions(requestOption)
-                                .load(user.profilePicture)
-                                .into(ivProfilePicture)
+                        if(activity?.applicationContext != null) {
+                            Glide.with(activity!!.applicationContext)
+                                    .applyDefaultRequestOptions(requestOption)
+                                    .load(user.profilePicture)
+                                    .into(ivProfilePicture)
+                        }
                         Log.d("TAMPILIN DATA", "DocumentSnapshot data: ${document.data}")
 
                         //MOVE TO EDIT PROFILE PAGE
@@ -128,8 +132,7 @@ class ProfileFragment : Fragment() {
                             mAuth.signOut()
                             val intent = Intent(this.context, MainActivity::class.java)
                             startActivity(intent);
-
-
+                            activity?.finish()
                         })
 
                         tvChangeTheme!!.setOnClickListener(View.OnClickListener {
@@ -139,10 +142,11 @@ class ProfileFragment : Fragment() {
                         })
 
                         //CHANGE LANGUAGE
-                        languageBtn!!.setOnClickListener(View.OnClickListener {
-                            var intent = Intent(this.context, LanguageActivity::class.java)
-                            startActivity(intent)
-                        })
+//                        languageBtn!!.setOnClickListener(View.OnClickListener {
+//                            var intent = Intent(this.context, LanguageActivity::class.java)
+//                            startActivity(intent)
+//                        })
+
 
                     } else {
                         Log.d("GAGAL", "No such document")

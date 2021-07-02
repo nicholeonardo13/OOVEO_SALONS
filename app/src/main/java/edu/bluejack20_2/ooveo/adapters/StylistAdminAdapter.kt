@@ -1,6 +1,8 @@
 package edu.bluejack20_2.ooveo.adapters
 
+import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +15,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import edu.bluejack20_2.ooveo.DeleteServiceActivity
-import edu.bluejack20_2.ooveo.R
-import edu.bluejack20_2.ooveo.UpdateServiceActivity
+import edu.bluejack20_2.ooveo.*
 import edu.bluejack20_2.ooveo.model.ServiceModel
 import edu.bluejack20_2.ooveo.model.StylistModel
 
@@ -46,19 +46,31 @@ class StylistAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                 val btnUpdate = holder.itemView.findViewById<Button>(R.id.btnupdateStylistAdmin)
                 val btnDelete = holder.itemView.findViewById<Button>(R.id.btndeleteStylistAdmin)
+                val btnSchedule = holder.itemView.findViewById<Button>(R.id.btnScheduleStylistAdmin)
                 val id = newList.id
 
                 btnUpdate.setOnClickListener {
-//                    val mIntent = Intent(holder.itemView.context, UpdateServiceActivity::class.java)
-//                    mIntent.putExtra("id",id)
-//                    holder.itemView.context.startActivity(mIntent)
+                    val mIntent = Intent(holder.itemView.context, UpdateStylistActivity::class.java)
+                    mIntent.putExtra("id",id)
+                    holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
                 }
 
                 btnDelete.setOnClickListener {
                     println("DELETE DI KLIK")
-//                    val mIntent = Intent(holder.itemView.context, DeleteServiceActivity::class.java)
-//                    mIntent.putExtra("id",id)
-//                    holder.itemView.context.startActivity(mIntent)
+                    val mIntent = Intent(holder.itemView.context, DeleteStylistActivity::class.java)
+                    mIntent.putExtra("id",id)
+                    holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
+                }
+
+                btnSchedule.setOnClickListener {
+                    println("Schedule DI KLIK")
+                    val mIntent = Intent(holder.itemView.context, ScheduleStylistAdminActivity::class.java)
+                    Log.e("ini id" , id)
+                    mIntent.putExtra("id",id)
+                    holder.itemView.context.startActivity(mIntent)
+                    (holder.itemView.context as Activity).finish()
                 }
 
             }
@@ -76,10 +88,16 @@ class StylistAdminAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val stylist_name: TextView = itemView.findViewById(R.id.stylist_name)
         val stylist_gender: TextView = itemView.findViewById(R.id.stylist_gender)
         val stylist_profile: ImageView = itemView.findViewById(R.id.ivStylistAdmin)
+        lateinit var stylistGender: String
 
         fun binding(stylist: StylistModel){
             stylist_name.setText(stylist.name)
-            stylist_gender.setText(stylist.gender)
+            if(stylist.gender == "Female"){
+                stylistGender = itemView.context.getString(R.string.female)
+            }else if(stylist.gender == "Male"){
+                stylistGender = itemView.context.getString(R.string.male)
+            }
+            stylist_gender.setText(stylistGender)
 
             val requestOption = RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background)
